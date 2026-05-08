@@ -30,7 +30,7 @@ function SidebarContent({ menuItems, currentView, handleNav }: { menuItems: any[
         <div className="bg-blue-600 p-2 rounded-lg text-white shadow-lg shadow-blue-500/20">
           <ShoppingBag size={24} />
         </div>
-        <span className="text-xl font-bold tracking-tight">Mochi´s Shop</span>
+        <span className="text-xl font-bold tracking-tight">Machi´s Shop</span>
       </div>
 
       <nav className="flex-1 space-y-1">

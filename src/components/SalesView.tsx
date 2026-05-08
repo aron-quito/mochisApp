@@ -97,8 +97,10 @@ export function SalesView() {
   const totalPrice = cart.reduce((acc, item) => acc + (item.product.sellingPrice * item.quantity), 0);
 
   const filteredProducts = products.filter(p => 
-    p.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-    p.sku.toLowerCase().includes(searchTerm.toLowerCase())
+    p.totalStock > 0 && (
+      p.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      p.sku.toLowerCase().includes(searchTerm.toLowerCase())
+    )
   );
 
   const handlePayment = async () => {

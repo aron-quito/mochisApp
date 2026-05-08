@@ -101,7 +101,7 @@ export default function App() {
               </div>
               
               <h1 className="text-4xl font-extrabold text-slate-900 mb-3 tracking-tighter">
-                Mochi´s<span className="text-blue-600 text-shadow-glow"> Shop</span>
+                Machi´s<span className="text-blue-600 text-shadow-glow"> Shop</span>
               </h1>
               
               <p className="text-slate-500 mb-10 text-lg leading-relaxed">
@@ -178,7 +178,7 @@ export default function App() {
             <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center">
               <ShoppingBag className="text-white w-4 h-4" />
             </div>
-            <h2 className="text-lg font-bold text-slate-900 tracking-tight italic">Mochi´s Shop</h2>
+            <h2 className="text-lg font-bold text-slate-900 tracking-tight italic">Machi´s Shop</h2>
           </div>
           <div className="w-9 h-9 rounded-xl border-2 border-white shadow-sm ring-1 ring-slate-100 bg-slate-200 flex items-center justify-center">
              A

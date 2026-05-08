@@ -14,7 +14,7 @@ function insertLog($pdo, $productId, $productName, $eventType, $quantityDelta, $
 }
 
 if ($method === 'GET') {
-    $stmt = $pdo->query("SELECT * FROM products ORDER BY createdAt DESC");
+    $stmt = $pdo->query("SELECT * FROM products WHERE active = 1 ORDER BY createdAt DESC");
     $products = $stmt->fetchAll();
 
     foreach ($products as &$p) {
@@ -60,18 +60,33 @@ if ($method === 'GET') {
         $product = $pStmt->fetch();
         if (!$product) { http_response_code(404); echo json_encode(['error' => 'Product not found']); exit; }
 
-        // Deduct from lots (FIFO)
-        $lotStmt = $pdo->prepare("SELECT * FROM lots WHERE product_id = ? AND remainingStock > 0 ORDER BY importDate ASC");
-        $lotStmt->execute([$productId]);
-        $lots = $lotStmt->fetchAll();
+        $lotId = $input['lotId'] ?? null;
+        if ($lotId) {
+            $lotStmt = $pdo->prepare("SELECT * FROM lots WHERE id = ? AND product_id = ? AND remainingStock >= ?");
+            $lotStmt->execute([$lotId, $productId, $amount]);
+            $lot = $lotStmt->fetch();
+            if (!$lot) {
+                http_response_code(422);
+                echo json_encode(['error' => 'Lote no encontrado o stock insuficiente en este lote']);
+                exit;
+            }
+            $newRem = $lot['remainingStock'] - $amount;
+            $pdo->prepare("UPDATE lots SET remainingStock = ? WHERE id = ?")->execute([$newRem, $lotId]);
+            $remaining = 0;
+        } else {
+            // Deduct from lots (FIFO) - Fallback
+            $lotStmt = $pdo->prepare("SELECT * FROM lots WHERE product_id = ? AND remainingStock > 0 ORDER BY importDate ASC");
+            $lotStmt->execute([$productId]);
+            $lots = $lotStmt->fetchAll();
 
-        $remaining = $amount;
-        foreach ($lots as $lot) {
-            if ($remaining <= 0) break;
-            $deduct = min($remaining, $lot['remainingStock']);
-            $newRem = $lot['remainingStock'] - $deduct;
-            $pdo->prepare("UPDATE lots SET remainingStock = ? WHERE id = ?")->execute([$newRem, $lot['id']]);
-            $remaining -= $deduct;
+            $remaining = $amount;
+            foreach ($lots as $lot) {
+                if ($remaining <= 0) break;
+                $deduct = min($remaining, $lot['remainingStock']);
+                $newRem = $lot['remainingStock'] - $deduct;
+                $pdo->prepare("UPDATE lots SET remainingStock = ? WHERE id = ?")->execute([$newRem, $lot['id']]);
+                $remaining -= $deduct;
+            }
         }
 
         if ($remaining > 0) {
@@ -204,7 +219,7 @@ if ($method === 'GET') {
 } elseif ($method === 'DELETE') {
     $id = $_GET['id'] ?? null;
     if (!$id) { http_response_code(400); echo json_encode(['error' => 'Missing ID']); exit; }
-    $pdo->prepare("DELETE FROM products WHERE id=?")->execute([$id]);
+    $pdo->prepare("UPDATE products SET active = 0 WHERE id=?")->execute([$id]);
     echo json_encode(['success' => true]);
 }
 ?>

@@ -19,7 +19,8 @@ import {
   ArrowLeft,
   ArrowUpCircle,
   MinusCircle,
-  ChevronDown
+  ChevronDown,
+  Trash2
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
@@ -401,6 +402,16 @@ function InventoryModal({ isOpen, onClose, onSuccess, onError }: { isOpen: boole
                         placeholder="Invierno"
                       />
                     </div>
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] uppercase font-bold text-slate-400 tracking-widest ml-1">Material</label>
+                      <input
+                        type="text"
+                        value={formData.material}
+                        onChange={(e) => setFormData({ ...formData, material: e.target.value })}
+                        className="w-full px-5 py-3.5 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:ring-4 focus:ring-blue-500/5 focus:border-blue-400 outline-none transition-all font-medium"
+                        placeholder="Algodón, Poliéster, etc."
+                      />
+                    </div>
                   </div>
                    <div className="space-y-2">
                     <label className="text-[10px] uppercase font-bold text-slate-400 tracking-widest ml-1">Curva de Tallas</label>
@@ -512,6 +523,8 @@ function ProductDetailModal({ product, role = 'admin', onClose, onSuccess, onErr
   const [withdrawAmount, setWithdrawAmount] = useState(0);
   const [withdrawReason, setWithdrawReason] = useState('');
   const [withdrawConfirm, setWithdrawConfirm] = useState(false);
+  const [selectedLotId, setSelectedLotId] = useState<string | null>(null);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [editForm, setEditForm] = useState<Partial<Product>>({});
   const [importData, setImportData] = useState({ quantity: 0, totalCost: 0 });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -570,6 +583,20 @@ function ProductDetailModal({ product, role = 'admin', onClose, onSuccess, onErr
     }
   };
 
+  const handleDelete = async () => {
+    setIsSubmitting(true);
+    try {
+      await apiFetch(`/products.php?id=${product.id}`, { method: 'DELETE' });
+      onSuccess('Producto eliminado correctamente.');
+      onClose();
+      window.location.reload();
+    } catch (err) {
+      onError('Error al eliminar producto.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const handleWithdraw = async () => {
     if (withdrawAmount <= 0 || withdrawAmount > product.totalStock) return;
     setIsSubmitting(true);
@@ -580,6 +607,7 @@ function ProductDetailModal({ product, role = 'admin', onClose, onSuccess, onErr
           action: 'withdraw',
           productId: product.id,
           amount: withdrawAmount,
+          lotId: selectedLotId,
           reason: withdrawReason || `Retiro manual de ${withdrawAmount} unidades`,
         })
       });
@@ -762,6 +790,22 @@ function ProductDetailModal({ product, role = 'admin', onClose, onSuccess, onErr
                           );
                         })}
                       </div>
+                      <div className="pt-8 border-t border-slate-100">
+                        {!showDeleteConfirm ? (
+                          <button onClick={() => setShowDeleteConfirm(true)}
+                            className="flex items-center gap-2 text-red-400 hover:text-red-600 font-bold text-[10px] uppercase tracking-widest transition-colors">
+                            <Trash2 size={14} /> Eliminar Producto Definitivamente
+                          </button>
+                        ) : (
+                          <div className="bg-red-50 p-4 rounded-2xl border border-red-100 flex items-center justify-between gap-4">
+                            <p className="text-[10px] font-black text-red-700 uppercase tracking-tight">¿Estás seguro? Esta acción lo ocultará del inventario.</p>
+                            <div className="flex gap-2">
+                              <button onClick={() => setShowDeleteConfirm(false)} className="text-slate-500 font-bold text-[10px] uppercase">No</button>
+                              <button onClick={handleDelete} className="bg-red-600 text-white px-4 py-2 rounded-xl font-black text-[10px] uppercase shadow-lg shadow-red-200">Sí, Eliminar</button>
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -889,6 +933,26 @@ function ProductDetailModal({ product, role = 'admin', onClose, onSuccess, onErr
 
                   <div className="space-y-4">
                     <div className="space-y-1.5">
+                      <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Seleccionar Lote de Origen</label>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-40 overflow-y-auto pr-2 custom-scrollbar">
+                        {product.lots?.filter(l => l.remainingStock > 0).map(lot => (
+                          <button key={lot.id} onClick={() => setSelectedLotId(lot.id)}
+                            className={cn('p-3 rounded-2xl border-2 transition-all text-left flex justify-between items-center',
+                              selectedLotId === lot.id ? 'border-orange-500 bg-orange-50' : 'border-slate-100 hover:border-slate-300'
+                            )}>
+                            <div>
+                              <p className="text-[10px] font-black uppercase text-slate-900 leading-none mb-1">
+                                {lot.importDate ? new Date(lot.importDate).toLocaleDateString() : 'N/A'}
+                              </p>
+                              <p className="text-[8px] font-bold text-slate-400 uppercase">Stock: {lot.remainingStock}</p>
+                            </div>
+                            {selectedLotId === lot.id && <div className="w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_8px_rgba(249,115,22,0.5)]" />}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-1.5">
                       <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Cantidad a Retirar</label>
                       <input type="number" min={1} max={product.totalStock}
                         value={withdrawAmount === 0 ? '' : withdrawAmount}
@@ -909,13 +973,13 @@ function ProductDetailModal({ product, role = 'admin', onClose, onSuccess, onErr
 
                   {!withdrawConfirm ? (
                     <button onClick={() => setWithdrawConfirm(true)}
-                      disabled={withdrawAmount <= 0 || withdrawAmount > product.totalStock}
+                      disabled={withdrawAmount <= 0 || !selectedLotId || withdrawAmount > (product.lots?.find(l => l.id === selectedLotId)?.remainingStock || 0)}
                       className="w-full bg-orange-500 text-white font-black py-5 rounded-[2rem] hover:bg-orange-600 transition-all shadow-lg shadow-orange-100 disabled:opacity-30 transform active:scale-[0.98] uppercase tracking-widest text-sm">
                       Continuar con el Retiro →
                     </button>
                   ) : (
                     <div className="bg-orange-950 rounded-[2rem] p-8 space-y-6 text-white">
-                      <p className="font-bold text-orange-200 text-center text-sm">¿Confirmas el retiro de <span className="font-black text-white text-xl">{withdrawAmount}</span> unidades de <span className="italic">{product.name}</span>?</p>
+                      <p className="font-bold text-orange-200 text-center text-sm">¿Confirmas el retiro de <span className="font-black text-white text-xl">{withdrawAmount}</span> unidades del lote seleccionado de <span className="italic">{product.name}</span>?</p>
                       <p className="text-[10px] font-bold text-orange-400 text-center uppercase tracking-widest">Esta acción se registrará en el Diario de Operaciones.</p>
                       <div className="flex gap-3">
                         <button onClick={() => setWithdrawConfirm(false)}
