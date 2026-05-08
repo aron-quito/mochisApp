@@ -8,7 +8,8 @@ import {
   LogOut, 
   X,
   ShoppingBag,
-  ClipboardList
+  ClipboardList,
+  Users
 } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { removeAuthToken } from '../lib/api';
@@ -19,30 +20,17 @@ interface SidebarProps {
   setView: (view: AppView) => void;
   isOpen: boolean;
   setIsOpen: (open: boolean) => void;
+  role?: 'admin' | 'employee';
 }
 
-export function Sidebar({ currentView, setView, isOpen, setIsOpen }: SidebarProps) {
-  const menuItems = [
-    { name: 'Inicio', icon: Home, view: 'Home' as AppView },
-    { name: 'Inventario', icon: Package, view: 'Inventory' as AppView },
-    { name: 'Nueva Venta', icon: ShoppingCart, view: 'New Sale' as AppView },
-    { name: 'Diario de Lotes', icon: ClipboardList, view: 'LotJournal' as AppView },
-    { name: 'Reportes', icon: BarChart2, view: 'Reports' as AppView },
-    { name: 'Mi Perfil', icon: User, view: 'Profile' as AppView },
-  ];
-
-  const handleNav = (view: AppView) => {
-    setView(view);
-    setIsOpen(false);
-  };
-
-  const SidebarContent = () => (
+function SidebarContent({ menuItems, currentView, handleNav }: { menuItems: any[], currentView: any, handleNav: (v: any) => void }) {
+  return (
     <div className="flex flex-col h-full py-8 px-4 bg-slate-900 text-white">
       <div className="flex items-center gap-3 px-2 mb-10">
         <div className="bg-blue-600 p-2 rounded-lg text-white shadow-lg shadow-blue-500/20">
           <ShoppingBag size={24} />
         </div>
-        <span className="text-xl font-bold tracking-tight">ClothStock</span>
+        <span className="text-xl font-bold tracking-tight">Mochi´s Shop</span>
       </div>
 
       <nav className="flex-1 space-y-1">
@@ -77,12 +65,40 @@ export function Sidebar({ currentView, setView, isOpen, setIsOpen }: SidebarProp
       </div>
     </div>
   );
+}
+
+export function Sidebar({ currentView, setView, isOpen, setIsOpen, role = 'admin' }: SidebarProps) {
+  const adminItems = [
+    { name: 'Inicio', icon: Home, view: 'Home' as AppView },
+    { name: 'Inventario', icon: Package, view: 'Inventory' as AppView },
+    { name: 'Nueva Venta', icon: ShoppingCart, view: 'New Sale' as AppView },
+    { name: 'Diario de Lotes', icon: ClipboardList, view: 'LotJournal' as AppView },
+    { name: 'Reportes', icon: BarChart2, view: 'Reports' as AppView },
+    { name: 'Empleados', icon: Users, view: 'Employees' as AppView },
+    { name: 'Mi Perfil', icon: User, view: 'Profile' as AppView },
+  ];
+
+  const employeeItems = [
+    { name: 'Nueva Venta', icon: ShoppingCart, view: 'New Sale' as AppView },
+    { name: 'Inventario', icon: Package, view: 'Inventory' as AppView },
+    { name: 'Reportes', icon: BarChart2, view: 'Reports' as AppView },
+    { name: 'Mi Perfil', icon: User, view: 'Profile' as AppView },
+  ];
+
+  const menuItems = role === 'admin' ? adminItems : employeeItems;
+
+  const handleNav = (view: AppView) => {
+    setView(view);
+    setIsOpen(false);
+  };
+
+
 
   return (
     <>
       {/* Desktop Sidebar */}
       <aside className="hidden sm:block w-64 bg-slate-900 h-full shrink-0">
-        <SidebarContent />
+        <SidebarContent menuItems={menuItems} currentView={currentView} handleNav={handleNav} />
       </aside>
 
       {/* Mobile Drawer */}
@@ -109,7 +125,7 @@ export function Sidebar({ currentView, setView, isOpen, setIsOpen }: SidebarProp
               >
                 <X size={24} />
               </button>
-              <SidebarContent />
+              <SidebarContent menuItems={menuItems} currentView={currentView} handleNav={handleNav} />
             </motion.aside>
           </>
         )}

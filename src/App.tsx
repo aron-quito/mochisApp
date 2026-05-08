@@ -6,16 +6,19 @@ import { ReportsView } from './components/ReportsView';
 import { ProfileView } from './components/ProfileView';
 import { HomeView } from './components/HomeView';
 import { LotJournalView } from './components/LotJournalView';
+import { EmployeesView } from './components/EmployeesView';
 import { AppView } from './types';
 import { LogIn, ShoppingBag } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { getAuthToken, setAuthToken, removeAuthToken } from './lib/api';
+import { getAuthToken, removeAuthToken, setSession, getUserRole, getUserName } from './lib/api';
 
 export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
   const [currentView, setCurrentView] = useState<AppView>('Home');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [role, setRole] = useState<'admin'|'employee'>('admin');
+  const [userName, setUserName] = useState('Admin');
 
   // Login form state
   const [username, setUsername] = useState('');
@@ -27,6 +30,8 @@ export default function App() {
     const token = getAuthToken();
     if (token) {
       setIsAuthenticated(true);
+      setRole(getUserRole());
+      setUserName(getUserName());
     }
     setLoading(false);
   }, []);
@@ -43,8 +48,14 @@ export default function App() {
       });
       const data = await response.json();
       if (response.ok && data.token) {
-        setAuthToken(data.token);
+        const r = data.role || 'admin';
+        const n = data.user?.name || 'Admin';
+        setSession(data.token, r, data.user?.id || null, n);
+        setRole(r);
+        setUserName(n);
         setIsAuthenticated(true);
+        // Employees go straight to New Sale
+        if (r === 'employee') setCurrentView('New Sale');
       } else {
         setLoginError(data.error || 'Credenciales inválidas');
       }
@@ -90,11 +101,11 @@ export default function App() {
               </div>
               
               <h1 className="text-4xl font-extrabold text-slate-900 mb-3 tracking-tighter">
-                Cloth<span className="text-blue-600 text-shadow-glow">Stock</span>
+                Mochi´s<span className="text-blue-600 text-shadow-glow"> Shop</span>
               </h1>
               
               <p className="text-slate-500 mb-10 text-lg leading-relaxed">
-                Gestión inteligente de inventario para marcas de ropa modernas.
+                Gestión inteligente de inventario para tu tienda.
               </p>
 
               <form onSubmit={handleLogin} className="space-y-4">
@@ -133,12 +144,13 @@ export default function App() {
 
   const renderView = () => {
     switch (currentView) {
-      case 'Inventory': return <InventoryView />;
+      case 'Inventory': return <InventoryView role={role} />;
       case 'New Sale': return <SalesView />;
-      case 'Reports': return <ReportsView />;
-      case 'LotJournal': return <LotJournalView />;
-      case 'Profile': return <ProfileView user={{ email: 'admin' }} onLogout={handleLogout} />;
-      default: return <HomeView setView={setCurrentView} />;
+      case 'Reports': return <ReportsView role={role} />;
+      case 'LotJournal': return role === 'admin' ? <LotJournalView /> : null;
+      case 'Employees': return role === 'admin' ? <EmployeesView /> : null;
+      case 'Profile': return <ProfileView user={{ email: userName, role }} onLogout={handleLogout} />;
+      default: return role === 'admin' ? <HomeView setView={setCurrentView} /> : <SalesView />;
     }
   };
 
@@ -148,7 +160,8 @@ export default function App() {
         currentView={currentView} 
         setView={setCurrentView} 
         isOpen={isSidebarOpen} 
-        setIsOpen={setIsSidebarOpen} 
+        setIsOpen={setIsSidebarOpen}
+        role={role}
       />
       
       <main className="flex-1 flex flex-col h-full overflow-hidden relative bento-grid-bg">
@@ -165,14 +178,14 @@ export default function App() {
             <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center">
               <ShoppingBag className="text-white w-4 h-4" />
             </div>
-            <h2 className="text-lg font-bold text-slate-900 tracking-tight italic">ClothStock</h2>
+            <h2 className="text-lg font-bold text-slate-900 tracking-tight italic">Mochi´s Shop</h2>
           </div>
           <div className="w-9 h-9 rounded-xl border-2 border-white shadow-sm ring-1 ring-slate-100 bg-slate-200 flex items-center justify-center">
              A
           </div>
         </header>
 
-        <div className="flex-1 overflow-y-auto p-4 md:p-10">
+        <div className="flex-1 overflow-y-auto p-4 md:p-10 pb-8 md:pb-10">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentView}
@@ -180,7 +193,7 @@ export default function App() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-7xl mx-auto h-full"
+              className="max-w-7xl mx-auto"
             >
               {renderView()}
             </motion.div>

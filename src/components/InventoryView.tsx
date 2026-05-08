@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect, FormEvent, ReactNode } from 'react';
 import { apiFetch } from '../lib/api';
 import { Product } from '../types';
@@ -15,17 +16,33 @@ import {
   TrendingUp,
   DollarSign,
   Edit,
-  ArrowLeft
+  ArrowLeft,
+  ArrowUpCircle,
+  MinusCircle,
+  ChevronDown
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
 import { Lot } from '../types';
 
-export function InventoryView() {
+function StepperBtn({ onClick, children }: { onClick: () => void, children: React.ReactNode }) {
+  return (
+    <button 
+      type="button" 
+      onClick={onClick}
+      className="w-10 h-10 flex items-center justify-center rounded-lg bg-blue-50 text-blue-600 font-bold hover:bg-blue-100 transition-colors"
+    >
+      {children}
+    </button>
+  );
+}
+
+export function InventoryView({ role = 'admin' }: { role?: 'admin' | 'employee' }) {
   const [products, setProducts] = useState<Product[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+
   const [notification, setNotification] = useState<{ type: 'success' | 'error', message: string } | null>(null);
 
   useEffect(() => {
@@ -108,8 +125,9 @@ export function InventoryView() {
         />
       </div>
 
+      {/* Active stock products */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {filteredProducts.map((product, i) => (
+        {filteredProducts.filter(p => p.totalStock > 0).map((product, i) => (
           <motion.div
             layout
             key={product.id}
@@ -158,9 +176,16 @@ export function InventoryView() {
                   <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Precio Público</p>
                   <span className="text-2xl font-black text-slate-900 tracking-tighter">${product.sellingPrice.toFixed(2)}</span>
                 </div>
-                <div className="flex flex-col items-end">
-                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">SKU</p>
+                <div className="flex flex-col items-end gap-1">
                   <span className="text-[10px] font-mono bg-slate-50 px-2 py-1 rounded border border-slate-100 text-slate-600">{product.sku}</span>
+                  {(product.sizes || []).length > 0 && (
+                    <div className="flex flex-wrap gap-0.5 justify-end">
+                      {(product.sizes || []).slice(0, 4).map((s: string) => (
+                        <span key={s} className="text-[8px] font-bold bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded">{s}</span>
+                      ))}
+                      {(product.sizes || []).length > 4 && <span className="text-[8px] font-bold text-slate-400">+{(product.sizes || []).length - 4}</span>}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -168,21 +193,48 @@ export function InventoryView() {
         ))}
       </div>
       
-      {filteredProducts.length === 0 && (
+      {/* Zero-stock section */}
+      {filteredProducts.filter(p => p.totalStock <= 0).length > 0 && (
+        <details className="group">
+          <summary className="cursor-pointer list-none flex items-center gap-3 py-4 px-1 select-none">
+            <ChevronDown size={18} className="text-slate-400 group-open:rotate-180 transition-transform" />
+            <span className="font-black text-slate-400 uppercase tracking-widest text-xs">
+              Productos sin stock ({filteredProducts.filter(p => p.totalStock <= 0).length})
+            </span>
+          </summary>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4 opacity-50 grayscale">
+            {filteredProducts.filter(p => p.totalStock <= 0).map((product, i) => (
+              <motion.div layout key={`empty-${product.id}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                onClick={() => setSelectedProduct(product)}
+                className="bento-card group p-0 overflow-hidden flex flex-col h-full bg-white cursor-pointer">
+                <div className="aspect-[4/3] bg-slate-100 flex items-center justify-center text-slate-300">
+                  {product.imageUrl ? <img src={product.imageUrl} alt={product.name} className="w-full h-full object-cover" /> : <Package size={48} className="opacity-20" />}
+                  <div className="absolute top-3 left-3"><span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm backdrop-blur-md border bg-red-500/90 text-white border-red-400">Sin Stock</span></div>
+                </div>
+                <div className="p-5"><h3 className="font-extrabold text-slate-900 text-lg uppercase tracking-tight truncate">{product.name}</h3>
+                <span className="text-[10px] font-mono bg-slate-50 px-2 py-1 rounded border border-slate-100 text-slate-600">{product.sku}</span></div>
+              </motion.div>
+            ))}
+          </div>
+        </details>
+      )}
+
+      {filteredProducts.filter(p => p.totalStock > 0).length === 0 && filteredProducts.length === 0 && (
         <div className="col-span-full py-20 text-center text-gray-500 italic">
           No se encontraron productos.
         </div>
       )}
 
-      <InventoryModal 
+      {role === 'admin' && <InventoryModal 
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
         onSuccess={(msg) => showNotification('success', msg)}
         onError={(msg) => showNotification('error', msg)}
-      />
+      />}
 
       <ProductDetailModal
         product={selectedProduct}
+        role={role}
         onClose={() => setSelectedProduct(null)}
         onSuccess={(msg) => showNotification('success', msg)}
         onError={(msg) => showNotification('error', msg)}
@@ -263,15 +315,7 @@ function InventoryModal({ isOpen, onClose, onSuccess, onError }: { isOpen: boole
     }
   };
 
-  const StepperBtn = ({ onClick, children }: { onClick: () => void, children: ReactNode }) => (
-    <button 
-      type="button" 
-      onClick={onClick}
-      className="w-10 h-10 flex items-center justify-center rounded-lg bg-blue-50 text-blue-600 font-bold hover:bg-blue-100 transition-colors"
-    >
-      {children}
-    </button>
-  );
+
 
   return (
     <AnimatePresence>
@@ -308,7 +352,7 @@ function InventoryModal({ isOpen, onClose, onSuccess, onError }: { isOpen: boole
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="p-8 space-y-8 max-h-[75vh] overflow-y-auto custom-scrollbar">
+            <form onSubmit={handleSubmit} className="p-4 md:p-8 space-y-6 md:space-y-8 max-h-[80vh] overflow-y-auto custom-scrollbar">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-6">
                   <div className="space-y-4">
@@ -462,9 +506,12 @@ function InventoryModal({ isOpen, onClose, onSuccess, onError }: { isOpen: boole
   );
 }
 
-function ProductDetailModal({ product, onClose, onSuccess, onError }: { product: Product | null, onClose: () => void, onSuccess: (m: string) => void, onError: (m: string) => void }) {
+function ProductDetailModal({ product, role = 'admin', onClose, onSuccess, onError }: { product: Product | null, role?: 'admin'|'employee', onClose: () => void, onSuccess: (m: string) => void, onError: (m: string) => void }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [activeTab, setActiveTab] = useState<'details' | 'history' | 'import'>('details');
+  const [activeTab, setActiveTab] = useState<'details' | 'history' | 'import' | 'withdraw'>('details');
+  const [withdrawAmount, setWithdrawAmount] = useState(0);
+  const [withdrawReason, setWithdrawReason] = useState('');
+  const [withdrawConfirm, setWithdrawConfirm] = useState(false);
   const [editForm, setEditForm] = useState<Partial<Product>>({});
   const [importData, setImportData] = useState({ quantity: 0, totalCost: 0 });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -482,7 +529,7 @@ function ProductDetailModal({ product, onClose, onSuccess, onError }: { product:
   const handleUpdateDetails = async () => {
     setIsSubmitting(true);
     try {
-      await apiFetch(`/products.php?id=${product.id}`, {
+      await apiFetch(`/products.php?id=${product.id}&action=update`, {
         method: 'PUT',
         body: JSON.stringify(editForm)
       });
@@ -508,12 +555,9 @@ function ProductDetailModal({ product, onClose, onSuccess, onError }: { product:
         unitCost: unitCost,
       };
 
-      await apiFetch(`/products.php?id=${product.id}`, {
+      await apiFetch(`/products.php?id=${product.id}&action=add_lot`, {
         method: 'PUT',
-        body: JSON.stringify({
-          ...product,
-          lots: [...(product.lots || []), newLot]
-        })
+        body: JSON.stringify({ lot: newLot })
       });
       onSuccess(`Nuevo lote de ${importData.quantity} unidades registrado.`);
       setImportData({ quantity: 0, totalCost: 0 });
@@ -521,6 +565,31 @@ function ProductDetailModal({ product, onClose, onSuccess, onError }: { product:
       window.location.reload();
     } catch (err) {
       onError('Error al registrar nuevo lote.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleWithdraw = async () => {
+    if (withdrawAmount <= 0 || withdrawAmount > product.totalStock) return;
+    setIsSubmitting(true);
+    try {
+      await apiFetch('/products.php', {
+        method: 'POST',
+        body: JSON.stringify({
+          action: 'withdraw',
+          productId: product.id,
+          amount: withdrawAmount,
+          reason: withdrawReason || `Retiro manual de ${withdrawAmount} unidades`,
+        })
+      });
+      onSuccess(`Se retiraron ${withdrawAmount} unidades correctamente.`);
+      setWithdrawAmount(0);
+      setWithdrawReason('');
+      setWithdrawConfirm(false);
+      window.location.reload();
+    } catch (err) {
+      onError('Error al procesar el retiro de stock.');
     } finally {
       setIsSubmitting(false);
     }
@@ -540,10 +609,33 @@ function ProductDetailModal({ product, onClose, onSuccess, onError }: { product:
           initial={{ opacity: 0, scale: 0.9, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 30 }}
-          className="relative bg-white w-full max-w-4xl rounded-[3rem] shadow-2xl overflow-hidden border border-white/20 flex flex-col md:flex-row h-[90vh] md:h-[80vh]"
+          className="relative bg-white w-full max-w-4xl rounded-t-[2rem] md:rounded-[3rem] shadow-2xl overflow-hidden border border-white/20 flex flex-col md:flex-row h-[95vh] md:h-[85vh]"
         >
-          {/* Sidebar Info */}
-          <div className="w-full md:w-80 bg-slate-950 text-white p-8 overflow-y-auto shrink-0 flex flex-col">
+          {/* MOBILE: compact dark header bar (hidden on md+) */}
+          <div className="md:hidden bg-slate-950 text-white shrink-0">
+            <div className="flex items-center gap-3 px-4 pt-4 pb-3">
+              <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-xl transition-colors shrink-0">
+                <ArrowLeft size={18} />
+              </button>
+              <div className="flex-1 min-w-0">
+                <p className="text-[9px] font-black uppercase tracking-[.3em] text-blue-400 leading-none mb-0.5">{product.category}</p>
+                <h2 className="text-sm font-black uppercase italic truncate leading-tight">{product.name}</h2>
+              </div>
+              <div className="flex gap-2 shrink-0">
+                <div className="bg-white/10 px-3 py-1.5 rounded-xl text-center">
+                  <p className="text-[7px] font-bold text-slate-400 uppercase">Stock</p>
+                  <p className="text-sm font-black text-white leading-none">{product.totalStock}</p>
+                </div>
+                <div className="bg-blue-600 px-3 py-1.5 rounded-xl text-center">
+                  <p className="text-[7px] font-bold text-white/60 uppercase">Precio</p>
+                  <p className="text-sm font-black text-white leading-none">${product.sellingPrice.toFixed(2)}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* DESKTOP: dark sidebar (hidden on mobile) */}
+          <div className="hidden md:flex w-72 bg-slate-950 text-white p-8 shrink-0 flex-col overflow-y-auto">
             <div className="mb-8">
               <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-xl mb-4 transition-colors">
                 <ArrowLeft size={20} />
@@ -561,8 +653,7 @@ function ProductDetailModal({ product, onClose, onSuccess, onError }: { product:
               <h2 className="text-2xl font-black tracking-tight leading-tight uppercase italic mb-2">{product.name}</h2>
               <span className="text-xs font-mono text-slate-500 bg-slate-900 px-2 py-1 rounded border border-white/5">SKU: {product.sku}</span>
             </div>
-
-            <div className="mt-auto space-y-4">
+            <div className="mt-auto space-y-3">
               <div className="bg-white/5 p-4 rounded-2xl border border-white/5">
                 <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Stock Actual</p>
                 <p className="text-3xl font-black text-white italic tracking-tighter">{product.totalStock} <span className="text-xs text-slate-500 not-italic uppercase ml-1">unds</span></p>
@@ -574,35 +665,38 @@ function ProductDetailModal({ product, onClose, onSuccess, onError }: { product:
             </div>
           </div>
 
-          {/* Main Content */}
-          <div className="flex-1 bg-white flex flex-col">
+          {/* Main Content - tabs + content */}
+          <div className="flex-1 bg-white flex flex-col min-h-0 overflow-hidden">
             {/* Tabs Header */}
-            <div className="flex gap-1 p-4 bg-slate-50/50 border-b border-slate-100">
-              {[
+            <div className="flex gap-1 p-2 md:p-4 bg-slate-50/50 border-b border-slate-100 shrink-0">
+              {(role === 'admin' ? [
                 { id: 'details', label: 'Información', icon: Edit },
                 { id: 'history', label: 'Historial Lotes', icon: History },
                 { id: 'import', label: 'Nueva Importación', icon: Plus },
-              ].map((tab) => (
+                { id: 'withdraw', label: 'Retirar Stock', icon: ArrowUpCircle },
+              ] : [
+                { id: 'details', label: 'Información', icon: Package },
+              ]).map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as any)}
                   className={cn(
-                    "flex-1 flex items-center justify-center gap-2 py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all",
+                    "flex-1 flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 py-2.5 md:py-3 rounded-2xl font-black text-[8px] md:text-[10px] uppercase tracking-widest transition-all",
                     activeTab === tab.id ? "bg-white text-slate-900 shadow-sm border border-slate-200" : "text-slate-400 hover:text-slate-600 hover:bg-slate-100/50"
                   )}
                 >
-                  <tab.icon size={14} />
-                  {tab.label}
+                  <tab.icon size={13} />
+                  <span className="leading-none">{tab.label}</span>
                 </button>
               ))}
             </div>
 
-            <div className="flex-1 p-8 overflow-y-auto custom-scrollbar">
+            <div className="flex-1 p-4 md:p-8 overflow-y-auto custom-scrollbar min-h-0">
               {activeTab === 'details' && (
                 <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4">
                   <div className="flex justify-between items-center">
                     <h3 className="font-black text-slate-900 uppercase tracking-tight italic">Ficha Técnica</h3>
-                    <button 
+                    {role === 'admin' && <button 
                       onClick={() => isEditing ? handleUpdateDetails() : setIsEditing(true)}
                       disabled={isSubmitting}
                       className={cn(
@@ -611,37 +705,63 @@ function ProductDetailModal({ product, onClose, onSuccess, onError }: { product:
                       )}
                     >
                       {isSubmitting ? '...' : isEditing ? 'Guardar Cambios' : 'Editar Ficha'}
-                    </button>
+                    </button>}
                   </div>
 
-                  <div className="grid grid-cols-2 gap-6">
-                    {[
-                      { key: 'brand', label: 'Marca' },
-                      { key: 'category', label: 'Categoría' },
-                      { key: 'material', label: 'Material' },
-                      { key: 'sizes', label: 'Tallas (Separar por comas)' },
-                    ].map((field) => (
-                      <div key={field.key} className="space-y-1.5">
-                        <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">{field.label}</label>
-                        <input
-                          disabled={!isEditing}
-                          type="text"
-                          value={isEditing ? (editForm as any)[field.key] : (product as any)[field.key]}
-                          onChange={(e) => setEditForm(prev => ({ ...prev, [field.key]: e.target.value }))}
-                          className="w-full px-5 py-3.5 bg-slate-50 border border-slate-100 rounded-2xl outline-none font-medium text-slate-900 disabled:opacity-60 transition-all"
-                        />
-                      </div>
-                    ))}
+                  <div className="space-y-4">
+                    {/* Text fields */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {[
+                        { key: 'sku', label: 'SKU' },
+                        { key: 'brand', label: 'Marca' },
+                        { key: 'category', label: 'Categoría' },
+                        { key: 'material', label: 'Material' },
+                      ].map((field) => (
+                        <div key={field.key} className="space-y-1.5">
+                          <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">{field.label}</label>
+                          <input
+                            disabled={!isEditing}
+                            type="text"
+                            value={isEditing ? (editForm as any)[field.key] ?? '' : (product as any)[field.key] ?? ''}
+                            onChange={(e) => setEditForm(prev => ({ ...prev, [field.key]: e.target.value }))}
+                            className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-2xl outline-none font-medium text-slate-900 disabled:opacity-60 transition-all focus:ring-4 focus:ring-blue-500/5 focus:border-blue-400"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                    {/* Precio */}
                     <div className="space-y-1.5">
-                      <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Precio Público</label>
+                      <label className="text-[10px] font-bold text-blue-500 uppercase tracking-widest ml-1">Precio Público ($)</label>
                       <input
                         disabled={!isEditing}
                         type="number"
                         step="0.01"
-                        value={isEditing ? editForm.sellingPrice : product.sellingPrice}
+                        value={isEditing ? editForm.sellingPrice ?? product.sellingPrice : product.sellingPrice}
+                        onFocus={e => e.target.select()}
                         onChange={(e) => setEditForm(prev => ({ ...prev, sellingPrice: parseFloat(e.target.value) || 0 }))}
-                        className="w-full px-5 py-3.5 bg-slate-50 border border-slate-100 rounded-2xl outline-none font-black text-blue-600 disabled:opacity-60 transition-all"
+                        className="w-full px-4 py-3 bg-blue-50 border border-blue-100 rounded-2xl outline-none font-black text-blue-600 disabled:opacity-60 transition-all"
                       />
+                    </div>
+                    {/* Tallas chips */}
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Curva de Tallas</label>
+                      <div className={cn("flex flex-wrap gap-2", !isEditing && "pointer-events-none opacity-60")}>
+                        {['XS','S','M','L','XL','XXL','XXXL','28','30','32','34','36','38','40'].map(s => {
+                          const current: string[] = isEditing ? (editForm.sizes ?? product.sizes ?? []) : (product.sizes ?? []);
+                          return (
+                            <button key={s} type="button"
+                              onClick={() => isEditing && setEditForm(prev => ({
+                                ...prev,
+                                sizes: (prev.sizes ?? product.sizes ?? []).includes(s)
+                                  ? (prev.sizes ?? product.sizes ?? []).filter((x:string) => x !== s)
+                                  : [...(prev.sizes ?? product.sizes ?? []), s]
+                              }))}
+                              className={cn('px-3 py-1.5 rounded-xl text-xs font-bold border transition-all',
+                                current.includes(s) ? 'bg-slate-900 text-white border-slate-900' : 'bg-slate-50 text-slate-500 border-slate-200 hover:border-slate-400'
+                              )}>{s}</button>
+                          );
+                        })}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -713,7 +833,7 @@ function ProductDetailModal({ product, onClose, onSuccess, onError }: { product:
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
                       <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Cantidad Nueva</label>
                       <input 
@@ -752,6 +872,63 @@ function ProductDetailModal({ product, onClose, onSuccess, onError }: { product:
                       {isSubmitting ? 'Registrando...' : 'Confirmar Importación'}
                     </button>
                   </div>
+                </div>
+              )}
+
+              {activeTab === 'withdraw' && (
+                <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4">
+                  <div className="p-6 bg-orange-50 rounded-[2rem] border border-orange-100 flex items-center gap-4">
+                    <div className="w-14 h-14 bg-orange-500 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-orange-200">
+                      <ArrowUpCircle size={28} />
+                    </div>
+                    <div>
+                      <h3 className="font-black text-orange-900 uppercase tracking-tight">Retirar Stock</h3>
+                      <p className="text-[10px] font-bold text-orange-400 uppercase tracking-widest">Stock actual: {product.totalStock} unidades</p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Cantidad a Retirar</label>
+                      <input type="number" min={1} max={product.totalStock}
+                        value={withdrawAmount === 0 ? '' : withdrawAmount}
+                        onFocus={e => e.target.select()}
+                        onChange={e => setWithdrawAmount(parseInt(e.target.value) || 0)}
+                        className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-black text-2xl text-orange-600"
+                        placeholder="0" />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Motivo del Retiro</label>
+                      <input type="text"
+                        value={withdrawReason}
+                        onChange={e => setWithdrawReason(e.target.value)}
+                        className="w-full px-5 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-medium"
+                        placeholder="Ej: Producto dañado, muestra, etc." />
+                    </div>
+                  </div>
+
+                  {!withdrawConfirm ? (
+                    <button onClick={() => setWithdrawConfirm(true)}
+                      disabled={withdrawAmount <= 0 || withdrawAmount > product.totalStock}
+                      className="w-full bg-orange-500 text-white font-black py-5 rounded-[2rem] hover:bg-orange-600 transition-all shadow-lg shadow-orange-100 disabled:opacity-30 transform active:scale-[0.98] uppercase tracking-widest text-sm">
+                      Continuar con el Retiro →
+                    </button>
+                  ) : (
+                    <div className="bg-orange-950 rounded-[2rem] p-8 space-y-6 text-white">
+                      <p className="font-bold text-orange-200 text-center text-sm">¿Confirmas el retiro de <span className="font-black text-white text-xl">{withdrawAmount}</span> unidades de <span className="italic">{product.name}</span>?</p>
+                      <p className="text-[10px] font-bold text-orange-400 text-center uppercase tracking-widest">Esta acción se registrará en el Diario de Operaciones.</p>
+                      <div className="flex gap-3">
+                        <button onClick={() => setWithdrawConfirm(false)}
+                          className="flex-1 bg-white/10 text-white font-bold py-4 rounded-2xl hover:bg-white/20 transition-all text-sm uppercase tracking-widest">
+                          Cancelar
+                        </button>
+                        <button onClick={handleWithdraw} disabled={isSubmitting}
+                          className="flex-1 bg-orange-500 text-white font-black py-4 rounded-2xl hover:bg-orange-400 transition-all shadow-lg shadow-orange-900/50 disabled:opacity-50 text-sm uppercase tracking-widest">
+                          {isSubmitting ? 'Procesando...' : 'Confirmar Retiro'}
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
             </div>

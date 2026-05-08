@@ -44,4 +44,16 @@ export interface Sale {
   timestamp: any;
 }
 
-export type AppView = 'Home' | 'Inventory' | 'New Sale' | 'Reports' | 'Profile' | 'LotJournal';
+export interface ProductLog {
+  id: string;
+  product_id: string;
+  product_name: string;
+  event_type: 'import' | 'stock_withdrawal' | 'product_edit';
+  quantity_delta: number;
+  notes: string;
+  old_data: Record<string, any> | null;
+  new_data: Record<string, any> | null;
+  created_at: string;
+}
+
+export type AppView = 'Home' | 'Inventory' | 'New Sale' | 'Reports' | 'Profile' | 'LotJournal' | 'Employees';

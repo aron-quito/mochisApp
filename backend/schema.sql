@@ -50,3 +50,35 @@ CREATE TABLE IF NOT EXISTS sales (
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
     FOREIGN KEY (lot_id) REFERENCES lots(id) ON DELETE SET NULL
 );
+
+CREATE TABLE IF NOT EXISTS product_logs (
+  id VARCHAR(50) PRIMARY KEY,
+  product_id VARCHAR(50) NOT NULL,
+  product_name VARCHAR(255),
+  event_type ENUM('import','stock_withdrawal','product_edit') NOT NULL,
+  quantity_delta INT DEFAULT 0,
+  notes TEXT,
+  old_data JSON,
+  new_data JSON,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  INDEX idx_product_id (product_id),
+  INDEX idx_event_type (event_type),
+  INDEX idx_created_at (created_at DESC)
+);
+
+CREATE TABLE IF NOT EXISTS employees (
+  id VARCHAR(50) PRIMARY KEY,
+  firstName VARCHAR(100) NOT NULL,
+  lastName VARCHAR(100) NOT NULL,
+  dni VARCHAR(20) UNIQUE NOT NULL,
+  birthDate DATE,
+  address TEXT,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  session_token VARCHAR(255) DEFAULT NULL,
+  active TINYINT(1) DEFAULT 1,
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+ALTER TABLE sales ADD COLUMN IF NOT EXISTS employee_id VARCHAR(50) DEFAULT NULL;
+ALTER TABLE sales ADD COLUMN IF NOT EXISTS employee_name VARCHAR(255) DEFAULT 'Admin';

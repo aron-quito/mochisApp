@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { apiFetch } from '../lib/api';
+import { apiFetch, getUserRole, getUserId } from '../lib/api';
 import { Sale, Product } from '../types';
 import { 
   BarChart, 
@@ -28,7 +28,7 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
 
-export function ReportsView() {
+export function ReportsView({ role = 'admin' }: { role?: 'admin'|'employee' }) {
   const [sales, setSales] = useState<Sale[]>([]);
   const [isExportOpen, setIsExportOpen] = useState(false);
   const [dateRange, setDateRange] = useState('Ultimos 7 dias');
@@ -38,7 +38,13 @@ export function ReportsView() {
     const fetchSales = async () => {
       try {
         const data = await apiFetch('/sales.php');
-        setSales(data);
+        // Employees only see their own sales
+        if (role === 'employee') {
+          const myId = getUserId();
+          setSales(data.filter((s: any) => s.employee_id === myId));
+        } else {
+          setSales(data);
+        }
       } catch (error) {
         console.error('Error fetching sales', error);
       }

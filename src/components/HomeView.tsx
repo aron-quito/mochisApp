@@ -95,7 +95,7 @@ export function HomeView({ setView }: { setView: (v: AppView) => void }) {
           <div className="flex-1 text-center md:text-left">
             <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tighter mb-4">Optimiza tu tiempo</h2>
             <p className="text-slate-500 max-w-xl text-lg font-medium leading-relaxed">
-              El sistema <span className="text-blue-600 font-bold">ClothStock</span> integra inventario y ventas en una solución unificada. Mejora tu flujo de trabajo hoy.
+              El sistema <span className="text-blue-600 font-bold">Mochi´s Shop</span> integra inventario y ventas en una solución unificada. Mejora tu flujo de trabajo hoy.
             </p>
             <div className="mt-8 flex flex-wrap gap-4 justify-center md:justify-start">
               <button 
