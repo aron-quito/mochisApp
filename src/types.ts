@@ -4,9 +4,13 @@ export interface Lot {
   id: string;
   quantity: number;
   remainingStock: number;
-  totalCost: number; // Costo total de lo importado
-  unitCost: number; // totalCost / quantity
-  importDate: any; // Firebase Timestamp or ISO string
+  totalCost: number;
+  unitCost: number;
+  importDate: any;
+  // optional product info for journal view
+  productName?: string;
+  productSku?: string;
+  sellingPrice?: number;
 }
 
 export interface Product {
@@ -18,7 +22,7 @@ export interface Product {
   sizes: string[];
   material: string;
   totalStock: number;
-  sellingPrice: number; // Precio público
+  sellingPrice: number;
   imageUrl: string;
   location: string;
   lots: Lot[];
@@ -29,7 +33,7 @@ export interface Product {
 export interface Sale {
   id: string;
   productId: string;
-  lotId?: string; // Optional: linkage to specific lot
+  lotId?: string;
   sku: string;
   productName: string;
   quantity: number;
@@ -40,4 +44,4 @@ export interface Sale {
   timestamp: any;
 }
 
-export type AppView = 'Home' | 'Inventory' | 'New Sale' | 'Reports' | 'Profile';
+export type AppView = 'Home' | 'Inventory' | 'New Sale' | 'Reports' | 'Profile' | 'LotJournal';

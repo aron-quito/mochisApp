@@ -7,10 +7,11 @@ import {
   User, 
   LogOut, 
   X,
-  ShoppingBag
+  ShoppingBag,
+  ClipboardList
 } from 'lucide-react';
 import { cn } from '../lib/utils';
-import { auth } from '../lib/firebase';
+import { removeAuthToken } from '../lib/api';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface SidebarProps {
@@ -25,6 +26,7 @@ export function Sidebar({ currentView, setView, isOpen, setIsOpen }: SidebarProp
     { name: 'Inicio', icon: Home, view: 'Home' as AppView },
     { name: 'Inventario', icon: Package, view: 'Inventory' as AppView },
     { name: 'Nueva Venta', icon: ShoppingCart, view: 'New Sale' as AppView },
+    { name: 'Diario de Lotes', icon: ClipboardList, view: 'LotJournal' as AppView },
     { name: 'Reportes', icon: BarChart2, view: 'Reports' as AppView },
     { name: 'Mi Perfil', icon: User, view: 'Profile' as AppView },
   ];
@@ -66,7 +68,7 @@ export function Sidebar({ currentView, setView, isOpen, setIsOpen }: SidebarProp
 
       <div className="mt-auto px-2">
         <button 
-          onClick={() => auth.signOut()}
+          onClick={() => { removeAuthToken(); window.location.reload(); }}
           className="w-full flex items-center gap-3 px-3 py-3 rounded-lg text-slate-500 hover:bg-red-500/10 hover:text-red-400 transition-all duration-200 group text-sm font-semibold"
         >
           <LogOut size={18} className="group-hover:translate-x-1 transition-transform" />

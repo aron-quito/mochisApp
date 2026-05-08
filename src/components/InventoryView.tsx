@@ -1,17 +1,5 @@
 import { useState, useEffect, FormEvent, ReactNode } from 'react';
-import { 
-  collection, 
-  query, 
-  onSnapshot, 
-  setDoc, 
-  doc, 
-  getDocs, 
-  where,
-  updateDoc,
-  serverTimestamp,
-  orderBy
-} from 'firebase/firestore';
-import { db, handleFirestoreError, OperationType } from '../lib/firebase';
+import { apiFetch } from '../lib/api';
 import { Product } from '../types';
 import { 
   Plus, 
@@ -41,14 +29,15 @@ export function InventoryView() {
   const [notification, setNotification] = useState<{ type: 'success' | 'error', message: string } | null>(null);
 
   useEffect(() => {
-    const q = query(collection(db, 'products'), orderBy('updatedAt', 'desc'));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const docs = snapshot.docs.map(d => ({ id: d.id, ...d.data() } as Product));
-      setProducts(docs);
-    }, (error) => {
-      handleFirestoreError(error, OperationType.LIST, 'products');
-    });
-    return () => unsubscribe();
+    const fetchProducts = async () => {
+      try {
+        const data = await apiFetch('/products.php');
+        setProducts(data);
+      } catch (error) {
+        showNotification('error', 'Error loading products');
+      }
+    };
+    fetchProducts();
   }, []);
 
   const filteredProducts = products.filter(p => 
@@ -226,64 +215,49 @@ function InventoryModal({ isOpen, onClose, onSuccess, onError }: { isOpen: boole
     name: '',
     brand: '',
     category: '',
-    sizes: '',
+    sizes: [] as string[],
     material: '',
     quantity: 0,
     totalCost: 0,
     sellingPrice: 0,
+    imageUrl: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const SIZES = ['XS','S','M','L','XL','XXL','XXXL','28','30','32','34','36','38','40'];
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const q = query(collection(db, 'products'), where('sku', '==', formData.sku));
-      const querySnapshot = await getDocs(q);
-
       const unitCost = formData.quantity > 0 ? formData.totalCost / formData.quantity : 0;
-      const newLot: Lot = {
-        id: crypto.randomUUID(),
+      const newLot = {
         quantity: formData.quantity,
         remainingStock: formData.quantity,
         totalCost: formData.totalCost,
         unitCost: unitCost,
-        importDate: serverTimestamp()
       };
 
-      if (!querySnapshot.empty) {
-        const existingDoc = querySnapshot.docs[0];
-        const existingData = existingDoc.data() as Product;
-        await updateDoc(doc(db, 'products', existingDoc.id), {
-          totalStock: (existingData.totalStock || 0) + formData.quantity,
-          lots: [...(existingData.lots || []), newLot],
-          updatedAt: serverTimestamp()
-        });
-        onSuccess(`Importación registrada para SKU: ${formData.sku}. +${formData.quantity} unidades.`);
-      } else {
-        const productRef = doc(collection(db, 'products'));
-        await setDoc(productRef, {
+      await apiFetch('/products.php', {
+        method: 'POST',
+        body: JSON.stringify({
           sku: formData.sku,
           name: formData.name,
           brand: formData.brand,
           category: formData.category,
-          sizes: formData.sizes.split(',').map(s => s.trim()),
+          sizes: formData.sizes,
           material: formData.material,
-          totalStock: formData.quantity,
           sellingPrice: formData.sellingPrice,
-          imageUrl: '', 
-          location: 'Principal', 
-          lots: [newLot],
-          createdAt: serverTimestamp(),
-          updatedAt: serverTimestamp(),
-        });
-        onSuccess('Prenda e importación inicial registradas exitosamente.');
-      }
-      setFormData({ sku: '', name: '', brand: '', category: '', sizes: '', material: '', quantity: 0, totalCost: 0, sellingPrice: 0 });
+          imageUrl: formData.imageUrl,
+          lots: [newLot]
+        })
+      });
+
+      onSuccess('Prenda e importación inicial registradas exitosamente.');
+      setFormData({ sku: '', name: '', brand: '', category: '', sizes: [], material: '', quantity: 0, totalCost: 0, sellingPrice: 0, imageUrl: '' });
       onClose();
+      window.location.reload(); // Simple reload to refresh the list since we removed onSnapshot
     } catch (err) {
       onError('Error al procesar el registro.');
-      handleFirestoreError(err, OperationType.WRITE, 'products');
     } finally {
       setIsSubmitting(false);
     }
@@ -384,15 +358,24 @@ function InventoryModal({ isOpen, onClose, onSuccess, onError }: { isOpen: boole
                       />
                     </div>
                   </div>
-                   <div className="space-y-1.5">
+                   <div className="space-y-2">
                     <label className="text-[10px] uppercase font-bold text-slate-400 tracking-widest ml-1">Curva de Tallas</label>
-                    <input
-                      type="text"
-                      placeholder="S, M, L, XL"
-                      value={formData.sizes}
-                      onChange={(e) => setFormData({ ...formData, sizes: e.target.value })}
-                      className="w-full px-5 py-3.5 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:ring-4 focus:ring-blue-500/5 focus:border-blue-400 outline-none transition-all font-medium"
-                    />
+                    <div className="flex flex-wrap gap-2">
+                      {SIZES.map(s => (
+                        <button key={s} type="button"
+                          onClick={() => setFormData(d => ({ ...d, sizes: d.sizes.includes(s) ? d.sizes.filter((x:string) => x !== s) : [...d.sizes, s] }))}
+                          className={cn('px-3 py-1.5 rounded-xl text-xs font-bold border transition-all',
+                            formData.sizes.includes(s) ? 'bg-slate-900 text-white border-slate-900' : 'bg-slate-50 text-slate-500 border-slate-200 hover:border-slate-400'
+                          )}>{s}</button>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] uppercase font-bold text-slate-400 tracking-widest ml-1">URL Imagen Referencial</label>
+                    <input type="text" placeholder="https://..." value={formData.imageUrl}
+                      onChange={e => setFormData({ ...formData, imageUrl: e.target.value })}
+                      className="w-full px-5 py-3.5 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:ring-4 focus:ring-blue-500/5 focus:border-blue-400 outline-none transition-all font-medium" />
+                    {formData.imageUrl && <img src={formData.imageUrl} alt="preview" className="w-full h-28 object-cover rounded-2xl border border-slate-100 mt-2" onError={e => (e.currentTarget.style.display='none')} />}
                   </div>
                 </div>
 
@@ -408,9 +391,11 @@ function InventoryModal({ isOpen, onClose, onSuccess, onError }: { isOpen: boole
                           <StepperBtn onClick={() => setFormData(d => ({ ...d, quantity: Math.max(0, d.quantity - 1) }))}>-</StepperBtn>
                           <input 
                             type="number"
-                            value={formData.quantity}
+                            value={formData.quantity === 0 ? '' : formData.quantity}
+                            onFocus={e => e.target.select()}
                             onChange={(e) => setFormData({ ...formData, quantity: parseInt(e.target.value) || 0 })}
                             className="flex-1 text-center font-black text-lg bg-transparent outline-none"
+                            placeholder="0"
                           />
                           <StepperBtn onClick={() => setFormData(d => ({ ...d, quantity: d.quantity + 1 }))}>+</StepperBtn>
                         </div>
@@ -423,7 +408,8 @@ function InventoryModal({ isOpen, onClose, onSuccess, onError }: { isOpen: boole
                           <input
                             type="number"
                             step="0.01"
-                            value={formData.totalCost}
+                            value={formData.totalCost === 0 ? '' : formData.totalCost}
+                            onFocus={e => e.target.select()}
                             onChange={(e) => setFormData({ ...formData, totalCost: parseFloat(e.target.value) || 0 })}
                             className="w-full pl-12 pr-5 py-4 bg-white border border-slate-100 rounded-2xl focus:ring-4 focus:ring-blue-500/5 focus:border-blue-400 outline-none transition-all font-black text-xl text-emerald-600"
                             placeholder="0.00"
@@ -448,7 +434,8 @@ function InventoryModal({ isOpen, onClose, onSuccess, onError }: { isOpen: boole
                         required
                         type="number"
                         step="0.01"
-                        value={formData.sellingPrice}
+                        value={formData.sellingPrice === 0 ? '' : formData.sellingPrice}
+                        onFocus={e => e.target.select()}
                         onChange={(e) => setFormData({ ...formData, sellingPrice: parseFloat(e.target.value) || 0 })}
                         className="w-full pl-12 pr-5 py-4 bg-blue-50/50 border border-blue-100 rounded-2xl focus:bg-white focus:ring-4 focus:ring-blue-500/5 focus:border-blue-400 outline-none transition-all font-black text-2xl text-blue-600"
                         placeholder="0.00"
@@ -495,12 +482,13 @@ function ProductDetailModal({ product, onClose, onSuccess, onError }: { product:
   const handleUpdateDetails = async () => {
     setIsSubmitting(true);
     try {
-      await updateDoc(doc(db, 'products', product.id), {
-        ...editForm,
-        updatedAt: serverTimestamp()
+      await apiFetch(`/products.php?id=${product.id}`, {
+        method: 'PUT',
+        body: JSON.stringify(editForm)
       });
       onSuccess('Información actualizada correctamente.');
       setIsEditing(false);
+      window.location.reload();
     } catch (err) {
       onError('Error al actualizar datos.');
     } finally {
@@ -513,23 +501,24 @@ function ProductDetailModal({ product, onClose, onSuccess, onError }: { product:
     setIsSubmitting(true);
     try {
       const unitCost = importData.totalCost / importData.quantity;
-      const newLot: Lot = {
-        id: crypto.randomUUID(),
+      const newLot = {
         quantity: importData.quantity,
         remainingStock: importData.quantity,
         totalCost: importData.totalCost,
         unitCost: unitCost,
-        importDate: serverTimestamp()
       };
 
-      await updateDoc(doc(db, 'products', product.id), {
-        totalStock: (product.totalStock || 0) + importData.quantity,
-        lots: [...(product.lots || []), newLot],
-        updatedAt: serverTimestamp()
+      await apiFetch(`/products.php?id=${product.id}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+          ...product,
+          lots: [...(product.lots || []), newLot]
+        })
       });
       onSuccess(`Nuevo lote de ${importData.quantity} unidades registrado.`);
       setImportData({ quantity: 0, totalCost: 0 });
       setActiveTab('history');
+      window.location.reload();
     } catch (err) {
       onError('Error al registrar nuevo lote.');
     } finally {
@@ -677,7 +666,7 @@ function ProductDetailModal({ product, onClose, onSuccess, onError }: { product:
                           <div className="flex justify-between items-start mb-1">
                             <p className="text-xs font-black text-slate-900 uppercase tracking-tight">Lote #{idx + 1}</p>
                             <p className="text-[9px] font-bold text-slate-400 uppercase">
-                              {lot.importDate?.seconds ? new Date(lot.importDate.seconds * 1000).toLocaleDateString() : 'Fecha Pendiente'}
+                              {lot.importDate ? new Date(lot.importDate).toLocaleDateString() : 'Fecha Pendiente'}
                             </p>
                           </div>
                           <div className="grid grid-cols-3 gap-2">

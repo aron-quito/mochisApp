@@ -1,29 +1,64 @@
-import { useState, useEffect } from 'react';
-import { auth, loginWithGoogle } from './lib/firebase';
-import { onAuthStateChanged, User } from 'firebase/auth';
+import React, { useState, useEffect } from 'react';
 import { Sidebar } from './components/Sidebar';
 import { InventoryView } from './components/InventoryView';
 import { SalesView } from './components/SalesView';
 import { ReportsView } from './components/ReportsView';
 import { ProfileView } from './components/ProfileView';
 import { HomeView } from './components/HomeView';
+import { LotJournalView } from './components/LotJournalView';
 import { AppView } from './types';
 import { LogIn, ShoppingBag } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { getAuthToken, setAuthToken, removeAuthToken } from './lib/api';
 
 export default function App() {
-  const [user, setUser] = useState<User | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
   const [currentView, setCurrentView] = useState<AppView>('Home');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  // Login form state
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (u) => {
-      setUser(u);
-      setLoading(false);
-    });
-    return () => unsubscribe();
+    const token = getAuthToken();
+    if (token) {
+      setIsAuthenticated(true);
+    }
+    setLoading(false);
   }, []);
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoggingIn(true);
+    setLoginError('');
+    try {
+      const response = await fetch('/api/auth.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+      const data = await response.json();
+      if (response.ok && data.token) {
+        setAuthToken(data.token);
+        setIsAuthenticated(true);
+      } else {
+        setLoginError(data.error || 'Credenciales inválidas');
+      }
+    } catch (err) {
+      setLoginError('Error de conexión con el servidor');
+    } finally {
+      setIsLoggingIn(false);
+    }
+  };
+
+  const handleLogout = () => {
+    removeAuthToken();
+    setIsAuthenticated(false);
+  };
 
   if (loading) {
     return (
@@ -37,7 +72,7 @@ export default function App() {
     );
   }
 
-  if (!user) {
+  if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6 bento-grid-bg">
         <motion.div
@@ -46,7 +81,6 @@ export default function App() {
           className="w-full max-w-md"
         >
           <div className="bento-card text-center relative overflow-hidden">
-            {/* Decorative background element */}
             <div className="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 bg-blue-600/10 rounded-full blur-3xl opacity-50" />
             <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-32 h-32 bg-indigo-600/10 rounded-full blur-3xl opacity-50" />
 
@@ -63,19 +97,33 @@ export default function App() {
                 Gestión inteligente de inventario para marcas de ropa modernas.
               </p>
 
-              <div className="space-y-4">
+              <form onSubmit={handleLogin} className="space-y-4">
+                <input
+                  type="text"
+                  placeholder="Usuario"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  className="w-full px-5 py-3.5 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:ring-4 focus:ring-blue-500/5 focus:border-blue-400 outline-none transition-all font-medium"
+                />
+                <input
+                  type="password"
+                  placeholder="Contraseña"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full px-5 py-3.5 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:ring-4 focus:ring-blue-500/5 focus:border-blue-400 outline-none transition-all font-medium"
+                />
+                
+                {loginError && <p className="text-red-500 text-sm font-bold">{loginError}</p>}
+
                 <button
-                  onClick={loginWithGoogle}
-                  className="w-full flex items-center justify-center gap-4 bg-slate-900 text-white font-bold py-5 px-6 rounded-2xl hover:bg-slate-800 transition-all shadow-lg hover:shadow-slate-300 transform active:scale-[0.98]"
+                  type="submit"
+                  disabled={isLoggingIn}
+                  className="w-full flex items-center justify-center gap-4 bg-slate-900 text-white font-bold py-5 px-6 rounded-2xl hover:bg-slate-800 transition-all shadow-lg hover:shadow-slate-300 transform active:scale-[0.98] disabled:opacity-50"
                 >
                   <LogIn className="w-5 h-5" />
-                  Ingresar con Google
+                  {isLoggingIn ? 'Iniciando sesión...' : 'Ingresar'}
                 </button>
-                
-                <p className="text-[10px] text-slate-400 font-bold uppercase tracking-[.2em]">
-                  Sistema de Gestión Empresarial v2.0
-                </p>
-              </div>
+              </form>
             </div>
           </div>
         </motion.div>
@@ -88,7 +136,8 @@ export default function App() {
       case 'Inventory': return <InventoryView />;
       case 'New Sale': return <SalesView />;
       case 'Reports': return <ReportsView />;
-      case 'Profile': return <ProfileView user={user} />;
+      case 'LotJournal': return <LotJournalView />;
+      case 'Profile': return <ProfileView user={{ email: 'admin' }} onLogout={handleLogout} />;
       default: return <HomeView setView={setCurrentView} />;
     }
   };
@@ -118,12 +167,9 @@ export default function App() {
             </div>
             <h2 className="text-lg font-bold text-slate-900 tracking-tight italic">ClothStock</h2>
           </div>
-          <motion.img 
-            whileHover={{ scale: 1.1 }}
-            src={user.photoURL || ''} 
-            alt="User" 
-            className="w-9 h-9 rounded-xl border-2 border-white shadow-sm ring-1 ring-slate-100" 
-          />
+          <div className="w-9 h-9 rounded-xl border-2 border-white shadow-sm ring-1 ring-slate-100 bg-slate-200 flex items-center justify-center">
+             A
+          </div>
         </header>
 
         <div className="flex-1 overflow-y-auto p-4 md:p-10">

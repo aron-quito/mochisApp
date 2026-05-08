@@ -1,13 +1,5 @@
 import { useState, useEffect } from 'react';
-import { 
-  collection, 
-  query, 
-  onSnapshot, 
-  orderBy,
-  limit,
-  getDocs
-} from 'firebase/firestore';
-import { db, handleFirestoreError, OperationType } from '../lib/firebase';
+import { apiFetch } from '../lib/api';
 import { Sale, Product } from '../types';
 import { 
   BarChart, 
@@ -43,14 +35,15 @@ export function ReportsView() {
   const [location, setLocation] = useState('Consolidado');
 
   useEffect(() => {
-    const q = query(collection(db, 'sales'), orderBy('timestamp', 'desc'));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const docs = snapshot.docs.map(d => ({ id: d.id, ...d.data() } as Sale));
-      setSales(docs);
-    }, (error) => {
-      handleFirestoreError(error, OperationType.LIST, 'sales');
-    });
-    return () => unsubscribe();
+    const fetchSales = async () => {
+      try {
+        const data = await apiFetch('/sales.php');
+        setSales(data);
+      } catch (error) {
+        console.error('Error fetching sales', error);
+      }
+    };
+    fetchSales();
   }, []);
 
   // Aggregated data for charts
@@ -65,7 +58,7 @@ export function ReportsView() {
   }, []);
 
   const salesTrend = sales.slice(0, 15).reverse().map(s => ({
-    date: new Date((s.timestamp as any)?.seconds * 1000).toLocaleDateString(),
+    date: new Date(s.timestamp).toLocaleDateString(),
     total: s.totalPrice
   }));
 
@@ -226,8 +219,8 @@ export function ReportsView() {
                   </td>
                   <td className="px-8 py-5">
                     <div className="flex flex-col">
-                       <span className="text-[10px] font-bold text-slate-900 uppercase tracking-tighter">{new Date((sale.timestamp as any)?.seconds * 1000).toLocaleDateString()}</span>
-                       <span className="text-[9px] font-medium text-slate-400">{new Date((sale.timestamp as any)?.seconds * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                       <span className="text-[10px] font-bold text-slate-900 uppercase tracking-tighter">{new Date(sale.timestamp).toLocaleDateString()}</span>
+                       <span className="text-[9px] font-medium text-slate-400">{new Date(sale.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                     </div>
                   </td>
                 </tr>

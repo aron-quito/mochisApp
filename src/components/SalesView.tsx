@@ -1,16 +1,5 @@
 import { useState, useEffect } from 'react';
-import { 
-  collection, 
-  query, 
-  onSnapshot, 
-  setDoc, 
-  doc, 
-  getDoc,
-  updateDoc,
-  serverTimestamp,
-  orderBy
-} from 'firebase/firestore';
-import { db, handleFirestoreError, OperationType } from '../lib/firebase';
+import { apiFetch } from '../lib/api';
 import { Lot, Product, PaymentMethod } from '../types';
 import { 
   Search, 
@@ -48,14 +37,15 @@ export function SalesView() {
   const [selectedProductForLot, setSelectedProductForLot] = useState<Product | null>(null);
 
   useEffect(() => {
-    const q = query(collection(db, 'products'), orderBy('name', 'asc'));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const docs = snapshot.docs.map(d => ({ id: d.id, ...d.data() } as Product));
-      setProducts(docs);
-    }, (error) => {
-      handleFirestoreError(error, OperationType.LIST, 'products');
-    });
-    return () => unsubscribe();
+    const fetchProducts = async () => {
+      try {
+        const data = await apiFetch('/products.php');
+        setProducts(data);
+      } catch (error) {
+        console.error('Error loading products', error);
+      }
+    };
+    fetchProducts();
   }, []);
 
   const addToCartWithLot = (product: Product, lot?: Lot) => {
@@ -116,54 +106,32 @@ export function SalesView() {
     setIsProcessing(true);
     try {
       for (const item of cart) {
-        // Register Sale
-        const saleRef = doc(collection(db, 'sales'));
-        await setDoc(saleRef, {
-          productId: item.product.id,
-          lotId: item.lotId || null,
-          sku: item.product.sku,
-          productName: item.product.name,
-          quantity: item.quantity,
-          unitPrice: item.product.sellingPrice,
-          totalPrice: item.product.sellingPrice * item.quantity,
-          paymentMethod: paymentMethod,
-          location: item.product.location,
-          timestamp: serverTimestamp(),
+        await apiFetch('/sales.php', {
+          method: 'POST',
+          body: JSON.stringify({
+            productId: item.product.id,
+            lotId: item.lotId || null,
+            sku: item.product.sku,
+            productName: item.product.name,
+            quantity: item.quantity,
+            unitPrice: item.product.sellingPrice,
+            totalPrice: item.product.sellingPrice * item.quantity,
+            paymentMethod: paymentMethod,
+            location: item.product.location,
+          })
         });
-
-        // Update Product and Lot Stock
-        const productDocRef = doc(db, 'products', item.product.id);
-        const productSnap = await getDoc(productDocRef);
-        
-        if (productSnap.exists()) {
-          const productData = productSnap.data() as Product;
-          let updatedLots = [...(productData.lots || [])];
-          
-          if (item.lotId) {
-            updatedLots = updatedLots.map(lot => {
-              if (lot.id === item.lotId) {
-                return { ...lot, remainingStock: Math.max(0, lot.remainingStock - item.quantity) };
-              }
-              return lot;
-            });
-          }
-
-          await updateDoc(productDocRef, {
-            totalStock: Math.max(0, (productData.totalStock || 0) - item.quantity),
-            lots: updatedLots,
-            updatedAt: serverTimestamp()
-          });
-        }
       }
 
       setCart([]);
       setIsCheckoutOpen(false);
       setPaymentMethod(null);
       setShowSuccess(true);
-      setTimeout(() => setShowSuccess(false), 3000);
+      setTimeout(() => {
+        setShowSuccess(false);
+        window.location.reload(); // Reload to refresh product stock
+      }, 2000);
     } catch (error) {
       console.error("Sale error", error);
-      handleFirestoreError(error, OperationType.WRITE, 'sales/products');
     } finally {
       setIsProcessing(false);
     }
@@ -287,7 +255,7 @@ export function SalesView() {
                       <h4 className="font-bold text-sm uppercase text-slate-100 truncate">{item.product.name}</h4>
                       {item.lotInfo && (
                         <span className="text-[8px] font-bold bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded border border-slate-700 uppercase tracking-widest leading-none">
-                          Lote {new Date(item.lotInfo.importDate?.seconds * 1000).toLocaleDateString()}
+                          Lote {item.lotInfo.importDate ? new Date(item.lotInfo.importDate).toLocaleDateString() : 'N/A'}
                         </span>
                       )}
                     </div>
@@ -486,7 +454,7 @@ export function SalesView() {
                     </div>
                     <div className="flex-1">
                       <p className="font-black text-slate-900 tracking-tight leading-none uppercase italic border-b border-transparent group-hover:border-blue-200 w-fit pb-0.5">
-                        Importado: {new Date(lot.importDate?.seconds * 1000).toLocaleDateString()}
+                        Importado: {lot.importDate ? new Date(lot.importDate).toLocaleDateString() : 'N/A'}
                       </p>
                       <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Disp: {lot.remainingStock} unidades</p>
                     </div>
