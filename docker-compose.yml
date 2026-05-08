@@ -44,7 +44,7 @@ services:
     volumes:
       - ./:/app
     ports:
-      - "8082:5173"
+      - "8082:3000" # <--- ¡Este es el único número que cambia!
     environment:
       - CHOKIDAR_USEPOLLING=true
     command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
