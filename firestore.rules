@@ -1,0 +1,97 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isEmailVerified() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    function isAdmin() {
+      return isEmailVerified() && (request.auth.token.email == 'aronquito000@gmail.com');
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // Product Validation
+    function isValidProduct(data) {
+      return data.keys().hasAll(['sku', 'name', 'brand', 'category', 'sizes', 'material', 'totalStock', 'sellingPrice', 'imageUrl', 'createdAt', 'updatedAt', 'location', 'lots'])
+        && data.keys().size() == 13
+        && data.sku is string && data.sku.size() > 0 && data.sku.size() <= 100
+        && data.name is string && data.name.size() > 0 && data.name.size() <= 200
+        && data.brand is string && data.brand.size() <= 100
+        && data.category is string && data.category.size() <= 100
+        && data.sizes is list && data.sizes.size() <= 20
+        && data.material is string && data.material.size() <= 100
+        && data.totalStock is number && data.totalStock >= 0
+        && data.sellingPrice is number && data.sellingPrice >= 0
+        && data.imageUrl is string && data.imageUrl.size() <= 1000
+        && data.location is string && data.location.size() <= 100
+        && data.lots is list && data.lots.size() <= 100
+        && data.createdAt == request.time
+        && data.updatedAt == request.time;
+    }
+
+    // Sale Validation
+    function isValidSale(data) {
+      return data.keys().hasAll(['productId', 'sku', 'productName', 'quantity', 'unitPrice', 'totalPrice', 'paymentMethod', 'timestamp', 'location', 'lotId'])
+        && data.keys().size() == 10
+        && data.productId is string && data.productId.size() <= 128
+        && (data.lotId == null || (data.lotId is string && data.lotId.size() <= 128))
+        && data.sku is string && data.sku.size() <= 100
+        && data.productName is string && data.productName.size() <= 200
+        && data.quantity is number && data.quantity > 0
+        && data.unitPrice is number && data.unitPrice >= 0
+        && data.totalPrice is number && data.totalPrice >= 0
+        && data.paymentMethod in ['Billetera Digital', 'Efectivo / Cash', 'Tarjeta / Transferencia', 'Billetera Virtual', 'Transacción Interbancaria', 'Efectivo']
+        && data.location is string && data.location.size() <= 100
+        && data.timestamp == request.time;
+    }
+
+    match /products/{productId} {
+      allow get: if isSignedIn();
+      allow list: if isSignedIn() && resource.data.sku != null;
+      
+      allow create: if isEmailVerified() 
+        && isValidId(productId)
+        && isValidProduct(incoming());
+        
+      allow update: if isEmailVerified()
+        && (
+          // Action: Adjust Stock or Update Details
+          (incoming().diff(existing()).affectedKeys().hasOnly(['totalStock', 'lots', 'updatedAt', 'location']) && incoming().updatedAt == request.time) ||
+          (isAdmin() && incoming().diff(existing()).affectedKeys().hasAny(['name', 'brand', 'category', 'sizes', 'material', 'sellingPrice', 'imageUrl', 'location', 'updatedAt', 'lots', 'totalStock']) && incoming().updatedAt == request.time)
+        );
+
+      allow delete: if isAdmin();
+    }
+
+    match /sales/{saleId} {
+      allow get: if isEmailVerified();
+      allow list: if isEmailVerified() && resource.data.productId != null;
+      
+      allow create: if isEmailVerified()
+        && isValidId(saleId)
+        && isValidSale(incoming())
+        && exists(/databases/$(database)/documents/products/$(incoming().productId));
+    }
+  }
+}

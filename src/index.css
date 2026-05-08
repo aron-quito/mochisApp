@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer components {
+  .bento-card {
+    @apply bg-white border border-slate-200 rounded-3xl p-6 shadow-sm transition-all duration-300;
+  }
+  
+  .bento-card-hover {
+    @apply hover:shadow-xl hover:shadow-slate-200/50 hover:-translate-y-1;
+  }
+
+  .bento-grid-bg {
+    background-image: radial-gradient(circle at 2px 2px, #e2e8f0 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+
+  .bento-glass {
+    @apply bg-white/80 backdrop-blur-md border border-white/20;
+  }
+}
