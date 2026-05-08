@@ -1,5 +1,5 @@
-export const getAuthToken  = () => localStorage.getItem('adminToken');
-export const setAuthToken  = (token: string) => localStorage.setItem('adminToken', token);
+export const getAuthToken = () => localStorage.getItem('adminToken');
+export const setAuthToken = (token: string) => localStorage.setItem('adminToken', token);
 export const removeAuthToken = () => {
   localStorage.removeItem('adminToken');
   localStorage.removeItem('userRole');
@@ -8,7 +8,7 @@ export const removeAuthToken = () => {
 };
 
 export const getUserRole = (): 'admin' | 'employee' => (localStorage.getItem('userRole') as any) || 'admin';
-export const getUserId   = () => localStorage.getItem('userId');
+export const getUserId = () => localStorage.getItem('userId');
 export const getUserName = () => localStorage.getItem('userName') || 'Admin';
 
 export const setSession = (token: string, role: string, id: string | null, name: string) => {
@@ -18,6 +18,9 @@ export const setSession = (token: string, role: string, id: string | null, name:
   localStorage.setItem('userName', name);
 };
 
+// --- CONFIGURACIÓN DE URL PARA PRODUCCIÓN ---
+const API_BASE_URL = 'http://159.112.145.76:8081/api';
+
 export async function apiFetch(endpoint: string, options: RequestInit = {}) {
   const token = getAuthToken();
   const headers = {
@@ -26,7 +29,8 @@ export async function apiFetch(endpoint: string, options: RequestInit = {}) {
     ...options.headers,
   };
 
-  const response = await fetch(`/api${endpoint}`, { ...options, headers });
+  // Cambiamos la ruta relativa por la URL absoluta de tu servidor
+  const response = await fetch(`${API_BASE_URL}${endpoint}`, { ...options, headers });
 
   if (response.status === 401) {
     removeAuthToken();
