@@ -1,6 +1,16 @@
 <?php
+// 1. CORS - DEBE IR AL PRINCIPIO
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
 
-// Get bearer token from request
+// Si el navegador pregunta por permisos (OPTIONS), respondemos 200 y cortamos ejecución
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { 
+    http_response_code(200); 
+    exit(); 
+}
+
+// 2. Funciones de Autenticación
 function getBearerToken() {
     $authHeader = null;
     if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
@@ -15,17 +25,14 @@ function getBearerToken() {
     return null;
 }
 
-// Returns ['role'=>'admin'|'employee', 'id'=>..., 'name'=>...] or dies with 401
 function checkAuth() {
     global $pdo;
     $token = getBearerToken();
 
-    // Admin static token
     if ($token === 'admin-token-123') {
         return ['role' => 'admin', 'id' => null, 'name' => 'Admin'];
     }
 
-    // Check employee session token
     if ($token) {
         $stmt = $pdo->prepare("SELECT id, firstName, lastName FROM employees WHERE session_token = ? AND active = 1");
         $stmt->execute([$token]);
@@ -40,12 +47,11 @@ function checkAuth() {
     exit();
 }
 
-// Helper to get JSON input
 function getJsonInput() {
     return json_decode(file_get_contents("php://input"), true);
 }
 
-// DB connection
+// 3. Conexión a la Base de Datos
 $host = getenv('DB_HOST') ?: 'db';
 $db   = getenv('DB_NAME') ?: 'clothstock';
 $user = getenv('DB_USER') ?: 'clothuser';
@@ -57,17 +63,13 @@ $options = [
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
     PDO::ATTR_EMULATE_PREPARES   => false,
 ];
+
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
-    echo json_encode(["error" => "Database connection failed"]);
+    header('Content-Type: application/json');
     http_response_code(500);
+    echo json_encode(["error" => "Database connection failed"]);
     exit();
 }
-
-// CORS
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type, Authorization");
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(200); exit(); }
 ?>
