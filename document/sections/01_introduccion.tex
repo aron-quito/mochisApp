@@ -1,0 +1,73 @@
+% ==============================================================================
+% SECCIÓN 1: INTRODUCCIÓN (ESTÁNDAR IEEE 830 / ISO 29148)
+% ==============================================================================
+
+\section{Introducción}
+
+\subsection{Propósito del Documento}
+El presente documento constituye la \textbf{Especificación de Requisitos de Software (ERS)} y el marco de \textbf{Arquitectura de Software} para el sistema de información denominado \textbf{SYSELL}, concebido y desarrollado para la empresa de retail textil \textbf{Comercial Machi's} en la ciudad de Tacna, Perú.
+
+Este documento ha sido redactado conforme a los estándares internacionales de ingeniería de software \textbf{IEEE Std 830-1998} (\textit{IEEE Recommended Practice for Software Requirements Specifications}) e \textbf{ISO/IEC/IEEE 29148:2018} (\textit{Systems and software engineering --- Life cycle processes --- Requirements engineering}). Su propósito fundamental es:
+\begin{enumerate}[leftmargin=*]
+    \item Definir formalmente los requerimientos funcionales, no funcionales y reglas de negocio del sistema web.
+    \item Establecer la arquitectura tecnológica basada en \textbf{Clean Architecture} y el patrón \textbf{CQRS} (\textit{Command Query Responsibility Segregation}), reemplazando de manera definitiva las implementaciones previas monolíticas o móviles nativas por un ecosistema web escalable (React + TypeScript en Frontend y API RESTful en Laravel PHP 8.2 con MySQL 8 en Backend).
+    \item Servir como contrato técnico vinculante entre los grupos de interés (\textit{stakeholders}), el equipo de ingeniería de software (\textit{Pollitos}) y el docente asesor de la Universidad Nacional Jorge Basadre Grohmann.
+\end{enumerate}
+
+\subsection{Ámbito del Sistema (Alcance)}
+El sistema \textbf{SYSELL} es una plataforma web integral de gestión empresarial (\textit{ERP/POS ligero}) orientada a optimizar el ciclo operacional de tiendas de indumentaria y calzado. Sus capacidades operativas abarcan:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Gestión de Catálogo e Inventario Multiatributo:} Control granular de productos por variantes de talla, color, marca, temporada y categoría, con soporte para múltiples sucursales y almacenes.
+    \item \textbf{Punto de Venta (POS) y Registro Transaccional:} Procesamiento rápido de ventas en mostrador, emisión de notas de venta, control de inventario en tiempo real con transacciones atómicas y soporte exclusivo de métodos de pago operativos (Efectivo, Yape/Plin y Transferencia Bancaria).
+    \item \textbf{Devoluciones, Cambios y Garantías:} Reingreso controlado de mercadería a inventario y emisión de comprobantes de cambio.
+    \item \textbf{Control de Flujo de Caja y Arqueo Diario:} Registro de apertura, movimientos, salidas menores y cierre de caja por local y por método de pago.
+    \item \textbf{Seguridad, Auditoría y Control de Acceso:} Autenticación robusta con tokens cifrados (Laravel Sanctum), control de acceso basado en roles (RBAC: Administrador y Vendedor), bloqueo por intentos fallidos, caducidad de sesión por inactividad y registro inmutable de auditoría (\textit{audit logs}) de todas las mutaciones de datos.
+    \item \textbf{Analítica y Reportabilidad:} Generación de paneles de control (\textit{dashboards}) operacionales, exportación de reportes en PDF y hojas de cálculo (Excel/CSV), y cálculo de métricas financieras en moneda nacional (PEN) con discriminación del Impuesto General a las Ventas (IGV 18\%).
+\end{itemize}
+
+\subsection{Definiciones, Acrónimos y Abreviaturas}
+A continuación se detallan los términos técnicos y conceptuales empleados a lo largo del documento:
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\linewidth}{l>{\raggedright\arraybackslash}X}
+\toprule
+\rowcolor{LightSlate}
+\textbf{Término / Acrónimo} & \textbf{Definición Técnica / Significado} \\
+\midrule
+\textbf{ERS} & Especificación de Requisitos de Software (\textit{Software Requirements Specification}). \\
+\textbf{API REST} & Interfaz de Programación de Aplicaciones basada en Transferencia de Estado Representacional. \\
+\textbf{Clean Architecture} & Arquitectura Limpia formulada por Robert C. Martin, organizada en capas concéntricas desacopladas. \\
+\textbf{CQRS} & Segregación de Responsabilidad de Comandos y Consultas (\textit{Command Query Responsibility Segregation}). \\
+\textbf{RBAC} & Control de Acceso Basado en Roles (\textit{Role-Based Access Control}). \\
+\textbf{Sanctum} & Sistema de autenticación ligero basado en tokens para APIs de Laravel. \\
+\textbf{Soft Delete} & Borrado lógico mediante estampas de tiempo (\texttt{deleted\_at}) que preserva la integridad histórica. \\
+\textbf{PEN} & Sol Peruano (moneda de curso legal en la República del Perú, denotada como \texttt{S/.}). \\
+\textbf{IGV} & Impuesto General a las Ventas (18\% de la base imponible según normativa de la SUNAT). \\
+\textbf{POS} & Punto de Venta (\textit{Point of Sale}). \\
+\textbf{SPA} & Aplicación de Página Única (\textit{Single Page Application}) construida con React + Vite. \\
+\textbf{OWASP} & \textit{Open Web Application Security Project} (marco de referencia de seguridad en aplicaciones web). \\
+\textbf{ISO/IEC 25010} & Norma internacional de evaluación de la calidad de productos de software. \\
+\textbf{DTO} & Objeto de Transferencia de Datos (\textit{Data Transfer Object}). \\
+\textbf{CI/CD} & Integración Continua y Despliegue Continuo (\textit{Continuous Integration / Continuous Deployment}). \\
+\bottomrule
+\end{tabularx}
+\caption{Glosario de Términos, Acrónimos y Abreviaturas.}
+\label{tab:glosario}
+\end{table}
+
+\subsection{Referencias Normativas y Bibliográficas}
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{IEEE Std 830-1998:} \textit{IEEE Recommended Practice for Software Requirements Specifications}. IEEE Computer Society.
+    \item \textbf{ISO/IEC/IEEE 29148:2018:} \textit{Systems and software engineering --- Life cycle processes --- Requirements engineering}.
+    \item \textbf{ISO/IEC 25010:2011:} \textit{Systems and software engineering --- Systems and software Quality Requirements and Evaluation (SQuaRE) --- System and software quality models}.
+    \item \textbf{Martin, R. C. (2017):} \textit{Clean Architecture: A Craftsman's Guide to Software Structure and Design}. Prentice Hall.
+    \item \textbf{OWASP Foundation (2021):} \textit{OWASP Top 10: The Ten Most Critical Web Application Security Risks}.
+    \item \textbf{SUNAT (2026):} \textit{Marco Normativo de Comprobantes de Pago y Régimen del Impuesto General a las Ventas}. Superintendencia Nacional de Aduanas y de Administración Tributaria del Perú.
+    \item \textbf{Documento Interno STD-ARQ-SYSELL-WEB-2026:} \textit{Estándares de Arquitectura y Desarrollo de Software para el Sistema Web SYSELL}. UNJBG / ESIS.
+\end{enumerate}
+
+\subsection{Visión General del Documento}
+El presente documento se estructura en 10 secciones principales:
+La \textbf{Sección 2} describe la perspectiva general del producto, sus usuarios y restricciones; la \textbf{Sección 3} formaliza las Reglas de Negocio (\textbf{RN-xx}); la \textbf{Sección 4} detalla los Requerimientos Funcionales (\textbf{R-01 a R-30}); la \textbf{Sección 5} formula las Historias de Usuario (\textbf{HU-xx}) con criterios de aceptación Gherkin; la \textbf{Sección 6} define los Requerimientos No Funcionales bajo ISO/IEC 25010; la \textbf{Sección 7} expone la Arquitectura Web (Clean Architecture, CQRS, API REST, Docker y Base de Datos); la \textbf{Sección 8} presenta el Diseño de Interfaces (Desktop y Responsive 360px); la \textbf{Sección 9} traza el Roadmap de Alcance Futuro; y la \textbf{Sección 10} consolida los Anexos y Evidencias de Proyecto.

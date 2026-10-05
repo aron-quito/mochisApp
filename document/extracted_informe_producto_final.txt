@@ -1,0 +1,842 @@
+--- PAGE 1 ---
+UNJBG​
+​
+ESIS 
+CICLO 03​
+​
+DISEÑO DE SISTEMAS 
+“Año de la Esperanza y el Fortalecimiento de la Democracia” 
+Informe Nro 1 
+De​
+: ​
+Pollitos Design 
+1)​ Johan Anibal Mamani Catacora ​​
+​
+Código: 2024-119021 
+2)​ Luis Fernando Condori Caljaro​ ​
+​
+Código: 2024-119031 
+3)​ Aron Rene Cachicatari Quito ​
+​
+​
+Código: 2024-119011 
+4)​ Alex Jeanpier Chata Chino​
+​
+​
+Código: 2024-119012 
+5)​ Pierrette Ahmed Raksel Chávez Alvarado ​
+Código: 2021-121027 
+Para​
+: ​
+Docente del curso 
+Msc. Milagros Gleny Cohaila Gonzales 
+Asunto​:​
+Producto Final sobre el Diseño de Sistemas 
+Fecha​ :​
+08/07/2026 
+Respetuosamente expongo lo siguiente: 
+Análisis sobre el sistema propuesto: SYSELL 
+1.​ Se recopilaron los siguientes requerimientos: 
+Requerimientos Funcionales: 
+R-01 El sistema debe permitir al administrador 
+registrar empleados capturando su Nombre, 
+Teléfono, DNI y Dirección. 
+R-02 El sistema debe gestionar el acceso de 
+vendedores y administradores mediante un 
+proceso de login. 
+R-03 El sistema debe mostrar el perfil individual de 
+cada empleado registrado. 
+R-04 El sistema debe permitir al administrador 
+eliminar los perfiles de los trabajadores. 
+R-05 El sistema debe permitir al administrador 
+modificar la información personal de los 
+trabajadores. 
+R-06 El sistema debe registrar la salida de 
+productos y reducir automáticamente el stock 
+cuando el vendedor confirme una compra. 
+R-07 El sistema debe actualizar el registro de 
+ganancias en función de cada salida de producto 
+realizada. 
+R-08 El sistema debe permitir al vendedor registrar 
+el método de pago (Billetera virtual, efectivo 
+o transacción) al momento de la salida del 
+producto. 
+
+--- PAGE 2 ---
+UNJBG​
+​
+ESIS 
+CICLO 03​
+​
+DISEÑO DE SISTEMAS 
+R-09 El sistema debe permitir al vendedor buscar 
+productos y verificar la disponibilidad de 
+stock en tiempo real ante la consulta de un 
+cliente. 
+R-10 El sistema debe permitir exclusivamente al 
+administrador agregar stock o productos nuevos 
+al inventario. 
+R-11 El sistema debe mostrar la cantidad de unidades 
+disponibles de cada prenda. 
+R-12 El sistema debe permitir visualizar la 
+descripción detallada de la prenda (tipo, 
+talla, etc.) para informar al cliente. 
+R-13 El sistema debe permitir exclusivamente al 
+administrador modificar la información técnica 
+o comercial de los productos. 
+R-14 El sistema debe permitir al administrador dar 
+de baja productos del catálogo. 
+R-15 El sistema debe consolidar y mostrar el total 
+de salidas de productos de los dos locales 
+comerciales. 
+R-16 El sistema debe generar tablas y gráficos 
+estadísticos sobre las salidas de productos 
+para el análisis del administrador. 
+R-17 El sistema debe permitir filtrar los reportes 
+de movimientos de mercancía por criterios 
+específicos. 
+R-18 El sistema debe permitir la exportación de los 
+reportes de salida de productos a formatos 
+externos. 
+ 
+Requerimiento no funcionales: 
+●​
+Plataforma  
+●​
+Sistema operativo Android 10 o 
+superior. 
+●​
+Desarrollo en Android Studio. 
+●​
+Lenguaje Kotlin o Java. 
+●​
+Gestor de base de datos MySQL o 
+Firebase. 
+●​
+Necesidad 
+de recursos  
+●​
+Smartphone con mínimo 4 GB de 
+RAM. 
+
+--- PAGE 3 ---
+UNJBG​
+​
+ESIS 
+CICLO 03​
+​
+DISEÑO DE SISTEMAS 
+●​
+Memoria disponible mínima de 2 
+GB. 
+●​
+Conexión a internet o red local. 
+●​
+Seguridad  
+●​
+Restricción de permisos según rol 
+(Administrador/Vendedor). 
+●​
+Respaldo en la nube.  
+●​ Escalabilidad  
+El sistema debe permitir agregar 
+nuevas funcionalidades y soportar 
+el aumento de usuarios, productos 
+y locales comerciales sin afectar 
+el rendimiento del sistema.  
+ 
+2.​ Se estableció el siguiente TasksBoard, (foto original de la cartulina y modelo en MIRO) 
+ 
+
+--- PAGE 4 ---
+UNJBG​
+​
+ESIS 
+CICLO 03​
+​
+DISEÑO DE SISTEMAS 
+ 
+3.​ Se estableció el siguiente diagrama de Paquetes. 
+ 
+
+--- PAGE 5 ---
+UNJBG​
+​
+ESIS 
+CICLO 03​
+​
+DISEÑO DE SISTEMAS 
+ 
+ 
+ 
+4.​ Se establecieron los siguientes casos de Uso y su cuadro descriptivo. 
+ 
+
+--- PAGE 6 ---
+UNJBG​
+​
+ESIS 
+CICLO 03​
+​
+DISEÑO DE SISTEMAS 
+ 
+Caso de 
+Uso 
+Actores Involucrados 
+Descripción 
+Acceder al 
+sistema 
+Administrador 
+(Principal)Empleado 
+(Principal) 
+Permite a ambos usuarios 
+autenticarse e ingresar a la 
+plataforma utilizando sus 
+credenciales autorizadas. 
+Ver perfil 
+Administrador 
+(Principal)Empleado 
+(Principal) 
+Permite visualizar la información de 
+perfil correspondiente al usuario que 
+ha iniciado sesión. 
+Registrar 
+usuario 
+Administrador (Principal) 
+Funcionalidad exclusiva del 
+Administrador para dar de alta a 
+nuevos usuarios en el sistema. 
+Editar perfil 
+Administrador (Principal) 
+Permite al Administrador modificar o 
+actualizar los datos de los perfiles de 
+usuario en la base de datos. 
+Eliminar 
+Perfil 
+Administrador (Principal) 
+Funcionalidad exclusiva del 
+Administrador para dar de baja o 
+borrar permanentemente un perfil de 
+usuario del sistema. 
+ 
+
+--- PAGE 7 ---
+UNJBG​
+​
+ESIS 
+CICLO 03​
+​
+DISEÑO DE SISTEMAS 
+ 
+ 
+Caso de Uso 
+Actores Involucrados 
+Descripción 
+Registrar 
+Producto 
+Administrador (Principal) 
+Permite dar de alta y registrar un 
+nuevo producto en el inventario 
+del sistema con sus datos 
+iniciales. 
+Eliminar 
+producto 
+Administrador (Principal) 
+Permite dar de baja o eliminar 
+del inventario un producto 
+específico que ya no deba estar 
+disponible. 
+Mostrar stock 
+Administrador 
+(Principal)Empleado 
+(Principal) 
+Permite consultar la cantidad 
+actual de existencias de los 
+productos disponibles en el 
+inventario. 
+Modificar 
+producto 
+Administrador 
+(Principal)Empleado 
+(Principal) 
+Permite editar y actualizar la 
+información de un producto ya 
+registrado (por ejemplo, precios, 
+detalles o niveles mínimos). 
+
+--- PAGE 8 ---
+UNJBG​
+​
+ESIS 
+CICLO 03​
+​
+DISEÑO DE SISTEMAS 
+Visualizar 
+Descripción del 
+producto 
+Administrador 
+(Principal)Empleado 
+(Principal) 
+Permite acceder a la ficha 
+técnica, características y 
+especificaciones detalladas de 
+un producto seleccionado. 
+ 
+ 
+ 
+Caso de Uso 
+Actores Involucrados 
+Descripción 
+Realizar 
+venta 
+Empleado 
+(Principal)Administrador 
+(Principal) 
+Permite registrar y procesar la 
+venta de un producto en el 
+sistema. Para completarse, este 
+caso de uso incluye 
+obligatoriamente las siguientes 
+acciones: 
+• Seleccionar producto: Elegir 
+los artículos que el cliente va a 
+comprar. 
+• Seleccionar método de pago: 
+Definir la forma en la que se 
+liquidará la transacción 
+(efectivo, tarjeta, etc.). 
+
+--- PAGE 9 ---
+UNJBG​
+​
+ESIS 
+CICLO 03​
+​
+DISEÑO DE SISTEMAS 
+Gestionar 
+devoluciones 
+Empleado 
+(Principal)Administrador 
+(Principal) 
+Permite procesar el retorno de 
+productos vendidos por motivos 
+de cambio, defecto o 
+cancelación, reintegrándolos al 
+flujo correspondiente. 
+Consultar 
+disponibilidad 
+Empleado 
+(Principal)Administrador 
+(Principal) 
+Permite verificar en tiempo real 
+si hay existencias suficientes de 
+un producto antes de proceder 
+con una venta o despacho. 
+ 
+ 
+ 
+Caso de 
+Uso 
+Actores 
+Involucrados 
+Descripción 
+Mostrar total 
+de ventas 
+Administrador 
+(Principal) 
+Permite visualizar el acumulado general de 
+ventas registradas en el sistema. Para 
+ejecutarse, este caso de uso incluye 
+obligatoriamente la siguiente acción: 
+
+--- PAGE 10 ---
+UNJBG​
+​
+ESIS 
+CICLO 03​
+​
+DISEÑO DE SISTEMAS 
+• Reporte por local: Desglosar u organizar la 
+información de ventas según la sucursal o 
+establecimiento correspondiente. 
+Mostrar 
+tablas y 
+gráficos 
+Administrador 
+(Principal) 
+Permite representar la información de las 
+salidas y ventas de forma visual mediante 
+diagramas, gráficos y tablas comparativas 
+para facilitar la toma de decisiones. 
+Filtrar 
+reporte de 
+ventas 
+Administrador 
+(Principal) 
+Permite segmentar y buscar información 
+específica dentro de los reportes aplicando 
+criterios de búsqueda (como fechas, 
+categorías, etc.). 
+Exportar 
+reporte de 
+ventas 
+Administrador 
+(Principal) 
+Permite descargar el reporte generado en 
+formatos externos compatibles (por ejemplo, 
+PDF, Excel o CSV) para su posterior análisis 
+o archivo. 
+ 
+5.​ Se consagró el diseño de las siguientes interfaces gráficas. 
+ 
+
+--- PAGE 11 ---
+UNJBG​
+​
+ESIS 
+CICLO 03​
+​
+DISEÑO DE SISTEMAS 
+ 
+6.​ Se aplicó el diseño del Diagrama de Base de Datos. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 12 ---
+UNJBG​
+​
+ESIS 
+CICLO 03​
+​
+DISEÑO DE SISTEMAS 
+7.​ Se aplicó el diseño del Diagrama de Clases. 
+ 
+8.​ Se aplicó el diseño del Diagrama de Navegabilidad. 
+ 
+9.​ Se adjunta el link del portafolio. 
+https://drive.google.com/drive/folders/1PVjB1wC7Rj_txZZ81-Pya83SkSwiEZ-z?usp=sha
+ring 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 13 ---
+UNJBG​
+​
+ESIS 
+CICLO 03​
+​
+DISEÑO DE SISTEMAS 
+  
+10.​Conclusión final de la Auditoría Interna elaborado y entregado por el grupo auditor. 
+ 
+
+--- PAGE 14 ---
+UNJBG​
+​
+ESIS 
+CICLO 03​
+​
+DISEÑO DE SISTEMAS 
+ 
+
+--- PAGE 15 ---
+UNJBG​
+​
+ESIS 
+CICLO 03​
+​
+DISEÑO DE SISTEMAS 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 16 ---
+UNJBG​
+​
+ESIS 
+CICLO 03​
+​
+DISEÑO DE SISTEMAS 
+ 
+11.​Resolución de Preguntas: 
+a.​ ¿CUÁLES SON LOS REQUISITOS PARA LA CALIDAD DEL SOFTWARE PROPUESTO? 
+​
+ 
+Atributo de 
+Calidad (ISO/IEC 
+25010) 
+Objetivo del Atributo 
+Requisitos Específicos en el Proyecto Propuesto 
+1. Adecuación 
+Funcional 
+Cumplir con las funciones 
+exactas que necesita el 
+negocio. 
+- Automatización del control de inventario y ventas. 
+- Unificación de salidas de los dos locales. 
+- Generación de reportes estadísticos filtrables y 
+exportables. 
+2. Eficiencia de 
+Desempeño 
+Optimizar los recursos y 
+tiempos de respuesta. 
+- Capacidad de escalar (más usuarios, productos y 
+locales) sin perder fluidez. 
+- Requiere un smartphone con al menos 4 GB de 
+memoria RAM. 
+3. Compatibilidad 
+Integrarse e intercambiar 
+información con otros 
+sistemas. 
+- Sincronización entre locales mediante conexión 
+constante a internet. 
+- Integración con gestores de bases de datos (MySQL o 
+Firebase). 
+4. Usabilidad 
+Ser fácil de aprender, 
+comprender y utilizar. 
+- Interfaz amigable para vistas móviles y de escritorio. 
+- Prevención de la saturación visual mediante la 
+organización ordenada de datos y reportes. 
+5. Fiabilidad 
+Mantener el rendimiento y 
+evitar fallos o pérdida de 
+datos. 
+- Centralización de datos para reflejar información en 
+tiempo real. 
+- Eliminación de errores humanos derivados del antiguo 
+registro manual en cuadernos. 
+6. Seguridad 
+Proteger la información y 
+restringir accesos no 
+autorizados. 
+- Implementación de login obligatorio. 
+- Control por roles: solo el administrador puede modificar 
+información técnica, personal de empleados o eliminar 
+perfiles. 
+7. Mantenibilidad 
+Facilitar futuras 
+modificaciones, 
+correcciones o 
+actualizaciones. 
+- Desarrollo documentado bajo metodología Scrum y 
+diagramas (arquitectura, componentes). 
+- Uso de tecnologías estándar (Android Studio, Kotlin, 
+Java). 
+8. Portabilidad 
+Capacidad de ejecutarse 
+en múltiples dispositivos o 
+entornos. 
+- La aplicación móvil debe poder instalarse y operar 
+correctamente en dispositivos con sistema operativo 
+Android 10 o superior. 
+ 
+b.​ ¿CUÁLES SON LAS CARACTERIZACIÓN DE LOS DEFECTOS PARA LA CALIDAD DE 
+SOFTWARE PROPUESTO? 
+ 
+Área / Módulo 
+del Sistema 
+Tipo de 
+Deficiencia / 
+Riesgo 
+Caracterización de Defectos Específicos (Sistema Actual) 
+Deficiencias 
+Generales 
+Operativa y de 
+Gestión 
+- Registro en papel inexacto que provoca desfase de mercadería. 
+- Descoordinación de información en tiempo real entre ambos 
+locales. 
+- Lentitud en atención y alta dificultad para generar reportes. 
+
+--- PAGE 17 ---
+UNJBG​
+​
+ESIS 
+CICLO 03​
+​
+DISEÑO DE SISTEMAS 
+Módulo de 
+Gestión de 
+Usuarios 
+Seguridad y 
+Control de Acceso 
+- Vulnerabilidad de acceso: Inexistencia de login o autenticación. 
+- Falta de roles: Límites difusos en las funciones operativas. 
+- Riesgo de edición/borrado: Modificación sin validación y 
+eliminación accidental de perfiles históricos sin alertas de 
+confirmación. 
+Módulo de 
+Inventario 
+Integridad y 
+Clasificación 
+- Inconsistencia: Duplicados y errores por nombres no 
+estandarizados. 
+- Desactualización: Retraso al registrar ingresos de proveedores. 
+- Confusión de prendas: Falta de filtros por tallas, colores o 
+temporadas. 
+- Falta de autorización: Alteración libre de anotaciones y datos 
+tachados o ilegibles en cuadernos. 
+Módulo de 
+Ventas (Salidas) 
+Operación y 
+Cálculo 
+- Omisión de registros: Olvido de anotar ventas, causando stock 
+falso. 
+- Errores matemáticos: Fallos aritméticos manuales al cierre de 
+caja. 
+- Descuadre financiero: Incapacidad de separar con claridad el 
+dinero físico de los pagos digitales (billeteras virtuales). 
+- Fuga de clientes: Demoras al buscar prendas físicamente en 
+almacén. 
+Módulo de 
+Reportes 
+Información y 
+Respaldo 
+- Retraso analítico: Imposibilidad de detectar ropa de baja rotación. 
+- Saturación visual: Listas desordenadas que mezclan todas las 
+entradas y salidas en un solo lugar. 
+- Vulnerabilidad: Cero copias de seguridad (la información reside 
+únicamente en los libros físicos). 
+- Cálculo bilocal defectuoso: Sumatorias lentas y erróneas al 
+unificar manualmente las finanzas de ambas sucursales. 
+ 
+c.​ ¿CUÁLES SON LAS TÉCNICAS DE GESTIÓN DE LA CALIDAD DEL SOFTWARE 
+PROPUESTO? 
+ 
+ 
+Fase 
+Técnica Propuesta 
+Beneficio para la Página Web 
+Prevención 
+Revisiones de Código 
+Evita que se introduzcan 
+errores en el inventario. 
+Prevención 
+Control de Versiones (Git 
+Permite trabajar en equipo 
+sin borrar el trabajo ajeno. 
+Detección 
+Integración Continua (CI) 
+Avisa automáticamente si 
+una actualización rompe una 
+página. 
+Detección 
+Pruebas de Regresión 
+Garantiza que las funciones 
+antiguas sigan funcionando 
+Mejora 
+Pruebas de Usabilidad 
+Asegura que el registro de 
+ropa sea rápido e intuitivo 
+para el staff. 
+ 
+ 
+d.​ ¿CÓMO SE PUEDE APLICAR LA MEDICIÓN DE LA CALIDAD DEL SOFTWARE 
+PROPUESTO? 
+
+--- PAGE 18 ---
+UNJBG​
+​
+ESIS 
+CICLO 03​
+​
+DISEÑO DE SISTEMAS 
+La medición de la calidad del software SYSELL se debe aplicar de forma sistemática a lo largo de 
+su ciclo de vida, adoptando el modelo de calidad de la norma internacional ISO/IEC 25010. Esta 
+medición no debe ser solo subjetiva, sino que se debe operativizar mediante el establecimiento 
+de métricas de software cuantitativas, divididas en tres dimensiones clave: Calidad Externa (en 
+ejecución), Calidad Interna (código fuente) y Calidad en Uso (experiencia del usuario final). 
+ 
+e.​ ¿CUÁLES SON LAS HERRAMIENTAS PARA EL DISEÑO DE SOFTWARE 
+PROPUESTO? 
+ 
+Fase del Diseño 
+Herramienta 
+Propuesta 
+Propósito en el Registro de Ropa 
+Visual / Interfaz 
+(UI) 
+Figma 
+Diseñar las pantallas, formularios y colores de 
+la web. 
+Base de Datos 
+dbdiagram.io 
+Estructurar las tablas (Prendas, Tallas, 
+Colores, Stock). 
+Flujos y 
+Arquitectura 
+Draw.io 
+Mapear el proceso lógico de registrar o buscar 
+una prenda. 
+ 
+f.​
+¿CUÁLES SON LAS HERRAMIENTAS DE CALIDAD DE SOFTWARE PROPUESTO? 
+ 
+12.​Conclusiones y sugerencias. 
+a.​ Conclusiones 
+ 
+Se concluye que el diseño del sistema SYSELL satisface con éxito la gran 
+mayoría de los requerimientos funcionales (desde R-01 hasta R-18) y no 
+funcionales solicitados para el negocio "Comercial Machi's". La estructuración 
+del sistema en cuatro paquetes principales (Usuario, Inventario, Salida de 
+
+--- PAGE 19 ---
+UNJBG​
+​
+ESIS 
+CICLO 03​
+​
+DISEÑO DE SISTEMAS 
+Producto y Reporte) garantiza un flujo de trabajo lógico y coherente, logrando 
+el objetivo central de automatizar el control de inventarios y unificar las 
+operaciones de venta de ambos locales en tiempo real. 
+ 
+El modelado y diseño arquitectónico propuesto aborda directamente 
+las deficiencias críticas identificadas en el diagnóstico del negocio (registro 
+manual en cuadernos). Mediante la automatización del cálculo de stock, la 
+definición clara de métodos de pago (efectivo, billeteras virtuales y 
+transferencias) y la centralización en una base de datos relacional, se eliminan 
+los riesgos de descuadres financieros, desfases de mercadería y pérdida de 
+información histórica. 
+ 
+La propuesta de software no solo se limita a la funcionalidad, sino que 
+integra de manera sólida los atributos de la norma ISO/IEC 25010. Aspectos 
+como la Portabilidad (compatible con dispositivos Android 10 o superior), la 
+Eficiencia de Desempeño (con un mínimo de recursos de hardware de 4 GB 
+RAM) y la Usabilidad (interfaces limpias, intuitivas y optimizadas) aseguran un 
+ciclo de vida del software óptimo, de bajo costo operativo y con alta facilidad 
+de adopción por parte del personal de ventas. 
+ 
+Los informes de auditoría interna y externa confirman que el equipo 
+de trabajo (Pollitos Design) cuenta con toda la documentación y diagramación 
+básica necesaria para la fase de desarrollo. El diseño de la interfaz gráfica fue 
+calificado como altamente amigable, fluido y alineado con los objetivos de la 
+empresa. No obstante, las auditorías funcionaron como un mecanismo clave 
+de control de calidad al identificar debilidades tempranas en las definiciones 
+de seguridad y la necesidad de estandarizar mejores prácticas en el desarrollo 
+de código fuente antes de su despliegue final. 
+ 
+b.​ Sugerencias 
+ 
+Atendiendo directamente a las observaciones del Informe de Auditoría 
+N° 1, se recomienda detallar y profundizar la lógica de seguridad y restricciones 
+de red en la documentación técnica del sistema. Es crucial definir con precisión 
+las políticas de expiración de sesiones, encriptación de contraseñas de usuarios 
+en la base de datos (mediante hashes seguros) y la validación estricta de 
+permisos de acuerdo con el rol asignado (Administrador/Empleado) en cada 
+servicio de la API. 
+ 
+Considerando las recomendaciones del Informe de Auditoría N° 2 
+respecto a la técnica y buenas prácticas de desarrollo, se sugiere establecer de 
+manera obligatoria una guía de estilos de programación y realizar revisiones de 
+código cruzadas (Code Reviews) en el repositorio Git. Asimismo, se debe 
+priorizar la modularización del backend en PHP y la correcta separación de 
+responsabilidades para evitar que el código sea demasiado general o difícil de 
+mantener en el futuro. 
+ 
+
+--- PAGE 20 ---
+UNJBG​
+​
+ESIS 
+CICLO 03​
+​
+DISEÑO DE SISTEMAS 
+A raíz de la limitación reportada en el Informe de Auditoría N° 3 , 
+donde no se pudieron probar la totalidad de las pantallas debido a la falta del 
+servicio usual de base de datos durante la presentación, se aconseja 
+implementar entornos de pruebas locales (Staging) consistentes. El uso de 
+contenedores o bases de datos de prueba en la nube (usando MySQL o 
+Firebase) permitirá realizar pruebas de extremo a extremo (End-to-End) y 
+validar la navegabilidad completa del sistema bajo cualquier escenario 
+operativo. 
+ 
+Para asegurar la escalabilidad del sistema a medida que crezcan los 
+locales o productos de "Machi's Shop", se recomienda integrar herramientas 
+de análisis estático de código como SonarQube o Codacy en el flujo de trabajo 
+del equipo de desarrollo. Esto permitirá detectar de forma temprana 
+vulnerabilidades de seguridad, deuda técnica y defectos de calidad antes de 
+que el código sea compilado y subido a producción. 
+ 
+13.​Bibliografía consultada.  
+ 
+​
+Cohaila Gonzales, M. G. (2026). Diapositivas y material de enseñanza del curso: Diseño 
+de Sistemas [Presentaciones de PowerPoint]. Escuela Profesional de Ingeniería de Sistemas 
+(ESIS), Universidad Nacional Jorge Basadre Grohmann. 
+ 
+ 
+14.​Anexo. Fotos de evidencia, actas, informes anteriores, etc. 
+ Anexo 01. Avance de Informe Producto Final
+ 
+
+--- PAGE 21 ---
+UNJBG​
+​
+ESIS 
+CICLO 03​
+​
+DISEÑO DE SISTEMAS 
+Anexo 02.  Auditoria externa 
+ 
+Anexo 03. Auditoria interna 
+ 
+
+--- PAGE 22 ---
+UNJBG​
+​
+ESIS 
+CICLO 03​
+​
+DISEÑO DE SISTEMAS 
+ 
+
+--- PAGE 23 ---
+UNJBG​
+​
+ESIS 
+CICLO 03​
+​
+DISEÑO DE SISTEMAS 
+Es todo en cuanto tenemos que informar. 
+Atentamente. 
+Equipo de Trabajo: 
+-​
+Johan Anibal Mamani Catacora (Lider) 
+-​
+Luis Fernando Condori Caljaro (Diseñador) 
+-​
+Aron Rene Cachicatari Quito (Programador) ​
+​
+​
+ 
+-​
+Alex Jeanpier Chata Chino (Testeador)​
+​
+​
+ 
+-​
+Pierrette Ahmed Raksel Chávez Alvarado (Analista) 
+ 
+

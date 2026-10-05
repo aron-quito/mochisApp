@@ -1,0 +1,123 @@
+% ==============================================================================
+% SECCIÓN 5: HISTORIAS DE USUARIO Y CRITERIOS DE ACEPTACIÓN (GHERKIN)
+% ==============================================================================
+
+\section{Historias de Usuario (HU) y Criterios de Aceptación}
+
+Las Historias de Usuario describen las funcionalidades desde la perspectiva de los usuarios finales, aplicando el formato estandarizado y complementadas con criterios de aceptación basados en la sintaxis \textbf{Gherkin (Dado / Cuando / Entonces)}.
+
+\subsection{Historias de Usuario del Módulo de Autenticación y Seguridad}
+
+\begin{hubox}{HU-01}{Inicio de Sesión y Control de Roles}
+\textbf{Narrativa:}\\
+\textit{Como} Usuario del sistema (Administrador o Vendedor),\\
+\textit{Quiero} iniciar sesión con mi correo electrónico y contraseña,\\
+\textit{Para} acceder a las funcionalidades del sistema según mis permisos asignados.
+
+\vspace{0.25cm}\hrule\vspace{0.25cm}
+\textbf{Criterios de Aceptación (Gherkin):}\\
+\textbf{Escenario 1: Inicio de sesión exitoso con rol Administrador}\\
+\textbf{Dado} que el usuario está en la pantalla de login,\\
+\textbf{Cuando} ingresa un correo registrado como administrador y su contraseña correcta,\\
+\textbf{Entonces} el sistema emite un Bearer Token, almacena el estado de sesión y lo redirige al Dashboard Ejecutivo con acceso a todos los módulos.
+
+\vspace{0.2cm}
+\textbf{Escenario 2: Bloqueo por 5 intentos fallidos consecutivos}\\
+\textbf{Dado} que un usuario o atacante intenta autenticarse,\\
+\textbf{Cuando} introduce una contraseña errónea en 5 intentos consecutivos dentro de una ventana de 10 minutos,\\
+\textbf{Entonces} el sistema bloquea temporalmente la cuenta por 15 minutos, responde con código HTTP 429 (\textit{Too Many Requests}) y registra el evento en los logs de auditoría.
+\end{hubox}
+
+\begin{hubox}{HU-02}{Cierre de Sesión Automático por Inactividad}
+\textbf{Narrativa:}\\
+\textit{Como} Administrador de Seguridad,\\
+\textit{Quiero} que el sistema cierre la sesión automáticamente si no hay actividad en el terminal,\\
+\textit{Para} evitar accesos no autorizados a la caja o datos sensibles si el vendedor deja desatendida la pantalla.
+
+\vspace{0.25cm}\hrule\vspace{0.25cm}
+\textbf{Criterios de Aceptación (Gherkin):}\\
+\textbf{Escenario 1: Timeout de inactividad a los 15 minutos}\\
+\textbf{Dado} que un vendedor tiene una sesión activa en la vista de ventas,\\
+\textbf{Cuando} transcurren 15 minutos consecutivos sin eventos de mouse, teclado o interacción táctil,\\
+\textbf{Entonces} el frontend destruye el token en memoria, muestra una alerta modal indicando ``Sesión expirada por inactividad'' y redirige al formulario de login.
+\end{hubox}
+
+\subsection{Historias de Usuario del Módulo de Punto de Venta (POS) y Ventas}
+
+\begin{hubox}{HU-03}{Registro de Venta Rápida en Mostrador}
+\textbf{Narrativa:}\\
+\textit{Como} Vendedor en tienda,\\
+\textit{Quiero} escanear o buscar prendas y agregarlas a la orden de venta con el método de pago seleccionado,\\
+\textit{Para} procesar la compra del cliente de manera ágil y entregar su comprobante.
+
+\vspace{0.25cm}\hrule\vspace{0.25cm}
+\textbf{Criterios de Aceptación (Gherkin):}\\
+\textbf{Escenario 1: Venta exitosa en Efectivo con cálculo de vuelto}\\
+\textbf{Dado} que el vendedor tiene productos en el carrito por un total de \texttt{S/. 120.00},\\
+\textbf{Cuando} selecciona el método ``Efectivo'' e ingresa un monto recibido de \texttt{S/. 150.00},\\
+\textbf{Entonces} el sistema calcula un vuelto de \texttt{S/. 30.00}, descuenta automáticamente el stock en base de datos, registra la transacción y abre la vista de impresión del ticket térmico con el IGV (18\%) discriminado.
+
+\vspace{0.2cm}
+\textbf{Escenario 2: Venta mediante Billetera Digital (Yape / Plin)}\\
+\textbf{Dado} que el cliente desea pagar con Yape por un monto de \texttt{S/. 85.00},\\
+\textbf{Cuando} el vendedor selecciona ``Yape'', verifica el pago en su terminal e ingresa el código de operación de 6 dígitos \texttt{481923},\\
+\textbf{Entonces} el sistema valida que el código sea numérico, registra la venta vinculando el código de operación y no solicita cálculo de vuelto.
+\end{hubox}
+
+\begin{hubox}{HU-04}{Validación de Stock Insuficiente en Venta Concurrente}
+\textbf{Narrativa:}\\
+\textit{Como} Sistema transaccional,\\
+\textit{Quiero} validar el stock disponible en tiempo real antes de confirmar una venta,\\
+\textit{Para} impedir que dos vendedores vendan la última unidad simultáneamente (evitar sobreventa).
+
+\vspace{0.25cm}\hrule\vspace{0.25cm}
+\textbf{Criterios de Aceptación (Gherkin):}\\
+\textbf{Escenario 1: Intento de venta sin stock disponible}\\
+\textbf{Dado} que una prenda polo talla M color negro tiene \texttt{stock = 1} en el Local Central,\\
+\textbf{Cuando} el Vendedor A y el Vendedor B intentan confirmar la venta al mismo instante,\\
+\textbf{Entonces} la transacción que adquiere el bloqueo atómico se completa con éxito y la segunda transacción es rechazada con el mensaje ``Stock insuficiente: sólo quedan 0 unidades disponibles''.
+\end{hubox}
+
+\subsection{Historias de Usuario de Inventario, Devoluciones y Cajas}
+
+\begin{hubox}{HU-05}{Devolución y Cambio de Prenda}
+\textbf{Narrativa:}\\
+\textit{Como} Vendedor o Administrador,\\
+\textit{Quiero} registrar el cambio de una prenda devuelta por el cliente ingresando el número de venta original,\\
+\textit{Para} reingresar la prenda al inventario y entregar la nueva talla solicitada.
+
+\vspace{0.25cm}\hrule\vspace{0.25cm}
+\textbf{Criterios de Aceptación (Gherkin):}\\
+\textbf{Escenario 1: Cambio por la misma prenda en distinta talla (mismo precio)}\\
+\textbf{Dado} que el cliente presenta una nota de venta emitida hace 3 días por un pantalón jean talla 30 (\texttt{S/. 90.00}),\\
+\textbf{Cuando} el vendedor busca la venta, selecciona la variante a devolver e ingresa la nueva variante jean talla 32 (\texttt{S/. 90.00}),\\
+\textbf{Entonces} el sistema incrementa en 1 el stock de la talla 30, descuenta en 1 el stock de la talla 32, registra la devolución con diferencia \texttt{S/. 0.00} y emite el comprobante de cambio.
+\end{hubox}
+
+\begin{hubox}{HU-06}{Apertura y Cierre de Caja con Arqueo Ciego}
+\textbf{Narrativa:}\\
+\textit{Como} Vendedor / Cajero,\\
+\textit{Quiero} realizar el arqueo de caja al final de mi turno ingresando el conteo de efectivo y comprobantes,\\
+\textit{Para} conciliar los ingresos reales contra las ventas registradas por el sistema.
+
+\vspace{0.25cm}\hrule\vspace{0.25cm}
+\textbf{Criterios de Aceptación (Gherkin):}\\
+\textbf{Escenario 1: Cierre de caja con balance conforme}\\
+\textbf{Dado} que el cajero abrió caja con \texttt{S/. 100.00} y el sistema registró ventas en efectivo por \texttt{S/. 450.00},\\
+\textbf{Cuando} el cajero realiza el cierre e ingresa que contó físicamente \texttt{S/. 550.00} en billetes y monedas,\\
+\textbf{Entonces} el sistema calcula una diferencia de \texttt{S/. 0.00} (Conforme), cierra la sesión de caja, bloquea nuevas transacciones y genera el acta de cierre en PDF.
+\end{hubox}
+
+\begin{hubox}{HU-07}{Baja Lógica de Producto (Soft Delete)}
+\textbf{Narrativa:}\\
+\textit{Como} Administrador,\\
+\textit{Quiero} retirar un producto descontinuado del catálogo sin borrar sus registros históricos,\\
+\textit{Para} mantener la exactitud de los reportes de ventas pasadas.
+
+\vspace{0.25cm}\hrule\vspace{0.25cm}
+\textbf{Criterios de Aceptación (Gherkin):}\\
+\textbf{Escenario 1: Desactivación lógica de producto}\\
+\textbf{Dado} que el producto ``Camisa Manga Larga Oxford'' tiene 50 ventas históricas registradas,\\
+\textbf{Cuando} el Administrador pulsa ``Dar de baja'' en el panel de inventario y confirma la acción,\\
+\textbf{Entonces} el sistema asigna la fecha y hora actual en la columna \texttt{deleted\_at}, oculta la camisa del catálogo de ventas de los vendedores, pero permite que los reportes de ventas del mes sigan mostrando el nombre y costo de la camisa.
+\end{hubox}

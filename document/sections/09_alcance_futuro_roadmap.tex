@@ -1,0 +1,61 @@
+% ==============================================================================
+% SECCIÓN 9: ALCANCE FUTURO Y ROADMAP DE EVOLUCIÓN (FASE 2 Y FASE 3)
+% ==============================================================================
+
+\section{Alcance Futuro y Roadmap de Evolución Tecnológica}
+
+El diseño modular basado en Clean Architecture y CQRS permite proyectar una evolución continua del sistema SYSELL sin comprometer la estabilidad del núcleo transaccional. A continuación se detallan las iniciativas planificadas para las siguientes etapas de madurez digital de Comercial Machi's:
+
+\subsection{Fase 2: Gestión de Cadena de Suministro y Facturación Electrónica SUNAT}
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Módulo de Compras y Cuentas por Pagar a Proveedores:}
+    \begin{itemize}
+        \item Registro de órdenes de compra (\textit{Purchase Orders}) y recepción formal de mercadería contra guía de remisión del proveedor.
+        \item Cálculo automático del Costo Promedio Ponderado (CPP) por prenda para actualización dinámica de márgenes de ganancia.
+        \item Control de deudas y cronograma de pagos a proveedores de confección textil de Lima y Tacna.
+    \end{itemize}
+
+    \item \textbf{Integración Tributaria con SUNAT (Facturación Electrónica OSE/PSE):}
+    \begin{itemize}
+        \item Generación automática de comprobantes de pago electrónicos en formato estándar XML UBL 2.1 (\textit{Universal Business Language}).
+        \item Firma digital con certificado digital tributario y envío directo al Web Service de SUNAT / OSE.
+        \item Generación de la representación impresa en PDF con código QR y Código Hash (\textit{DigestValue}), así como emisión de Boletas de Venta Electrónicas y Facturas con RUC.
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Fase 3: Expansión Omnicanal y E-commerce B2C}
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Tienda Virtual E-commerce para Clientes Finales:}
+    \begin{itemize}
+        \item Portal web público y optimizado para SEO donde los clientes de Comercial Machi's puedan consultar el catálogo en línea, seleccionar tallas/colores y armar su pedido.
+        \item Sincronización bidireccional de stock en tiempo real entre la tienda física y la tienda virtual, evitando quiebres de inventario.
+        \item Opciones de retiro en tienda física (\textit{Click \& Collect}) y despacho a domicilio en la ciudad de Tacna y envíos a nivel nacional.
+    \end{itemize}
+
+    \item \textbf{Integración de Pasarela de Pagos Web en Línea:}
+    \begin{itemize}
+        \item Incorporación de un checkout seguro con procesamiento de tarjetas de crédito y débito (Visa, Mastercard, American Express) mediante proveedores certificados PCI-DSS (Culqi, Niubiz o Mercado Pago).
+        \item Conciliación automática de liquidaciones bancarias y comisiones de pasarela en el módulo financiero del ERP.
+    \end{itemize}
+\end{enumerate}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\linewidth}{l>{\raggedright\arraybackslash}p{4cm}>{\raggedright\arraybackslash}Xl}
+\toprule
+\rowcolor{LightSlate}
+\textbf{Fase} & \textbf{Módulo / Funcionalidad} & \textbf{Objetivo Estratégico y Beneficio} & \textbf{Horizonte} \\
+\midrule
+\textbf{Fase 1 (Actual)} & POS, Inventario, Cajas y Auditoría & Control operacional estricto de ventas físicas y arqueos. & Octubre 2026 \\
+\midrule
+\textbf{Fase 2} & Compras a Proveedores \& Facturación SUNAT & Automatización contable, tributaria y costeo de mercadería. & Q1 2027 \\
+\midrule
+\textbf{Fase 3} & E-commerce B2C \& Pasarela de Pagos Online & Expansión de ventas omnicanal y canal digital directo. & Q2 2027 \\
+\bottomrule
+\end{tabularx}
+\caption{Roadmap de Evolución Estratégica del Sistema SYSELL.}
+\label{tab:roadmap_sysell}
+\end{table}

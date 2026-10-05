@@ -1,0 +1,8857 @@
+--- PAGE 1 ---
+1 
+UNIVERSIDAD NACIONAL JORGE BASADRE GROHMANN​
+FACULTAD DE INGENIERÍA​
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+PROYECTO 
+TIENDA DE ROPA FORMAL PARA VARÓN 
+Presentado por:                                                                    
+◆​ MAMANI CATACORA, Johan Anibal​
+​
+​
+2024-119021 
+◆​ CONDORI CALJARO, Luis Fernando​
+​
+​
+2024-119031 
+◆​ CHATA CHINO, Alex Jeanpier​
+​
+​
+​
+2024-119012 
+Curso: Análisis de Sistemas 
+Docente: Ing. Enrique Waldo Condori Siles 
+ 
+7 de diciembre del 2025 
+TACNA - PERÚ 
+ 
+
+--- PAGE 2 ---
+2 
+ÍNDICES  
+A. INTRODUCCIÓN.............................................................................................................................3 
+B. OBJETIVOS DEL PROYECTO..................................................................................................... 4 
+a. Sistema de inventario.....................................................................................................................4 
+b. Seguridad y disponibilidad del sistema......................................................................................... 4 
+c. Registro de ventas..........................................................................................................................4 
+d. Reporte de ventas...........................................................................................................................4 
+e. Catálogo digital..............................................................................................................................4 
+CAPÍTULO 1: ESTRUCTURA DE DESGLOSE DE TRABAJO....................................................5 
+1.1. Diagrama de la EDT...................................................................................................................5 
+1.2. Descripción de la EDT............................................................................................................... 6 
+CAPÍTULO 2: CRONOGRAMA DEL PROYECTO......................................................................31 
+2.1. Costos, tiempo y recursos (humanos, materiales y servicios)..................................................31 
+2.2. Diagrama de Hitos y actividades..............................................................................................32 
+2.3. Diagrama de Gantt....................................................................................................39 
+2.4. Diagrama de Red...................................................................................................... 44 
+CAPÍTULO 3: ARQUITECTURA DE SOFTWARE...................................................................... 49 
+3.1. Diagrama de la arquitectura................................................................................................. 49 
+3.2. Descripción de la arquitectura..................................................................................................49 
+3.3. Justificación de la arquitectura................................................................................................. 50 
+CAPÍTULO 4: GESTIÓN DE RIESGOS..........................................................................................51 
+4.1. Lista de riesgos........................................................................................................................51 
+4.2. Formato de identificación, análisis y planeación de riesgos.................................................... 51 
+4.3. Monitorización de riesgos..........................................................................................72 
+C. CONCLUSIONES...........................................................................................................................75 
+ANEXOS...............................................................................................................................................76 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 3 ---
+3 
+A.​ INTRODUCCIÓN  
+La tienda de ropa formal para varón del cliente, enfrenta una situación que afecta la eficiencia 
+del negocio. La gestión actual del negocio, el registro de salidas de productos, los reportes, la 
+gestión del inventario continúan haciéndose de forma manual, incrementando la probabilidad 
+de cometer errores. A ello se le suma la falta de presencia digital, limitando al negocio en 
+expandirse y llegar hacia nuevos clientes. Esto convierte al negocio como poco competitivo 
+frente a otros negocios que invierten en software y marketing digital. Esta situación afecta a 
+los dos locales generando inconsistencia en la disponibilidad de productos.  
+ 
+Este proyecto busca implementar un sistema de software como solución a la problemática que 
+presenta el negocio, dejando atrás lo manual y ahora automatizando la gestión de inventario y 
+ventas, además implementar un catálogo digital disponible para el público objetivo. Se busca 
+mejorar la eficiencia del negocio, optimizando los procesos internos, mejorando la 
+experiencia de clientes y contribuir en la toma de decisiones con los reportes generados.  
+ 
+Durante esta etapa del proyecto se presenta la Estructura de Desglose de Trabajo (EDT) con 
+su respectivo diagrama y descripción, el cronograma presentando los tiempos , costos, 
+recursos y los diagramas de Hitos, Gantt y Red. Además se detalla la Estructura del Software, 
+presentando el diagrama basado en el patrón Modelo, Vista y Controlador (MVC) , su 
+descripción y justificación. Por último se analizan los riesgos que afectan el proyecto, se 
+estima el impacto y realiza el monitoreo para aplicar estrategias para reducir el impacto y su 
+probabilidad.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 4 ---
+4 
+B.​ OBJETIVOS DEL PROYECTO  
+a.​ Sistema de inventario 
+El sistema deberá implementar un sistema de inventariado que permita 
+registrar, actualizar y consultar automáticamente el stock de productos en los 
+dos locales del cliente, garantizando un control preciso. 
+b.​ Seguridad y disponibilidad del sistema 
+El sistema deberá mantenerse protegido frente a accesos no autorizados y que 
+esté disponible de forma continua, garantizando la integridad de los datos y la 
+continuidad del servicio. 
+c.​ Registro de ventas 
+El sistema deberá desarrollar un módulo que permita registrar las ventas de 
+forma rápida y ordenada, asociando cada transacción con los productos y el 
+local correspondiente, reduciendo errores y mejorando la trazabilidad. 
+d.​ Reporte de ventas 
+El sistema deberá incorporar una funcionalidad que genere reportes detallados 
+sobre las ventas diarias, semanales o mensuales, facilitando el análisis del 
+rendimiento del negocio y la toma de decisiones estratégicas. 
+e.​ Catálogo digital 
+El sistema deberá de contar con un catálogo digital interactivo que permita a 
+los clientes visualizar los productos, sus características, tallas y precios desde 
+una interfaz web accesible y atractiva, potenciando la presencia en línea del 
+negocio. 
+ 
+ 
+ 
+
+--- PAGE 5 ---
+5 
+CAPÍTULO 1:​
+​
+ESTRUCTURA DE DESGLOSE DE TRABAJO​
+  
+1.1.​
+Diagrama de la EDT 
+ 
+La Estructura de Desglose de Trabajo presenta cinco fases importantes durante todo el 
+proyecto, el inicio, la planificación, ejecución, seguimiento y cierre. Cada fase agrupa 
+actividades coherentes y orientadas a generar entregables importantes del proyecto. 
+ 
+FASE DE INICIO 
+Durante la primera fase se realiza el estudio del PMBOK a fin de realizar el proyecto de 
+acuerdo a estándares internacionales. Luego, se elabora el Acta de Constitución del Proyecto, 
+donde se identifica la problemática que enfrenta el negocio, se describen los objetivos 
+principales y se identifican a los stakeholders. Finalmente, se define el alcance preliminar del 
+proyecto, incluyendo las limitaciones y el financiamiento del proyecto. 
+ 
+FASE DE PLANIFICACIÓN 
+En esta segunda fase se realiza la correcta gestión de recursos, tiempos y costos. Primero se 
+realiza la estimación de riesgos donde se identifican los riesgos presentes en el proyecto y se 
+analizan para enfrentarlos. Luego se define el cronograma con las actividades del proyecto, 
+además se elabora el diagrama de Gantt, diagrama de red y se identifican los hitos 
+importantes. Se realizan reuniones con los usuarios para recopilar información relevante y se 
+asignan recursos humanos y de servicios. También se planifica la gestión de calidad y la 
+gestión de comunicaciones. 
+ 
+FASE DE EJECUCIÓN 
+Aquí se desarrolla el producto final del proyecto. La ejecución inicia con el análisis de 
+requerimientos, donde se elicitan, se clasifican, se especifican y validan. Esta etapa garantiza 
+que el software a desarrollar cumpla con todas las necesidades del cliente y usuarios. Luego, 
+se procede al diseño del sistema, elaborando los diagramas de casos de uso y los mockups. 
+ 
+ 
+
+--- PAGE 6 ---
+6 
+Finalmente, se empieza a programar el sistema, implementado módulos: login, inventario, 
+registro de ventas, reporte de ventas y gestión del catálogo. 
+FASE DE SEGUIMIENTO 
+Durante esta cuarta fase se realiza el seguimiento para asegurar el correcto avance del 
+proyecto. Se monitorean los riesgos, se hace el control del cronograma y la participación de 
+los usuarios. Además, se realiza la gestión de cambios, se hace el control de costos y el 
+aseguramiento de calidad. 
+ 
+FASE DE CIERRE 
+Esta es la fase final del proyecto, donde se realiza la documentación final del proyecto, se 
+incluye todo lo trabajado. Además, se hace la transferencia del producto hacia el cliente y se 
+hace una exposición final. Finalmente se obtiene la aceptación de los usuarios y el cliente, 
+culminando el ciclo de vida del proyecto. 
+1.2.​
+Descripción de la EDT 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.1. INICIO 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.1.1. 
+Estudio del PMBOK 
+Objetivo del paquete de trabajo Tener nociones acerca de la gestión de proyectos 
+Descripción del paquete del 
+trabajo 
+Comprender los fundamentos y buenas prácticas 
+de gestión de proyectos según el PMBOK 
+Actividades 
+1.​ Identificar los procesos clave de la fase 
+de inicio 
+2.​ Discutir los conceptos en equipo 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+2 días 
+Criterios de aceptación 
+Debe ser validado por el equipo. 
+Riesgos 
+Poca comprensión de conceptos, falta de tiempo 
+para estudiar en equipo. 
+Costos 
+S/10.00 
+ 
+ 
+ 
+ 
+
+--- PAGE 7 ---
+7 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.1.2. Acta de constitución del proyecto 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.1.2.1. 
+Identificación de la problemática 
+Objetivo del paquete de trabajo Detectar la problemática que afecta al negocio 
+Descripción del paquete del 
+trabajo 
+Identificar los factores que afectan al negocio 
+Actividades 
+1.​ Entrevistas al cliente y usuarios 
+2.​ Detectar las necesidades insatisfechas 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+3 días 
+Criterios de aceptación 
+Debe ser validado por el equipo y por los 
+interesados 
+Riesgos 
+Información incompleta, poco interés del cliente 
+y usuarios 
+Costos 
+S./40.00 
+ 
+ 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.1.2. Acta de constitución del proyecto 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.1.2.2. 
+Descripción de objetivos 
+Objetivo del paquete de trabajo 
+Establecer los objetivos del proyecto de forma 
+clara y precisa 
+Descripción del paquete del 
+trabajo 
+Definir, documentar y validar los objetivos 
+generales y específicos 
+ 
+ 
+
+--- PAGE 8 ---
+8 
+Actividades 
+1.​ Redactar borradores de objetivos del 
+proyecto 
+2.​ Detallar los objetivos 
+3.​ Revisar y validar los objetivos 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+2 días 
+Criterios de aceptación 
+Los objetivos deben ser aprobados y validados 
+por todo el equipo 
+Riesgos 
+Objetivos poco claros y ambiguos 
+Costos 
+S/.10.00 
+ 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.1.2. Acta de constitución del proyecto 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.1.2.2. 
+Identificación de los stakeholders 
+Objetivo del paquete de trabajo 
+Identificar a todas las personas interesadas en el 
+proyecto 
+Descripción del paquete del 
+trabajo 
+Analizar y documentar quiénes serán los 
+stakeholder y clasificarlos 
+Actividades 
+1.​ Elaborar lista de stakeholders 
+2.​ Clasificar los stakeholders 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+2 días 
+Criterios de aceptación 
+La lista de stakeholders debe ser completa y 
+validada por todo el equipo 
+Riesgos 
+Omisión de algún stakeholder 
+Costos 
+S/.5.00 
+ 
+ 
+ 
+
+--- PAGE 9 ---
+9 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.1.3. Alcance preliminar 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.1.3.1. 
+Definición de limitaciones 
+Objetivo del paquete de trabajo 
+Identificar y documentar las limitaciones del 
+proyecto 
+Descripción del paquete del 
+trabajo 
+Recopilar y analizar los factores que afectan a la 
+planificación y ejecución del proyecto 
+Actividades 
+1.​ Elaborar lista de factores que limitan  
+2.​ Analizar su impacto 
+3.​ Documentar limitaciones 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+5 días 
+Criterios de aceptación 
+Lista completa de limitaciones aprobada por el 
+equipo y los involucrados 
+Riesgos 
+Omisión de alguna limitación 
+Costos 
+S/.10.00 
+ 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.1.3. Alcance preliminar 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.1.3.2. 
+Determinación de financiamiento 
+Objetivo del paquete de trabajo 
+Establecer las necesidades de recursos 
+económicos y cuantificar el presupuesto inicial 
+Descripción del paquete del 
+trabajo 
+Analizar los requerimientos financieros del 
+proyecto 
+Actividades 
+1.​ Identificar necesidades de recursos 
+económicos 
+ 
+ 
+
+--- PAGE 10 ---
+10 
+2.​ Elaborar presupuesto del proyecto 
+3.​ Presentar propuesta del presupuesto 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+6 días 
+Criterios de aceptación 
+Presupuesto desarrollado, validado y aprobado 
+Riesgos 
+No conseguir el financiamiento requerido 
+Costos 
+S/.20.00 
+ 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.2. PLANIFICACIÓN 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.2.1. 
+Estimación de riesgos 
+Objetivo del paquete de trabajo 
+Estimar los riesgos que pueden afectar el 
+desarrollo del proyecto 
+Descripción del paquete del 
+trabajo 
+Recopilar eventos o condiciones que pueden 
+generar impactos negativos en el proyecto 
+Actividades 
+1.​ Identificar factores de riesgos que pueden 
+afectar el desarrollo del proyecto 
+2.​ Analizar el impacto de cada riesgo 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+3 días 
+Criterios de aceptación 
+Debe ser aprobado por el equipo 
+Riesgos 
+Falta de identificación de riesgos críticos, 
+subestimar impactos 
+Costos 
+S/.10.00 
+ 
+ 
+ 
+ 
+
+--- PAGE 11 ---
+11 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.2. PLANIFICACIÓN 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.2.2. 
+Definir el cronograma 
+Objetivo del paquete de trabajo 
+Elaborar un cronograma detallado que organice 
+las actividades del proyecto  
+Descripción del paquete del 
+trabajo 
+Identificar las tareas, estimar la duración de cada 
+una y calendarizarlas 
+Actividades 
+1.​ Listar todas las actividades 
+2.​ Estimar la duración 
+3.​ Elaborar cronograma y validar 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+2 días 
+Criterios de aceptación 
+Cronograma validado y aprobado por el equipo 
+Riesgos 
+Errores de estimación de tiempos, omisión de 
+actividades importantes 
+Costos 
+S/.5.00 
+ 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.2. PLANIFICACIÓN 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.2.3. 
+Reuniones con usuarios 
+Objetivo del paquete de trabajo 
+Reunir información relevante sobre las 
+necesidades de los usuarios 
+Descripción del paquete del 
+trabajo 
+Coordinar y realizar reuniones con los futuros 
+usuarios de software, con el fin de escuchar sus 
+opiniones 
+Actividades 
+1.​ Organizar sesiones con los usuarios 
+2.​ Preparar preguntas para saber sus 
+ 
+ 
+
+--- PAGE 12 ---
+12 
+opiniones 
+3.​ Documentar acuerdos con los usuarios 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+5 días 
+Criterios de aceptación 
+Resultados documentados y validados 
+Riesgos 
+Falta de participación de usuarios clave, 
+información insuficiente 
+Costos 
+S/.70.00 
+ 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.2. PLANIFICACIÓN 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.2.4. 
+Definir los hitos del proyecto 
+Objetivo del paquete de trabajo 
+Establecer y documentar hitos importantes del 
+proyecto 
+Descripción del paquete del 
+trabajo 
+Identificar momentos relevantes de avance y 
+validar estos hitos con el equipo e interesados 
+Actividades 
+1.​ Identificar los entregables y fechas 
+críticas del proyecto 
+2.​ Definir criterios para verificar que un hito 
+ha sido alcanzado 
+3.​ Validar y documentar hitos 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+3 días 
+Criterios de aceptación 
+Lista de hitos validada por el equipo 
+Riesgos 
+Confusión respecto al significado de los hitos 
+Costos 
+S/.10.00 
+ 
+ 
+ 
+
+--- PAGE 13 ---
+13 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.2. PLANIFICACIÓN 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.2.5. 
+Asignar recursos 
+Objetivo del paquete de trabajo 
+Distribuir eficientemente los recursos y 
+tecnologías necesarias para el desarrollo del 
+proyecto 
+Descripción del paquete del 
+trabajo 
+Identificar las necesidades de cada actividad, 
+seleccionar y asignar los recursos, documentar el 
+uso de estos recursos 
+Actividades 
+1.​ Determinar los recursos necesarios para 
+cada actividad  
+2.​ Asignar y distribuir a las actividades 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+3 días 
+Criterios de aceptación 
+Todos los recursos serán asignados, además se 
+cuenta con la aprobación del equipo 
+Riesgos 
+Falta o escasez de recursos y mala asignación de 
+recursos 
+Costos 
+Recursos humanos, materiales y de servicio 
+ 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.2. PLANIFICACIÓN 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.2.6.  
+Planificar la gestión de calidad 
+Objetivo del paquete de trabajo 
+Establecer criterios y acciones para asegurar que 
+el proyecto cumpla con estándares de calidad 
+ 
+ 
+
+--- PAGE 14 ---
+14 
+Descripción del paquete del 
+trabajo 
+Establecer indicadores y herramientas que 
+permitan monitorear el cumplimiento de 
+requisitos y la mejora del proyecto 
+Actividades 
+1.​ Identificar requisitos de calidad del 
+proyecto 
+2.​ Definir estándares 
+3.​ Elaborar un plan de control de calidad 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+5 días 
+Criterios de aceptación 
+Plan de gestión de calidad aprobado por un 
+especialista 
+Riesgos 
+Falta de claridad en los estándares de calidad, 
+incumplimiento del plan por parte del equipo 
+Costos 
+Inversión en herramientas de control de calidad 
+ 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.2. PLANIFICACIÓN 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.2.7.  
+Planificar gestión de comunicaciones  
+Objetivo del paquete de trabajo 
+Definir el enfoque y los procesos para asegurar 
+que la información fluya de manera efectiva 
+Descripción del paquete del 
+trabajo 
+Se planificará la forma que en se compartirá la 
+información, el nivel de detalle y herramientas 
+necesarias 
+Actividades 
+1.​ Identificar las necesidades de 
+stakeholders 
+2.​ Determinar los canales de comunicación 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+ 
+ 
+
+--- PAGE 15 ---
+15 
+Duración 
+4 días 
+Criterios de aceptación 
+Aprobación por parte de los principales 
+interesados del proyecto 
+Riesgos 
+Falta de participación de los stakeholders 
+Costos 
+Herramientas de comunicación 
+ 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.3.1. Analizar requerimientos 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.3.1.1. 
+Elicitar requerimientos 
+Objetivo del paquete de trabajo 
+Identificar y obtener los requerimientos clave del 
+proyecto mediante entrevistas 
+Descripción del paquete del 
+trabajo 
+Recolección de los requerimientos del proyecto 
+de forma activa que sea capaz de cubrir 
+necesidades y expectativas 
+Actividades 
+1.​ Realizar entrevistas y cuestionarios 
+2.​ Realizar observaciones y levantar 
+requerimientos 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+12 días 
+Criterios de aceptación 
+Los requerimientos han sido validados por los 
+interesados clave 
+Riesgos 
+Información incompleta o incorrecta debido a la 
+falta de participación del cliente/usuarios 
+Costos 
+S/.200.00 
+ 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.3.1. Analizar requerimientos 
+ 
+ 
+
+--- PAGE 16 ---
+16 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.3.1.2. 
+Clasificar requerimientos 
+Objetivo del paquete de trabajo 
+Organizar los requerimientos recolectados en 
+funcionales y no funcionales 
+Descripción del paquete del 
+trabajo 
+Clasificar los requerimientos según criterios 
+establecidos 
+Actividades 
+1.​ Revisar los requerimientos 
+2.​ Clasificar los requerimientos funcionales 
+y no funcionales 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+11 días 
+Criterios de aceptación 
+Se acepta cuando estén clasificados y validados 
+por los interesados 
+Riesgos 
+Malinterpretación de los requerimientos debido a 
+un clasificación incorrecta 
+Costos 
+S/.0.00 
+ 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.3.1. Analizar requerimientos 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.3.1.3 
+Especificar requerimientos 
+Objetivo del paquete de trabajo 
+Especificar de forma clara y detallada cada uno 
+de los requerimientos 
+Descripción del paquete del 
+trabajo 
+Descripciones detalladas y específicas para cada 
+requerimiento 
+Actividades 
+1.​ Redactar descripciones detalladas 
+2.​ Revisar las especificaciones con los 
+interesados 
+ 
+ 
+
+--- PAGE 17 ---
+17 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+11 días 
+Criterios de aceptación 
+Aceptado cuando estén especificados de forma 
+clara y verificados 
+Riesgos 
+Ambigüedad, inconsistencia y falta de 
+coherencia en la especificación de 
+requerimientos 
+Costos 
+S/0.00 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.3.1. Analizar requerimientos 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.3.1.4. 
+Verificar requerimientos 
+Objetivo del paquete de trabajo 
+Asegurar que los requerimientos especificados 
+son completos, claros y viables 
+Descripción del paquete del 
+trabajo 
+Revisión exhaustiva de los requerimientos 
+especificados para identificar posibles 
+inconsistencias 
+Actividades 
+1.​ Buscar ambigüedades en requerimientos 
+2.​ Validar la viabilidad técnica 
+3.​ Confirma que los requerimientos sean 
+consistentes y completos 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+11 días 
+Criterios de aceptación 
+Se acepta cuando estén revisados y validados por 
+los interesados clave 
+Riesgos 
+Revisión insuficiente o falta de tiempo para 
+validar los detalles 
+ 
+ 
+
+--- PAGE 18 ---
+18 
+Costos 
+S/.0.00 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.3.1. Analizar requerimientos 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.3.1.5. 
+Validar requerimientos 
+Objetivo del paquete de trabajo 
+Asegurar que los requerimientos cumplan con las 
+expectativas y necesidades de los interesados 
+Descripción del paquete del 
+trabajo 
+Realización de reuniones con los interesados 
+para revisar los requerimientos documentados, 
+recopilar comentarios y confirmar si reflejan las 
+necesidades 
+Actividades 
+1.​ Presentar los requerimientos 
+2.​ Obtener retroalimentación 
+3.​ Realizar ajustes 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+9 días 
+Criterios de aceptación 
+Aceptado por los interesados si validan los 
+requerimientos como correctos 
+Riesgos 
+Riesgo de rechazo de los requerimientos 
+Costos 
+S/.0.00 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.3.1. Analizar requerimientos 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.3.1.6. 
+Documentar requerimientos 
+Objetivo del paquete de trabajo 
+Registrar de manera formal y estructurada todos 
+los requerimientos 
+ 
+ 
+
+--- PAGE 19 ---
+19 
+Descripción del paquete del 
+trabajo 
+Se elaborará la documentación final de los 
+requerimientos validados, organizándose en un 
+formato 
+Actividades 
+1.​ Revisar y consolidar los requerimientos 
+2.​ Asignar identificadores 
+3.​ Aprobar el documento 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+8 días 
+Criterios de aceptación 
+Se acepta cuando el documento esté completo y 
+aprobado 
+Riesgos 
+Riesgo de pérdida de información o 
+desactualización del documento 
+Costos 
+S/.0.00 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.3.2. Diseñar el sistema 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.3.2.1. 
+Diseñar diagramas de casos de uso 
+Objetivo del paquete de trabajo 
+Facilitar la compresión de los requerimientos 
+funcionales 
+Descripción del paquete del 
+trabajo 
+Diseño de los diagramas de casos de uso, que 
+mostrarán las interacciones entre los actores, 
+funciones y sistema 
+Actividades 
+1.​ Identificar y definir los actores 
+principales 
+2.​ Crear y revisar los diagramas 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+4 días 
+ 
+ 
+
+--- PAGE 20 ---
+20 
+Criterios de aceptación 
+Aceptado cuando estén completos, validados por 
+los stakeholders 
+Riesgos 
+Riesgo de omisión de casos de uso importantes o 
+trazabilidad 
+Costos 
+S/.100.00 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.3.2. Diseñar el sistema 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.3.2.2. 
+Diseñar mockups 
+Objetivo del paquete de trabajo 
+Representar el diseño de las pantallas y 
+elementos interactivos 
+Descripción del paquete del 
+trabajo 
+Se diseñarán los mockups o prototipos visuales 
+de las pantallas clave del sistema, interfaz, etc. 
+Actividades 
+1.​ Definir los requerimientos visuales 
+2.​ Crear mockups de las pantallas 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+6 días 
+Criterios de aceptación 
+Se acepta cuando los mockups han sido 
+aprobados por los interesados 
+Riesgos 
+Riesgo de desalineación con las expectativas 
+Costos 
+S/.100.00 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.3.3. Programa el sistema 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.3.1.1. 
+Programar login 
+Objetivo del paquete de trabajo Desarrollar el módulo de autenticación del 
+ 
+ 
+
+--- PAGE 21 ---
+21 
+sistema 
+Descripción del paquete del 
+trabajo 
+Creación del módulo de login, que implemente 
+medidas de seguridad adecuadas usuario/cliente 
+Actividades 
+1.​ Diseñar la interfaz de inicio de sesión 
+2.​ Implementar mecanismos de 
+autenticación 
+3.​ Validar integración al sistema 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+8 días 
+Criterios de aceptación 
+Haya sido probado en diferentes escenarios de 
+acceso 
+Riesgos 
+Riesgo de brechas de seguridad 
+Costos 
+S/.150.00 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.3.3. Programar el sistema 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.3.1.2. 
+Programar módulo de inventario 
+Objetivo del paquete de trabajo 
+Desarrollar el módulo encargado de gestionar el 
+inventario del sistema 
+Descripción del paquete del 
+trabajo 
+Creación del módulo de inventario, que permite 
+el registro, medir el stock, modificar, etc. 
+Actividades 
+1.​ Diseñar la base de datos para almacenar 
+información 
+2.​ Desarrollar las funcionalidades del 
+módulo de inventario 
+3.​ Realizar pruebas del módulo de 
+inventario 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+ 
+ 
+
+--- PAGE 22 ---
+22 
+Revisa: Alex Chata 
+Duración 
+8 días 
+Criterios de aceptación 
+Se acepta cuando esté funcionando sin errores 
+Riesgos 
+Riesgo de errores en las actualizaciones del 
+inventario, colapso, datos erróneos 
+Costos 
+S/.200.00 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.3.3. Programar el sistema 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.3.1.3. 
+Programar módulo de registro de ventas 
+Objetivo del paquete de trabajo 
+Desarrollar el módulo que permita registrar y 
+gestionar las transacciones 
+Descripción del paquete del 
+trabajo 
+Registrar todas las transacciones de ventas, 
+asociando productos, cantidades y precios 
+Actividades 
+1.​ Diseñar el módulo de registro de ventas 
+con el sistema 
+2.​ Desarrollar las funcionalidades del 
+módulo de registro de ventas 
+3.​ Realizar pruebas del módulo de registro 
+de ventas 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+15 días 
+Criterios de aceptación 
+Se acepta cuando esté funcionando sin errores 
+Riesgos 
+Riesgo de inconsistencias en los datos de ventas 
+Costos 
+S/.200.00 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.3.3. Programar el sistema 
+ 
+ 
+
+--- PAGE 23 ---
+23 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.3.1.4. 
+Programar módulo de reporte de ventas 
+Objetivo del paquete de trabajo 
+Desarrollar un módulo que genere reportes 
+detallados sobre las ventas realizadas 
+Descripción del paquete del 
+trabajo 
+Generación de informes de ventas, con filtros por 
+fecha y otras variables 
+Actividades 
+1.​ Desarrollar las funcionalidades del 
+módulo de reporte de ventas 
+2.​ Implementar filtros de búsqueda al 
+módulo de reporte de ventas 
+3.​ Realizar pruebas del módulo de reporte 
+de ventas 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+14 días 
+Criterios de aceptación 
+Se acepta cuando los reportes de ventas se 
+generen correctamente 
+Riesgos 
+Riesgo de generar reportes incorrectos 
+Costos 
+S/.200.00 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.3.3. Programar el sistema 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.3.1.5. 
+Programar módulo de gestión de catálogo 
+Objetivo del paquete de trabajo 
+Desarrollar el módulo encargado de gestionar el 
+catálogo de productos 
+Descripción del paquete del 
+trabajo 
+Permitirá a los administradores agregar, 
+modificar y eliminar productos en el catálogo 
+Actividades 
+1.​ Desarrollar la base de datos del módulo 
+de gestión de catálogo 
+2.​ Implementar funcionalidades al módulo 
+ 
+ 
+
+--- PAGE 24 ---
+24 
+de gestión de catálogo 
+3.​ Realizar pruebas del módulo de gestión 
+de catálogo 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+8 días 
+Criterios de aceptación 
+Se acepta cuando permita realizar las 
+operaciones correspondientes sin errores 
+Riesgos 
+Riesgo de datos inconsistentes o problemas en la 
+sincronización 
+Costos 
+S/.200.00 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.4. Seguimiento 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.4.1. 
+Seguimiento de riesgo 
+Objetivo del paquete de trabajo 
+Vigilar y controlar los riesgos detectados durante 
+la ejecución del proyecto 
+Descripción del paquete del 
+trabajo 
+Consiste en revisar los riesgos identificados, 
+evaluar su impacto y aplicar medidas preventivas 
+o correctivas 
+Actividades 
+1.​ Revisar riesgos identificados 
+2.​ Evaluar impacto 
+3.​ Aplicar acciones correctivas 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+50 días 
+Criterios de aceptación 
+Riesgos actualizados y mitigados de acuerdo con 
+el plan de gestión 
+ 
+ 
+
+--- PAGE 25 ---
+25 
+Riesgos 
+Identificación tardía de nuevos riesgos o falta de 
+acciones correctivas 
+Costos 
+S/.60.00 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.4. Seguimiento 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.4.2. 
+Controlar cronograma 
+Objetivo del paquete de trabajo Verificar el cumplimiento de las fechas del plan 
+Descripción del paquete del 
+trabajo 
+Supervisar los avances del proyecto y ajustar el 
+cronograma según retrasos o adelantos 
+Actividades 
+1.​ Revisar avances semanales del proyecto 
+2.​ Registrar desviaciones 
+3.​ Proponer ajustes del cronograma 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+50 días 
+Criterios de aceptación 
+Cronograma actualizado y validado por el equipo 
+Riesgos 
+Retrasos no detectados a tiempo o falta de 
+actualización 
+Costos 
+S/.70.00 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.4. Seguimiento 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.4.3. 
+Controlar participación de usuarios 
+Objetivo del paquete de trabajo 
+Verificar la asistencia y aporte de los usuarios en 
+las pruebas del sistema 
+ 
+ 
+
+--- PAGE 26 ---
+26 
+Descripción del paquete del 
+trabajo 
+Consiste en monitorear la intervención de los 
+usuarios durante el uso de pruebas del sistema, 
+asegurando su compromiso y cumplimiento de 
+tareas asignadas 
+Actividades 
+1.​ Registrar participación de los usuarios 
+2.​ Aplicar encuestas a los usuarios 
+3.​ Emitir informe de control 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+50 días 
+Criterios de aceptación 
+Registro completo y evidencia de participación 
+Riesgos 
+Falta de compromiso o ausencias de usuarios 
+Costos 
+S/.60.00 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.4. Seguimiento 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.4.4. 
+Gestión de cambios y mejoras 
+Objetivo del paquete de trabajo 
+Implementar ajustes y mejoras según los 
+resultados del seguimiento 
+Descripción del paquete del 
+trabajo 
+Incluye identificar fallos, proponer soluciones y 
+aplicar mejoras al sistema o proceso del proyecto 
+Actividades 
+1.​ Revisar reportes de fallos 
+2.​ Aplicar mejoras al sistema 
+3.​ Validar resultados de seguimiento 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+46 días 
+Criterios de aceptación 
+Mejoras implementadas y validadas sin afectar 
+otras funciones 
+ 
+ 
+
+--- PAGE 27 ---
+27 
+Riesgos 
+Retrasos por pruebas fallidas o falta de 
+aprobación de cambios 
+Costos 
+S/.50.00 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.4. Seguimiento 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.4.5. 
+Controlar los costos 
+Objetivo del paquete de trabajo Mantener los gastos dentro del presupuesto 
+Descripción del paquete del 
+trabajo 
+Controlar y comparar los costos reales con los 
+planificados para evitar sobrecostos 
+Actividades 
+1.​ Registro de costos 
+2.​ Comparar con presupuesto 
+3.​ Hacer informe de costos 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+43 días 
+Criterios de aceptación 
+Costos dentro del 10% del plan y reporte final 
+entregado 
+Riesgos 
+Aumento de precios o errores en registros 
+Costos 
+S/.60.00 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.4. Seguimiento 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.4.6. 
+Aseguramiento de calidad 
+Objetivo del paquete de trabajo 
+Verificar que las tareas cumplan con los 
+estándares del proyecto 
+ 
+ 
+
+--- PAGE 28 ---
+28 
+Descripción del paquete del 
+trabajo 
+Revisar entregables, corregir errores y asegurar 
+que los resultados cumplan con la calidad 
+esperada 
+Actividades 
+1.​ Revisar informes 
+2.​ Aplicar mejoras o correcciones 
+3.​ Registrar observaciones 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+42 días 
+Criterios de aceptación 
+Entregables revisados y validados sin errores 
+greaves 
+Riesgos 
+Falta de tiempo o errores no detectados 
+Costos 
+S/.80.00 
+ 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.4. Seguimiento 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.4.7. 
+Monitorear comunicaciones 
+Objetivo del paquete de trabajo 
+Asegurar una comunicación clara entre el equipo 
+y las partes interesadas 
+Descripción del paquete del 
+trabajo 
+Controlar el flujo de información, verificar que 
+los mensajes sean entendidos y mantener 
+registros de las reuniones y reportes 
+Actividades 
+1.​ Revisar informes y correos 
+2.​ Registrar acuerdos 
+3.​ Enviar reportes de avance 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+47 días 
+ 
+ 
+
+--- PAGE 29 ---
+29 
+Criterios de aceptación 
+Información entregada a tiempo y sin errores 
+Riesgos 
+Malentendidos o retrasos en la entrega 
+Costo 
+S/:70.00 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.5. Cierre 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.5.1. 
+Realizar documentación 
+Objetivo del paquete de trabajo 
+Elaborar y organizar los documentos finales del 
+proyecto 
+Descripción del paquete del 
+trabajo 
+Reunir reportes, actas y evidencias del proyecto 
+para su entrega final y archivo institucional 
+Actividades 
+1.​ Recolectar documentos 
+2.​ Organizar archivos 
+3.​ Entregar informe final 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+5 días 
+Criterios de aceptación 
+Documentación completa, revisada y aprobada 
+Riesgos 
+Pérdida de archivos o entrega incompleta 
+Costos 
+S/.80.00 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.5. Cierre 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.5.2. 
+Transferir el producto 
+Objetivo del paquete de trabajo Entregar el producto final al cliente o usuario 
+ 
+ 
+
+--- PAGE 30 ---
+30 
+Descripción del paquete del 
+trabajo 
+Realizar la entrega formal del proyecto 
+terminado, junto con manuales, archivos y 
+evidencia del trabajo realizado 
+Actividades 
+1.​ Verificar el funcionamiento 
+2.​ Entregar el producto final al cliente 
+3.​ Firmar el acta de conformidad 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+3 días 
+Criterios de aceptación 
+Producto entregado y aprobado por el cliente 
+Riesgos 
+Retraso en la entrega o fallas en el producto 
+Costos 
+S/.100.00 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.5. Cierre 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.5.3. 
+Ensayo exposición final 
+Objetivo del paquete de trabajo Practicar la presentación final de proyecto 
+Descripción del paquete del 
+trabajo 
+Realizar ensayos de exposición para mejorar la 
+claridad, coordinación y dominio del tema antes 
+de la presentación oficial 
+Actividades 
+1.​ Preparar diapositivas 
+2.​ Ensayar exposición 
+3.​ Exponer el proyecto 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+2 días 
+Criterios de aceptación 
+Exposición fluida, dentro del tiempo y con 
+dominio del contenido 
+Riesgos 
+Falta de coordinación o nervios 
+ 
+ 
+
+--- PAGE 31 ---
+31 
+Costos 
+S/.30.00 
+ 
+DICCIONARIO DE LA EDT 
+NOMBRE DEL PROYECTO 
+Cuenta de control 
+Proyecto Tienda de Ropa 
+1.5. Cierre 
+Código del paquete de trabajo 
+Nombre de paquete de trabajo 
+1.5.4. 
+Obtener aceptación 
+Objetivo del paquete de trabajo 
+Lograr la aprobación formal del proyecto por 
+parte del cliente 
+Descripción del paquete del 
+trabajo 
+Consiste en presentar los entregables finales, 
+recoger observaciones, realizar los ajustes 
+necesarios y obtener la aceptación oficial que 
+confirma la culminación exitosa del proyecto 
+Actividades 
+1.​ Presentar informe final y entregables 
+2.​ Aplicar correcciones necesarios 
+3.​ Obtener firma o validación de aceptación 
+Asignación de responsabilidades 
+Responsable: Johan Mamani 
+Participa: Luis Condori, Alex Chata 
+Apoya: Johan Mamani 
+Revisa: Alex Chata 
+Duración 
+5 días 
+Criterios de aceptación 
+Entregables completos, revisados y aprobados 
+sin observaciones 
+Riesgos 
+Falta de conformidad del cliente 
+Costos 
+S/.100.00 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 32 ---
+32 
+ 
+CAPÍTULO 2:​
+​
+CRONOGRAMA DEL PROYECTO 
+ 
+2.1.​
+Costos, tiempo y recursos (humanos, materiales y servicios) 
+Primeramente, se presentará la tabla de recursos del proyecto, basada en el análisis detallado 
+de las necesidades de cada tarea para mejorar el rendimiento y calidad del proyecto: 
+​
+ 
+Tabla 1 
+Recursos del proyecto 
+RECURSOS DEL PROYECTO 
+ITE
+M 
+Nombre del recurso 
+Tipo 
+Iniciales 
+Tasa/mensual 
+1 
+Johan Mamani (Analista/Líder del 
+proyecto) 
+Humano 
+JM 
+1500 
+2 
+Alex Chata (Analista) 
+Humano 
+AC 
+1500 
+3 
+Luis Condori (Analista) 
+Humano 
+LC 
+1500 
+4 
+Benjamin Chura (Cliente) 
+Humano 
+BC 
+0 
+5 
+Material de Oficina 
+Materiales 
+MO 
+120 
+6 
+Impresiones y fotocopias 
+Servicios 
+IM 
+80 
+7 
+Transporte para visitas o salidas 
+Servicios 
+TR 
+200 
+8 
+Software (Licencias) 
+Servicios 
+SW 
+50 
+9 
+Internet 
+Servicios 
+IN 
+50 
+​
+Fuente: Elaboración propia. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 33 ---
+33 
+2.2.​
+Diagrama de Hitos y actividades 
+A continuación se presentarán los diagramas de hitos del proyecto, se realizará una 
+descripción detallada de cada hito, así como su análisis. La tabla propuesta es la siguiente, 
+basada en las actividades presentadas en el EDT. 
+ 
+Tabla 2 
+Hitos del proyecto 
+HITOS DEL PROYECTO 
+ITEM 
+Nombre del hito 
+FECHA 
+1 
+Aprobación del acta de constitución del proyecto 
+27/08/2025 
+2 
+Inicio del diálogo con el cliente y usuarios 
+08/09/2025 
+3 
+Inicio de la elicitación de requerimientos 
+08/09/2025 
+4 
+Aprobación de los requerimientos 
+16/09/2025 
+5 
+Inicio del diseño del sistema 
+16/09/2025 
+6 
+Inicio del diseño de diagramas de casos de uso 
+17/09/2025 
+7 
+Inicio del diseño de los mockups de interfaz 
+19/09/2025 
+8 
+Finalización del diseño del sistema 
+22/09/2025 
+9 
+Inicio del desarrollo de los módulos (programar) 
+22/09/2025 
+10 
+Finalización del desarrollo de los módulos 
+10/11/2025 
+11 
+Inicio de la fase de seguimiento 
+22/09/2025 
+12 
+Transferencia formal del sistema al cliente 
+18/11/2025 
+13 
+Cierre formal del proyecto en acta oficial 
+21/11/2025 
+14 
+Celebración del cierre del proyecto 
+24/11/2025 
+Fuente: Elaboración propia. 
+ 
+Hito 1: Aprobación de acta de constitución del proyecto  
+ 
+Descripción y análisis: 
+Este primer hito marca el inicio formal del proyecto. La aprobación del acta de constitución 
+otorga legitimidad al trabajo por realizar y asigna al director o líder del proyecto la autoridad 
+para utilizar los recursos de la organización. Además se establecen las bases para la 
+planificación detallada, definiendo el alcance inicial, los objetivos, criterios de éxito, riesgos, 
+interesados clave (stakeholders). Con este documento también se confirma el uso de 
+herramientas o licencias para la ejecución del proyecto. 
+ 
+Hito 2: Inicio del diálogo con el proyecto y usuarios 
+ 
+Descripción y análisis: 
+ 
+ 
+
+--- PAGE 34 ---
+34 
+A partir de este punto se da inicio a las primeras interacciones con el cliente y los futuros 
+usuarios del sistema. Esto se logra mediante entrevistas exploratorias que reúnen información 
+esencial sobre el contexto y expectativas. Estos insumos nos permiten estructurar la 
+Estructura de Desglose de Trabajo (EDT) y orientar la planificación temprana del proyecto. 
+ 
+Hito 3: Aprobación de los requerimientos 
+ 
+Descripción y análisis: 
+Con este hito se inicia la ejecución de las actividades planificadas con la recopilación de los 
+requerimientos y requisitos. Se desarrollan entrevistas, cuestionarios, observaciones y demás 
+técnicas de elicitación enfocados en identificar necesidades del usuario, requerimientos 
+funcionales, no funcionales y restricciones del sistema. La información reunida será la base 
+del análisis posterior y del desarrollo del documento de requerimientos. 
+ 
+Hito 4: Aprobación de los requerimientos 
+ 
+Descripción y análisis: 
+Tras el proceso de elicitación y su análisis, se consolida el documento de requerimientos y se 
+presenta al usuario y cliente para su validación. Con la aprobación formal, los requisitos 
+quedan definidos, aunque aptos para un posible cambio, sirviendo como contrato fundacional 
+entre el equipo de desarrollo y el usuario. Esto ayuda a reducir incertidumbre, ambigüedades 
+y da paso hacia el diseño del sistema con una visión clara. 
+ 
+Hito 5: Inicio del diseño del sistema 
+ 
+Descripción y análisis: 
+En este hito se da inicio a la fase de diseño, donde se desarrolla la arquitectura general del 
+sistema. Se identifican los componentes principales, relaciones, módulos y tecnologías a usar. 
+Esto nos permite establecer una base sólida que guiará el desarrollo del proyecto. 
+ 
+Hito 6: Inicio del diseño de diagramas de casos de uso 
+ 
+Descripción y análisis: 
+Aquí se comienza con la elaboración de los diagramas de casos de uso, lo cual representa las 
+relaciones entre los actores y el sistema. Estos diagramas nos facilitan la comprensión 
+funcional del sistema, determinan los escenarios de interacción y sirven como soporte para el 
+análisis para la programación posterior. 
+ 
+Hito 7: Inicio del diseño de los mockups de interfaz 
+ 
+Descripción y análisis: 
+En este hito se elaboran los primeros prototipos (Mockups) de las interfaces del sistema. Estos 
+nos permiten anticipar la experiencia del usuario con el sistema, validar elementos, revisar 
+flujos de navegación y obtener retroalimentación (feedback) temprana. Fundamentales para 
+garantizar su usabilidad e intuición antes de pasar al desarrollo. 
+ 
+ 
+ 
+
+--- PAGE 35 ---
+35 
+Hito 8: Finalización del diseño del sistema 
+ 
+Descripción y análisis: 
+Se concluye la etapa de diseño, dejando definidos y aprobados todos los diagramas, 
+arquitecturas, prototipos y demás especificaciones. Esto nos asegura que el equipo de 
+desarrollo cuenta con una guía completa para desarrollar el software sin inconvenientes. 
+ 
+Hito 9: Inicio del desarrollo de los módulos 
+ 
+Descripción y análisis: 
+Se inicia la fase de programación del sistema siguiendo el diseño ya aprobado. Cada módulo 
+es asignado (Log in, Inventario, Gestión de ventas, Reporte de ventas, Catalogo) y 
+documentado conforme los estándares del proyecto. Esta fase es crítica dado que se 
+materializan los requisitos funcionales reales. 
+ 
+Hito 10: Finalización del desarrollo de los módulos 
+ 
+Descripción y análisis: 
+Se concluye con el desarrollo de todos los módulos previstos. Se realizan algunas pruebas y 
+validaciones avanzadas sobre el funcionamiento del sistema. Queda listo para integrar un 
+control y monitoreo antes de su entrega al cliente. 
+ 
+Hito 11: Inicio de la fase de seguimiento 
+ 
+Descripción y análisis: 
+La etapa de seguimiento y control comienza en paralelo con el desarrollo de los módulos del 
+sistema. Incluye pruebas integradas, pruebas funcionales, corrección de errores y evaluación 
+del seguimiento de los requerimientos. Además se monitorean plazos, recursos y riesgos 
+según lo planeado para asegurar la calidad del producto final. 
+ 
+Hito 12: Transferencia formal del sistema al cliente 
+ 
+Descripción y análisis: 
+En este hito se entrega oficialmente el sistema al cliente, acompañado de la documentación 
+correspondiente. Se confirma el cumplimiento de los requisitos acordados y se realiza una 
+posterior presentación o demostración del sistema. 
+ 
+Hito 13: Cierre formal del proyecto en acta oficial 
+ 
+Descripción y análisis: 
+Se redacta y firma el acta de cierre, donde el documento certifica que todas las actividades y 
+requisitos del proyecto han sido completados satisfactoriamente. También se realizan algunas 
+reuniones posteriores para evaluar las lecciones aprendidas, fortalezas, debilidades, 
+dificultades y retroalimentación para futuros proyectos. 
+ 
+Hito 14: Celebración del cierre del proyecto 
+ 
+ 
+
+--- PAGE 36 ---
+36 
+ 
+Descripción y análisis: 
+Marca el reconocimiento formal al trabajo de equipo y el éxito del proyecto. Se suele realizar 
+una breve actividad de celebración para motivar al equipo para futuros proyectos. 
+ 
+Tabla 3 
+Actividades del proyecto 
+ACTIVIDADES DEL PROYECTO 
+Nombre de la tarea 
+Dur. 
+(Días 
+lab.) 
+Comienzo 
+Fin 
+Pred. 
+Responsables 
+Nombres de los 
+recursos 
+INICIO 
+7 
+18/08/2025 27/08/2025 
+ 
+ 
+ 
+1 Identificar los procesos clave de la 
+fase de inicio 
+1 
+18/08/2025 19/08/2025 
+- 
+Líder del proyecto 
+JM, AC, LC 
+2 
+Discutir los conceptos en equipo 
+1 
+18/08/2025 19/08/2025 
+- 
+Líder del proyecto 
+JM, AC, LC 
+3 
+Entrevistas al cliente y usuarios 
+2 
+19/08/2025 21/08/2025 
+1, 2 
+Líder del proyecto 
+y analistas 
+JM, AC, LC, BC, 
+TR 
+4 
+Detectar las necesidades 
+insatisfechas 
+2 
+19/08/2025 21/08/2025 
+3 
+Líder del proyecto 
+y analistas 
+JM, AC, LC 
+5 
+Redactar borradores de objetivos 
+del proyecto 
+1 
+20/08/2025 21/08/2025 
+3 
+Líder del proyecto JM, AC, LC, MO 
+6 
+Detallar los objetivos 
+1 
+20/08/2025 21/08/2025 
+3 
+Líder del proyecto 
+y analistas 
+JM, AC, LC, MO 
+7 
+Revisar y validar los objetivos 
+1 
+20/08/2025 21/08/2025 
+6 
+Líder del proyecto 
+AC, MO 
+8 
+Elaborar lista de stakeholders 
+1 
+20/08/2025 21/08/2025 
+3 
+Líder del proyecto 
+y analistas 
+JM, AC, LC, MO 
+9 
+Clasificar los stakeholders 
+1 
+20/08/2025 21/08/2025 
+8 
+Líder del proyecto 
+y analistas 
+JM, AC, LC, MO 
+10 
+Elaborar lista de factores que 
+limitan 
+1 
+21/08/2025 22/08/2025 
+3 
+Líder del proyecto JM, AC, LC, MO 
+11 
+Analizar su impacto 
+1 
+21/08/2025 22/08/2025 
+3 
+Líder del proyecto 
+JM, AC, LC 
+12 
+Documentar limitaciones 
+1 
+22/08/2025 25/08/2025 
+10 
+Líder del proyecto JM, AC, LC, MO 
+13 Identificar necesidades de recursos 
+económicos del equipo 
+1 
+22/08/2025 25/08/2025 
+3 
+Líder del proyecto 
+y analistas 
+JM, AC, LC 
+14 Elaborar presupuesto del proyecto 
+1 
+22/08/2025 25/08/2025 
+13 
+Líder del proyecto JM, AC, LC, MO 
+15 
+Presentar propuesta del 
+presupuesto 
+2 
+25/08/2025 27/08/2025 
+4, 5, 7, 9, 
+11, 12 y 
+14 
+Líder del proyecto 
+JM, AC, LC 
+ 
+PLANIFICACIÓN 
+8 
+27/08/2025 
+8/9/2025 
+ 
+ 
+ 
+16 
+Identificar riesgos que pueden 
+afectar el desarrollo del proyecto 
+2 
+27/08/2025 29/08/2025 
+15 
+Líder del proyecto 
+y analistas 
+JM, AC, LC 
+17 Analizar el impacto de cada riesgo 
+2 
+27/08/2025 29/08/2025 
+15 
+Líder del proyecto 
+JM, AC, LC 
+18 
+Listar todas las actividades 
+1 
+28/08/2025 29/08/2025 
+16 y 17 
+Líder del proyecto 
+LC 
+ 
+ 
+
+--- PAGE 37 ---
+37 
+19 
+Estimar la duración 
+1 
+28/08/2025 29/08/2025 
+18 
+Líder del proyecto 
+AC 
+20 
+Elaborar cronograma y validar 
+1 
+28/08/2025 29/08/2025 
+19 
+Líder del proyecto JM, AC, LC, MO 
+21 
+Organizar sesiones con los 
+usuarios 
+1 
+29/08/2025 01/09/2025 
+18 
+Líder del proyecto 
+JM 
+22 Preparar preguntas para saber sus 
+opiniones 
+1 
+29/08/2025 01/09/2025 
+21 
+Líder del proyecto 
+LC 
+23 
+Documentar acuerdos de los 
+usuarios 
+1 
+01/09/2025 02/09/2025 
+22 
+Líder del proyecto 
+AC, MO 
+24 Identificar los entregables y fechas 
+críticas del proyecto 
+2 
+01/09/2025 03/09/2025 
+18 
+Líder del proyecto 
+JM 
+25 Definir criterios para verificar que 
+un hito ha sido alcanzado 
+2 
+02/09/2025 04/09/2025 
+18 
+Líder 
+del 
+proyect
+o 
+LC 
+26 
+Validar y documentar hitos 
+1 
+02/09/2025 03/09/2025 
+25 
+Líder del proyecto JM, AC, LC, MO 
+27 Determinar los recursos necesarios 
+para cada actividad 
+2 
+03/09/2025 05/09/2025 
+20 
+Líder del proyecto 
+y analistas 
+JM, AC, LC 
+28 
+Asignar y distribuir a las 
+actividades 
+2 
+03/09/2025 05/09/2025 
+20 
+Líder del proyecto 
+JM 
+29 Identificar requisitos de calidad del 
+proyecto 
+2 
+04/09/2025 08/09/2025 
+18 
+Líder del proyecto 
+JM, AC, LC 
+30 
+Definir estándares 
+2 
+04/09/2025 08/09/2025 
+29 
+Líder del proyecto 
+AC 
+31 
+Elaborar un plan de control de 
+calidad 
+2 
+04/09/2025 08/09/2025 
+18 
+Líder del proyecto JM, AC, LC, MO 
+32 
+Identificar las necesidades de 
+stakeholders 
+1 
+05/09/2025 08/09/2025 
+31 
+Líder del proyecto 
+y analistas 
+JM, AC, LC 
+33 
+Determinar los canales de 
+comunicación 
+1 
+05/09/2025 08/09/2025 
+27, 28, 
+23, 24, 
+26, 30 y 
+32 
+Líder del proyecto JM, AC, LC, BC 
+ 
+EJECUCIÓN 
+45 
+08/09/2025 10/11/2025 
+ 
+ 
+ 
+34 Realizar entrevistas y cuestionarios 
+9 
+08/09/2025 19/09/2025 
+33 
+Líder del proyecto JM, AC, LC, BC, 
+TR 
+35 Realizar observaciones y levantar 
+requerimientos 
+9 
+08/09/2025 19/09/2025 
+33 
+Líder del proyecto 
+JM, AC, LC 
+36 
+Revisar los requerimientos 
+8 
+09/09/2025 19/09/2025 
+33 
+Líder del proyecto 
+y analistas 
+JM, AC, LC 
+37 
+Clasificar los requerimientos 
+funcionales y no funcionales 
+8 
+09/09/2025 19/09/2025 
+33 
+Líder del proyecto 
+JM, AC, LC 
+38 Redactar descripciones detalladas 
+8 
+09/09/2025 19/09/2025 
+ 
+33 
+Líder del proyecto 
+JM, AC, LC 
+39 
+Revisar las especificaciones con 
+los interesados 
+8 
+09/09/2025 19/09/2025 
+33 
+Líder del proyecto 
+y analistas 
+JM, AC, LC, BC 
+40 
+Buscar ambigüedades en 
+requerimientos 
+8 
+09/09/2025 19/09/2025 
+33 
+Líder del proyecto 
+JM, AC, LC 
+ 
+ 
+
+--- PAGE 38 ---
+38 
+41 
+Validar la viabilidad técnica 
+7 
+10/09/2025 19/09/2025 
+33 
+Líder del proyecto 
+JM, AC, LC 
+42 Confirmar que los requerimientos 
+sean consistentes y completos 
+7 
+10/09/2025 19/09/2025 
+33 
+Líder del proyecto 
+JM, AC, LC 
+43 
+Presentar los requerimientos 
+6 
+11/09/2025 19/09/2025 
+33 
+Líder del proyecto 
+JM, AC, LC 
+44 
+Obtener retroalimentación 
+6 
+11/09/2025 19/09/2025 
+33 
+Líder del proyecto 
+y analistas 
+JM, AC, LC, BC 
+45 
+Realizar ajustes 
+5 
+12/09/2025 19/09/2025 
+33 
+Líder del proyecto 
+JM, AC, LC 
+46 
+Revisar y consolidar los 
+requerimientos 
+5 
+12/09/2025 19/09/2025 
+33 
+Líder del proyecto 
+JM, AC, LC 
+47 
+Asignar identificadores 
+4 
+15/09/2025 19/09/2025 
+33 
+Líder del proyecto 
+LC 
+48 
+Aprobar requerimientos 
+2 
+16/09/2025 18/09/2025 
+33 
+Líder del proyecto 
+AC 
+49 
+Identificar y definir los actores 
+principales 
+2 
+16/09/2025 18/09/2025 
+48 
+Líder del proyecto 
+y analistas 
+JM, AC, LC 
+50 
+Crear y revisar los diagramas 
+2 
+17/09/2025 19/09/2025 
+49 
+Líder del proyecto 
+y analistas 
+JM, AC, LC 
+51 Definir los requerimientos visuales 
+2 
+17/09/2025 19/09/2025 
+50 
+Líder del proyecto 
+JM, AC, LC, IN 
+52 
+Crear mockups de las pantallas 
+1 
+19/09/2025 22/09/2025 33 - 47 y 
+51 
+Líder del proyecto JM, AC, LC, SW, 
+IN 
+53 
+Diseñar la interfaz de inicio de 
+sesión 
+4 
+22/09/2025 26/09/2025 
+52 
+Líder del proyecto 
+y analistas 
+JM, AC, LC, SW, 
+IN 
+54 
+Implementar mecanismos de 
+autenticación 
+3 
+23/09/2025 26/09/2025 
+52 
+Líder del proyecto 
+y analistas 
+JM, AC, LC, SW, 
+IN 
+55 
+Validar integración al sistema 
+1 
+26/09/2025 29/09/2025 
+52 y 53 
+Líder del proyecto JM, AC, LC, SW, 
+IN 
+56 
+Diseñar la base de datos para 
+almacenar información 
+4 
+29/09/2025 03/10/2025 
+55 
+Líder del proyecto JM, AC, LC, SW, 
+IN 
+57 Desarrollar las funcionalidades del 
+módulo de inventario 
+4 
+29/09/2025 03/10/2025 
+55 
+Líder del proyecto 
+y analistas 
+JM, AC, LC, SW, 
+IN 
+58 
+Realizar pruebas del módulo de 
+inventario 
+1 
+03/10/2025 06/10/2025 
+56 y 57 
+Líder del proyecto JM, AC, LC, SW, 
+IN 
+59 
+Diseñar el módulo de registro de 
+ventas con el sistema 
+9 
+06/10/2025 17/10/2025 
+58 
+Líder del proyecto 
+y analistas 
+JM, AC, LC, SW, 
+IN 
+60 Desarrollar las funcionalidades del 
+módulo de registro de ventas 
+9 
+06/10/2025 17/10/2025 
+58 
+Líder del proyecto JM, AC, LC, SW, 
+IN 
+61 
+Realizar pruebas del módulo de 
+registro de ventas 
+1 
+17/10/2025 20/10/2025 
+59 y 60 
+Líder del proyecto JM, AC, LC, SW, 
+IN 
+62 Desarrollar las funcionalidades del 
+módulo de reporte de ventas 
+9 
+20/10/2025 31/10/2025 
+61 
+Líder del proyecto 
+y analistas 
+JM, AC, LC, SW, 
+IN 
+63 Implementar filtros de búsqueda al 
+módulo de reporte de ventas 
+4 
+27/10/2025 31/10/2025 
+61 
+Líder del proyecto 
+y analistas 
+JM, AC, LC, SW, 
+IN 
+64 
+Realizar pruebas del módulo de 
+reporte de ventas 
+1 
+31/10/2025 03/11/2025 
+62 y 63 
+Líder del proyecto JM, AC, LC, SW, 
+IN 
+65 
+Desarrollar la base de datos del 
+módulo de gestión de catálogo 
+4 
+03/11/2025 07/11/2025 
+64 
+Líder del proyecto 
+y analistas 
+JM, AC, LC, SW, 
+IN 
+ 
+ 
+
+--- PAGE 39 ---
+39 
+66 
+Implementar funcionalidades al 
+módulo de gestión de catálogo 
+4 
+03/11/2025 07/11/2025 
+64 
+Líder del proyecto 
+y analistas 
+JM, AC, LC, SW, 
+IN 
+67 
+Realizar pruebas del módulo de 
+gestión de catálogo 
+1 
+07/11/2025 10/11/2025 
+65 y 66 
+Líder del proyecto JM, AC, LC, SW, 
+IN 
+ 
+SEGUIMIENTO 
+40 
+22/09/2025 17/11/2025 
+ 
+ 
+ 
+68 
+Revisar riesgos identificados 
+35 
+22/09/2025 10/11/2025 
+33 
+Líder del proyecto JM, AC, LC, SW, 
+IN 
+69 
+Evaluar impacto 
+35 
+22/09/2025 10/11/2025 
+33 
+Líder del proyecto JM, AC, LC, SW, 
+IN 
+70 
+Aplicar acciones correctivas 
+35 
+22/09/2025 10/11/2025 
+33 
+Líder del proyecto JM, AC, LC, SW, 
+IN 
+71 
+Revisar avances semanales del 
+proyecto 
+35 
+22/09/2025 10/11/2025 
+33 
+Líder del proyecto 
+AC 
+72 
+Registrar desviaciones 
+35 
+22/09/2025 10/11/2025 
+33 
+Líder del proyecto 
+LC, CR 
+73 
+Proponer ajustes del cronograma 
+35 
+22/09/2025 10/11/2025 
+33 
+Líder del proyecto 
+JM, AC, LC 
+74 
+Registrar participación de los 
+usuarios 
+35 
+22/09/2025 10/11/2025 
+33 
+Líder del proyecto JM, AC, LC, CR 
+75 
+Aplicar encuestas a los usuarios 
+31 
+26/09/2025 10/11/2025 
+33 
+Líder del proyecto 
+y analistas 
+JM, AC, LC, BC 
+76 
+Emitir informe de control 
+31 
+26/09/2025 10/11/2025 
+33 
+Líder del proyecto 
+JM, AC, LC 
+77 
+Revisar reportes de fallos 
+31 
+26/09/2025 10/11/2025 
+33 
+Líder del proyecto 
+AC 
+78 
+Aplicar mejoras al sistema 
+31 
+26/09/2025 10/11/2025 
+33 
+Líder del proyecto 
+LC 
+79 Validar resultados del seguimiento 
+31 
+26/09/2025 10/11/2025 
+33 
+Líder del proyecto 
+JM 
+80 
+Registrar gastos 
+30 
+29/09/2025 10/11/2025 
+33 
+Líder del proyecto 
+JM, AC, LC 
+81 
+Comparar con presupuesto 
+30 
+29/09/2025 10/11/2025 
+33 
+Líder del proyecto 
+JM, AC, LC 
+82 
+Hacer informe de costos 
+30 
+29/09/2025 10/11/2025 
+33 
+Líder del proyecto 
+JM, AC, LC 
+83 
+Revisar informes 
+29 
+30/09/2025 10/11/2025 
+33 
+Líder del proyecto 
+AC 
+84 
+ Aplicar mejoras o correcciones 
+28 
+01/10/2025 10/11/2025 
+33 
+Líder del proyecto 
+LC 
+85 
+Registrar observaciones 
+27 
+02/10/2025 10/11/2025 
+33 
+Líder del proyecto JM, AC, LC, CR 
+86 
+Revisar informes y correos 
+27 
+02/10/2025 10/11/2025 
+33 
+Líder del proyecto 
+JM, AC, LC 
+87 
+Registrar acuerdos 
+31 
+03/10/2025 17/11/2025 
+33 
+Líder del proyecto JM, AC, LC, CR 
+88 
+Enviar reportes de avance 
+31 
+03/10/2025 17/11/2025 
+33 
+Líder del proyecto 
+JM 
+ 
+CIERRE 
+6 
+14/11/2025 24/11/2025 
+ 
+ 
+ 
+89 
+Recolectar documentos 
+1 
+14/11/2025 17/11/2025 
+68 - 88 
+Líder del proyecto 
+JM, AC, LC 
+90 
+Organizar archivos 
+1 
+17/11/2025 18/11/2025 
+89 
+Líder del proyecto 
+JM, AC, LC 
+91 
+Entregar informe final 
+1 
+17/11/2025 18/11/2025 
+90 
+Líder del proyecto 
+JM, IM 
+92 
+Verificar funcionamiento 
+1 
+17/11/2025 18/11/2025 
+89 
+Líder del proyecto 
+y analistas 
+JM, AC, LC 
+93 
+Entregar el producto final al 
+cliente 
+1 
+18/11/2025 19/11/2025 
+89 
+Líder del proyecto 
+y analistas 
+JM, BC 
+94 
+Firmar acta de conformidad 
+1 
+18/11/2025 19/11/2025 
+89 
+Líder del proyecto 
+JM, BC, IM 
+95 
+Preparar diapositivas 
+2 
+19/11/2025 21/11/2025 
+93 
+Líder del proyecto 
+JM, AC, LC 
+ 
+ 
+
+--- PAGE 40 ---
+40 
+96 
+Ensayar exposición 
+2 
+19/11/2025 21/11/2025 
+93 
+Líder del proyecto 
+y analistas 
+JM, AC, LC 
+97 
+Exponer el proyecto 
+1 
+19/11/2025 20/11/2025 
+95 y 96 
+Líder del proyecto 
+JM, AC, LC 
+98 
+Presentar informe final y 
+entregables 
+1 
+20/11/2025 21/11/2025 
+97 
+Líder del proyecto 
+y analistas 
+JM, AC, LC 
+99 
+Aplicar correcciones necesarios 
+2 
+20/11/2025 24/11/2025 
+92 
+Líder del proyecto 
+JM, AC, LC 
+10
+0 
+Obtener firma o validación de 
+aceptación 
+1 
+21/11/2025 24/11/2025 
+91 
+Líder del proyecto JM, AC, LC, BC, 
+IM 
+ 
+ 
+ 
+
+--- PAGE 41 ---
+41 
+2.3.​
+Diagrama de Gantt 
+Figura 01 
+Diagrama de Gantt correspondiente a la fase de INICIO 
+ITEM 
+ACTIVIDADES 
+DURACIÓ
+N 
+(Solo días 
+laborables) 
+INICIO 
+FINAL 
+AGOSTO 
+SEPTIEMBRE 
+OCTUBRE 
+NOVIEMBRE 
+Semana 1 
+Semana 2 
+Semana 3 
+Semana 4 
+Semana 5 
+Semana 6 
+Semana 7 
+Semana 8 
+Semana 9 Semana 10 Semana 11 Semana 12 Semana 13 Semana 14 
+L M X J V L M X J V L M X J V L M X J V L M X J V L M X J V L M X J V L M X J V L M X J V L M X J V L M X J V L M X J V L M X J V L M X J V 
+1
+8 
+1
+9 
+2
+0 
+2
+1 
+2
+2 
+2
+5 
+2
+6 
+2
+7 
+2
+8 
+2
+9 1 2 3 4 5 8 9 
+1
+0 
+1
+1 
+1
+2 
+1
+5 
+1
+6 
+1
+7 
+1
+8 
+1
+9 
+2
+2 
+2
+3 
+2
+4 
+2
+5 
+2
+6 
+2
+9 
+3
+0 1 2 3 6 7 8 9 
+1
+0 
+1
+3 
+1
+4 
+1
+5 
+1
+6 
+1
+7 
+2
+0 
+2
+1 
+2
+2 
+2
+3 
+2
+4 
+2
+7 
+2
+8 
+2
+9 
+3
+0 
+3
+1 3 4 5 6 7 
+1
+0 
+1
+1 
+1
+2 
+1
+3 
+1
+4 
+1
+7 
+1
+8 
+1
+9 
+2
+0 
+2
+1 
+ 
+INICIO 
+7 
+18/08/2025 27/08/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+1 
+Identificar los procesos clave de la fase de inicio 
+1 
+18/08/2025 20/08/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+2 
+Discutir los conceptos en equipo 
+1 
+18/08/2025 20/08/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+3 
+Entrevistas al cliente y usuarios 
+2 
+19/08/2025 21/08/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+4 
+Detectar las necesidades insatisfechas 
+2 
+19/08/2025 21/08/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+5 
+Redactar borradores 
+1 
+20/08/2025 21/08/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+6 
+Detallar los objetivos 
+1 
+20/08/2025 21/08/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+7 
+Revisar y validar los objetivos 
+1 
+20/08/2025 21/08/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+8 
+Elaborar lista de stakeholders 
+1 
+20/08/2025 21/08/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+9 
+Clasificar los stakeholders 
+1 
+20/08/2025 21/08/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+10 
+Elaborar lista de factores que limitan 
+1 
+21/08/2025 22/08/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+11 
+Analizar su impacto 
+1 
+21/08/2025 22/08/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+12 
+Documentar limitaciones 
+1 
+22/08/2025 25/08/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+13 
+Identificar necesidades de recursos económicos 
+1 
+22/08/2025 25/08/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+14 
+Elaborar presupuesto del proyecto 
+1 
+22/08/2025 25/08/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+15 
+Presentar propuesta 
+2 
+25/08/2025 27/08/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Fuente: Elaboración propia. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 42 ---
+42 
+Figura 02 
+Diagrama de Gantt correspondiente a la fase de PLANIFICACIÓN 
+ 
+PLANIFICACIÓN 
+8 
+27/08/2025 
+8/9/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+16 
+Identificar riesgos 
+2 
+27/08/2025 29/08/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+17 
+Analizar el impacto de cada riesgo 
+2 
+27/08/2025 29/08/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+18 
+Listar todas las actividades 
+1 
+28/08/2025 29/08/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+19 
+Estimar la duración 
+1 
+28/08/2025 29/08/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+20 
+Elaborar cronograma y validar 
+1 
+28/08/2025 29/08/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+21 
+Organizar sesiones 
+1 
+29/08/2025 01/09/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+22 
+Preparar preguntas 
+1 
+29/08/2025 01/09/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+23 
+Documentar acuerdos de los usuarios 
+1 
+01/09/2025 02/09/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+24 
+Identificar los entregables y fechas críticas del 
+proyecto 
+2 
+01/09/2025 03/09/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+25 
+Definir criterios para verificar que un hito ha sido 
+alcanzado 
+2 
+02/09/2025 04/09/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+26 
+Validar y documentar hitos 
+1 
+02/09/2025 03/09/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+27 
+Determinar los recursos necesarios 
+2 
+03/09/2025 05/09/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+28 
+Asignar y distribuir a las actividades 
+2 
+03/09/2025 05/09/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+29 
+Identificar requisitos de calidad 
+2 
+04/09/2025 08/09/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+30 
+Definir estándares 
+2 
+04/09/2025 08/09/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+31 
+Elaborar un plan de control de calidad 
+2 
+04/09/2025 08/09/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+32 
+Identificar las necesidades de stakeholders 
+1 
+05/09/2025 08/09/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+33 
+Determinar los canales de comunicación 
+1 
+05/09/2025 08/09/2025  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Fuente: Elaboración propia. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 43 ---
+43 
+Figura 03 
+Diagrama de Gantt correspondiente a la fase de EJECUCIÓN 
+ 
+EJECUCIÓN 
+45 08/09/2025 10/11/2025                 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+          
+34 Realizar entrevistas y cuestionarios 
+9 
+08/09/2025 19/09/2025                 
+ 
+                                              
+35 Realizar observaciones discretas e interactivas 
+9 
+08/09/2025 19/09/2025                 
+ 
+                                              
+36 Revisar los requerimientos 
+8 
+09/09/2025 19/09/2025                  
+ 
+                                              
+37 Clasificar los requerimientos funcionales y no funcionales 
+8 
+09/09/2025 19/09/2025                  
+ 
+                                              
+38 Redactar descripciones detalladas 
+8 
+09/09/2025 19/09/2025                  
+ 
+                                              
+39 Revisar las especificaciones con los interesados 
+8 
+09/09/2025 19/09/2025                  
+ 
+                                              
+40 Buscar ambigüedades en requerimientos 
+8 
+09/09/2025 19/09/2025                  
+ 
+                                              
+41 Validar la viabilidad técnica 
+7 
+10/09/2025 19/09/2025                   
+ 
+                                              
+42 
+Confirmar que los requerimientos sean consistentes y 
+completos 
+7 
+10/09/2025 19/09/2025                   
+ 
+                                              
+43 Presentar los requerimientos 
+6 
+11/09/2025 19/09/2025                    
+ 
+                                              
+44 Obtener retroalimentación 
+6 
+11/09/2025 19/09/2025                    
+ 
+                                              
+45 Realizar ajustes 
+5 
+12/09/2025 19/09/2025                      
+                                              
+46 Consolidar los requerimientos 
+5 
+12/09/2025 19/09/2025                      
+                                              
+47 Asignar identificadores 
+4 
+15/09/2025 19/09/2025                      
+                                              
+48 Revisar y aprobar el documento 
+2 
+16/09/2025 18/09/2025                       
+                                               
+49 Identificar y definir los actores principales 
+2 
+16/09/2025 18/09/2025                       
+                                               
+50 Crear y revisar los diagramas 
+2 
+17/09/2025 19/09/2025                        
+                                              
+51 Definir los requerimientos visuales 
+2 
+17/09/2025 19/09/2025                        
+                                              
+52 Crear mockups de las pantallas 
+1 
+19/09/2025 22/09/2025                                                                       
+53 Diseñar la interfaz de inicio de sesión 
+4 
+22/09/2025 26/09/2025                           
+                                         
+54 Implementar mecanismos de autenticación 
+3 
+23/09/2025 26/09/2025                            
+                                         
+55 Validar integración al sistema 
+1 
+26/09/2025 29/09/2025                                                                       
+56 Diseñar la base de datos para almacenar información 
+4 
+29/09/2025 03/10/2025                                
+                                    
+57 Desarrollar las funcionalidades del módulo de inventario 
+4 
+29/09/2025 03/10/2025                                
+                                    
+58 Realizar pruebas del módulo de inventario 
+1 
+03/10/2025 06/10/2025                                                                       
+59 Integrar el módulo de registro de ventas con el sistema 
+9 
+06/10/2025 17/10/2025                                     
+ 
+                          
+60 
+Desarrollar las funcionalidades del módulo de registro de 
+ventas 
+9 
+06/10/2025 17/10/2025                                     
+ 
+                          
+61 Realizar pruebas del módulo de registro de ventas 
+1 
+17/10/2025 20/10/2025                                                                       
+62 Desarrollar las funcionalidades del módulo de reporte de ventas 
+9 
+20/10/2025 31/10/2025                                               
+ 
+                
+63 Implementar filtros de búsqueda al módulo de reporte de ventas 
+4 
+27/10/2025 31/10/2025                                                    
+                
+64 Realizar pruebas del módulo de reporte de ventas 
+1 
+31/10/2025 03/11/2025                                                                       
+ 
+ 
+
+--- PAGE 44 ---
+44 
+65 Desarrollar la base de datos del módulo de gestión de catálogo 
+4 
+03/11/2025 07/11/2025                                                         
+           
+66 Implementar funcionalidades al módulo de gestión de catálogo 
+4 
+03/11/2025 07/11/2025                                                         
+           
+67 Realizar pruebas del módulo de gestión de catálogo 
+1 
+07/11/2025 10/11/2025                                                                       
+ 
+ 
+Figura 04 
+Diagrama de Gantt correspondiente a la fase de SEGUIMIENTO 
+ 
+ 
+SEGUIMIENTO 
+40 22/09/2025 17/11/2025                           
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+     
+68 Revisar riesgos identificados 
+35 22/09/2025 10/11/2025                           
+ 
+ 
+ 
+ 
+ 
+ 
+          
+69 Evaluar impacto 
+35 22/09/2025 10/11/2025                           
+ 
+ 
+ 
+ 
+ 
+ 
+          
+70 Aplicar acciones correctivas 
+35 22/09/2025 10/11/2025                           
+ 
+ 
+ 
+ 
+ 
+ 
+          
+71 Revisar avances semanales del proyecto 
+35 22/09/2025 10/11/2025                           
+ 
+ 
+ 
+ 
+ 
+ 
+          
+72 Registrar desviaciones 
+35 22/09/2025 10/11/2025                           
+ 
+ 
+ 
+ 
+ 
+ 
+          
+73 Proponer ajustes del cronograma 
+35 22/09/2025 10/11/2025                           
+ 
+ 
+ 
+ 
+ 
+ 
+          
+74 Registrar participación de los usuarios 
+35 22/09/2025 10/11/2025                           
+ 
+ 
+ 
+ 
+ 
+ 
+          
+75 Aplicar encuestas a los usuarios 
+31 26/09/2025 10/11/2025                                
+ 
+ 
+ 
+ 
+ 
+          
+76 Emitir informe de control 
+31 26/09/2025 10/11/2025                                
+ 
+ 
+ 
+ 
+ 
+          
+77 Revisar reportes de fallos 
+31 26/09/2025 10/11/2025                                
+ 
+ 
+ 
+ 
+ 
+          
+78 Aplicar mejoras al sistema 
+31 26/09/2025 10/11/2025                                
+ 
+ 
+ 
+ 
+ 
+          
+79 Validar resultados del seguimiento 
+31 26/09/2025 10/11/2025                                
+ 
+ 
+ 
+ 
+ 
+          
+80 Registrar gastos 
+30 29/09/2025 10/11/2025                                
+ 
+ 
+ 
+ 
+ 
+          
+81 Comparar con presupuesto 
+30 29/09/2025 10/11/2025                                
+ 
+ 
+ 
+ 
+ 
+          
+82 Hacer informe de costos 
+30 29/09/2025 10/11/2025                                
+ 
+ 
+ 
+ 
+ 
+          
+83 Revisar informes y productos 
+29 30/09/2025 10/11/2025                                 
+ 
+ 
+ 
+ 
+ 
+          
+84 Aplicar mejoras o correcciones 
+28 01/10/2025 10/11/2025                                  
+ 
+ 
+ 
+ 
+ 
+          
+85 Registrar observaciones 
+27 02/10/2025 10/11/2025                                   
+ 
+ 
+ 
+ 
+ 
+          
+86 Revisar informes y correos 
+27 02/10/2025 10/11/2025                                   
+ 
+ 
+ 
+ 
+ 
+          
+87 Registrar acuerdos 
+31 03/10/2025 17/11/2025                                     
+ 
+ 
+ 
+ 
+ 
+     
+88 Enviar reportes de avance 
+31 03/10/2025 17/11/2025                                     
+ 
+ 
+ 
+ 
+ 
+     
+ 
+Fuente: Elaboración propia. 
+ 
+ 
+
+--- PAGE 45 ---
+45 
+ 
+ 
+Figura 05 
+Diagrama de Gantt correspondiente a la fase de CIERRE 
+ 
+ 
+CIERRE 
+6 14/11/2025 24/11/2025                                                                   
+89 
+Recolectar documentos 
+1 14/11/2025 17/11/2025                                                                       
+90 
+Organizar archivos 
+1 17/11/2025 18/11/2025                                                                       
+91 
+Entregar informe final 
+1 17/11/2025 18/11/2025                                                                       
+92 
+Verificar funcionamiento 
+1 17/11/2025 18/11/2025                                                                       
+93 
+Entregar el producto final al cliente 
+1 18/11/2025 19/11/2025                                                                       
+94 
+Firmar acta de conformidad 
+1 18/11/2025 19/11/2025                                                                       
+95 
+Preparar diapositivas 
+2 19/11/2025 21/11/2025                                                                     
+ 
+96 
+Ensayar exposición 
+2 19/11/2025 21/11/2025                                                                     
+ 
+97 
+Ajustar tiempos y roles 
+1 19/11/2025 20/11/2025                                                                       
+98 
+Presentar informe final y entregables 
+1 20/11/2025 21/11/2025                                                                       
+99 
+Aplicar correcciones necesarios 
+2 20/11/2025 24/11/2025                                                                      
+100 Obtener firma o validación de aceptación 
+1 21/11/2025 24/11/2025                                                                       
+ 
+Fuente: Elaboración propia. 
+ 
+ 
+ 
+ 
+
+--- PAGE 46 ---
+46 
+2.4.​
+Diagrama de Red 
+Figura 06 
+Diagrama de red correspondiente a la fase de INICIO 
+ 
+Fuente: Elaboración propia. 
+ 
+ 
+
+--- PAGE 47 ---
+47 
+Figura 07 
+Diagrama de red correspondiente a la fase de PLANIFICACIÓN 
+ 
+ 
+Fuente: Elaboración propia. 
+ 
+ 
+ 
+ 
+
+--- PAGE 48 ---
+48 
+Figura 08 
+Diagrama de red correspondiente a la fase de EJECUCIÓN 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Fuente: Elaboración propia. 
+ 
+ 
+
+--- PAGE 49 ---
+49 
+Figura 09 
+Diagrama de red correspondiente a la fase de SEGUIMIENTO 
+ 
+Fuente: Elaboración propia.  
+ 
+ 
+
+--- PAGE 50 ---
+50 
+Figura 10 
+Diagrama de red correspondiente a la fase de CIERRE 
+ 
+Fuente: Elaboración propia.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 51 ---
+51 
+CAPÍTULO 3:​
+​
+ARQUITECTURA DE SOFTWARE  
+3.1.​
+Diagrama de la arquitectura 
+ 
+Figura 11 
+Diagrama de la arquitectura del sistema de software 
+ 
+Fuente: Elaboración propia.  
+ 
+3.2.​
+Descripción de la arquitectura 
+USUARIO 
+El usuario interactúa con el sistema mediante: 
+●​ Entrada por pagina web 
+●​ Entrada por aplicación móvil 
+VISTA 
+Dentro del sistema VISTA se encapsulan todos los módulos especializados en mostrar 
+la interfaz, cada uno hace sus propias operaciones de acuerdo a la interacción del 
+usuario. 
+●​ Interfaz de inventario: Muestra el stock de los productos, entrada y salida de 
+productos, actualización del stock. 
+●​ Interfaz de registro de ventas: Muestra el registro de las ventas 
+●​ Interfaz de reportes de ventas: Muestra el reporte de las ventas 
+●​ Interfaz de catálogo: Muestra el catálogo online, así como la información de 
+cada producto 
+●​ Interfaz de login: Muestra el inició de sesión y el acceso  
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 52 ---
+52 
+CONTROLADOR 
+Su función es recibir las peticiones del usuario e interpretar lo que desea realizar y 
+además decidir el modelo que debe de intervenir para actualizar la información 
+necesaria. 
+●​ De productos: Gestiona las acciones relacionadas con el movimiento de los 
+productos. 
+●​ De Inventario: Administra actualizaciones del stock. 
+●​ De reportes: Controla la generación de reporte de ventas y estadísticas. 
+●​ De usuarios/Sesiones: Procesa el inicio de sesión y manejo de permisos según 
+el tipo de usuario. 
+ 
+MODELOS 
+Dentro del sistema MODELOS se encapsulan todos los módulos especializados en 
+administrar información, cada uno hace sus propias operaciones de acuerdo a la 
+información que estas recepcionen. 
+●​ Modelo de inventario: Gestiona el stock de los productos, entrada y salida de 
+productos, actualización del stock. 
+●​ Modelo de registro de ventas: Gestiona el registro de las ventas. 
+●​ Modelo de reportes de ventas: Gestiona el reporte de las ventas. 
+●​ Modelo de catálogo: Gestiona el catálogo online, mantiene información base 
+de los productos. 
+●​ Modelo de login: Valida el inició de sesión y gestiona el acceso. 
+ 
+3.3.​
+Justificación de la arquitectura 
+Elegimos una arquitectura MVC por los siguientes motivos: 
+-​
+Aplicaciones multi-vista - Al aislar las vistas del resto de la lógica de la 
+aplicación es posible presentar las mismas funcionalidades en diferentes 
+vistas que pueden dirigirse incluso a diversos dispositivos distintos. 
+-​
+Fácil colaboración - Al separar fuertemente responsabilidades es posible 
+desarrollar muchas nuevas características sin necesidad muchas veces de 
+tocar todas las piezas implicadas, de forma que la colaboración entre 
+diferentes desarrolladores se amplifica notablemente. También se utiliza al 
+desconocerse los requerimientos futuros para la interacción y presentación. 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 53 ---
+53 
+CAPÍTULO 4:​
+​
+GESTIÓN DE RIESGOS 
+4.1.​
+Lista de riesgos 
+LISTA DE RIESGOS 
+R-001 
+Retiro de integrante del equipo de trabajo 
+R-002 
+Incumplimiento de los objetivos 
+R-003 
+Incumplimiento del cronograma 
+R-004 
+Validación incorrecta de los requerimientos 
+R-005 
+Insuficiencia de recursos y herramientas de trabajo 
+R-006 
+Falta de coordinación entre los miembros del equipo 
+R-007 
+Falta de experiencia o capacitación 
+R-008 
+Documentación deficiente de requerimientos 
+R-009 
+Poca participación de cliente/usuarios 
+R-010 
+Cambios rápidos en la tecnología utilizada 
+R-011 
+Mala planificación en el proyecto 
+R-012 
+Vulnerabilidad en privacidad 
+R-013 
+Mala disponibilidad y programación del interfaz 
+R-014 
+Daño o corrupción de los archivos 
+R-015 
+Alta competencia en el mercado 
+R-016 
+Costos de mantenimiento por parte del usuario 
+R-017 
+Problema de comunicación entre el equipo y el cliente 
+R-018 
+Incumpliento de normas indicadas por el cliente 
+R-019 
+Escalabilidad limitada para futuras actualizaciones del software 
+R-020 
+Rechazo del cliente al nuevo sistema 
+ 
+4.2.​
+Formato de identificación, análisis y planeación de riesgos 
+ 
+ 
+ 
+Anexo N° 01 
+Formato para identificar y analizar riesgos 
+1 
+NÚMERO Y FECHA DEL 
+DOCUMENTO 
+Número 
+1 
+Fecha 
+21/11/2025 
+2 
+DATOS GENERALES 
+DEL PROYECTO 
+Nombre del Proyecto 
+Tienda de ropa para varón 
+Ubicación Geográfica 
+Tacna, Tacna 
+3 
+IDENTIFICACIÓN DE RIESGOS 
+3,1 CÓDIGO DE RIESGO 
+R-001 
+3,2 DESCRIPCIÓN DEL RIESGO 
+El riesgo implica que uno o más integrante del equipo de 
+desarrollo, por diferentes motivos se tenga que retirar o 
+ausentarse  indefinidamente del proyecto 
+
+--- PAGE 54 ---
+54 
+ 
+5 
+RESPUESTA A LOS RIESGOS 
+5.1 
+ESTRATEGIA 
+Mitigar Riesgo 
+ 
+Evitar Riesgo 
+ 
+Aceptar Riesgo 
+X 
+Transferir Riesgo  
+5.2 
+DISPARADOR DE 
+RIESGO 
+Cuando se retire un integrante por motivos personales, enfermedad, 
+accidente o mejor oferta laboral 
+5.3 
+ACCIONES PARA DAR 
+RESPUESTA AL 
+RIESGO 
+- Implementar un plan de sustitución de integrantes 
+- Capacitar a los integrantes en cada tarea importante para que pueda 
+reemplazar al integrante  
+- Mantener una buena comunicación con el equipo para detectar a tiempo 
+problemas personales 
+- Contratar temporalmente a un apoyo externo 
+ 
+ 
+Anexo N° 02 
+Formato para identificar y analizar riesgos 
+1 
+NÚMERO Y FECHA DEL 
+DOCUMENTO 
+Número 
+2 
+Fecha 
+21/11/2025 
+ 
+ 
+3,3 CLASE DE RIESGO 
+Riesgo Organizacional 
+3,4 
+CAUSA(S) GENERADORA(S) 
+Causa N° 1 Que un integrante se enferme o sufra un accidente 
+Causa N° 2 Que a un integrante le ofrezcan una mejor oferta 
+de trabajo 
+Causa N° 3 
+Motivos personales 
+4 
+ANÁLISIS CUALITATIVO DE RIESGOS 
+4,1 
+PROBABILIDAD DE OCURRENCIA 
+4,2 
+IMPACTO EN LA EJECUCIÓN DE LA OBRA 
+Muy baja 
+0,10 
+X 
+Muy bajo 
+0,05 
+ 
+Baja 
+0,30 
+ 
+Bajo 
+0,10 
+ 
+Moderada 
+0,50 
+ 
+Moderado 
+0,20 
+X 
+Alta 
+0,70 
+ 
+Alto 
+0,40 
+ 
+Muy alta 
+0,90 
+ 
+Muy alto 
+0,80 
+ 
+ 
+Muy baja 
+0,100 
+ 
+Moderado 
+0,200 
+4,3 
+PRIORIZACIÓN DEL RIESGO 
+Puntuación del Riesgo =Probabilidad x 
+Impacto 
+0,020 
+Prioridad 
+del Riesgo 
+Baja Prioridad 
+
+--- PAGE 55 ---
+55 
+2 
+DATOS GENERALES 
+DEL PROYECTO 
+Nombre del Proyecto 
+Tienda de ropa para varón 
+Ubicación Geográfica 
+Tacna, Tacna 
+3 
+IDENTIFICACIÓN DE RIESGOS 
+3,1 CÓDIGO DE RIESGO 
+R- 002 
+3,2 DESCRIPCIÓN DEL RIESGO 
+Cuando el proyecto no logra cumplir con los objetivos planteados 
+inicialmente 
+3,3 CLASE DE RIESGO 
+Riesgo Organizacional 
+3,4 
+CAUSA(S) GENERADORA(S) 
+Causa N° 1 
+Objetivos ambiguos 
+Causa N° 2 
+Mala planificación 
+Causa N° 3 
+Cambios frecuentes en requerimientos 
+4 
+ANÁLISIS CUALITATIVO DE RIESGOS 
+4,1 
+PROBABILIDAD DE OCURRENCIA 
+4,2 
+IMPACTO EN LA EJECUCIÓN DE LA OBRA 
+Muy baja 
+0,10 
+ 
+Muy bajo 
+0,05 
+ 
+Baja 
+0,30 
+ 
+Bajo 
+0,10 
+ 
+Moderada 
+0,50 
+X 
+Moderado 
+0,20 
+X 
+Alta 
+0,70 
+ 
+Alto 
+0,40 
+ 
+Muy alta 
+0,90 
+ 
+Muy alto 
+0,80 
+ 
+ 
+Moderada 
+0,500 
+ 
+Moderado 
+0,200 
+4,3 
+PRIORIZACIÓN DEL RIESGO 
+Puntuación del Riesgo =Probabilidad x 
+Impacto 
+0,100 
+Prioridad 
+del Riesgo 
+Prioridad Moderada 
+ 
+5 
+RESPUESTA A LOS RIESGOS 
+5.1 
+ESTRATEGIA 
+Mitigar Riesgo 
+X 
+Evitar Riesgo 
+ 
+Aceptar Riesgo  
+Transferir Riesgo  
+5.2 
+DISPARADOR DE RIESGO - Cuando se retrasen las actividades críticas 
+- Cuando se detecte una desalineación con los requerimientos del 
+proyecto 
+5.3 
+ACCIONES PARA DAR 
+RESPUESTA AL RIESGO 
+- Monitorear los avances semanales 
+- Ajustar el cronograma ante nuevos cambios 
+- Revisar los objetivos con el equipo para asegurar el alineamiento 
+ 
+ 
+ 
+
+--- PAGE 56 ---
+56 
+ 
+ 
+ 
+ 
+Anexo N° 03 
+Formato para identificar y analizar riesgos 
+1 
+NÚMERO Y FECHA DEL 
+DOCUMENTO 
+Número 
+3 
+Fecha 
+21/11/2025 
+2 
+DATOS GENERALES 
+DEL PROYECTO 
+Nombre del Proyecto 
+Tienda de ropa para varón 
+Ubicación Geográfica 
+Tacna, Tacna 
+3 
+IDENTIFICACIÓN DE RIESGOS 
+3,1 CÓDIGO DE RIESGO 
+R-003 
+3,2 DESCRIPCIÓN DEL RIESGO 
+Es el riesgo de que las actividades del proyecto no se completen en las 
+fechas planificadas, provocando retrasos 
+3,3 CLASE DE RIESGO 
+Riesgo Organizacional 
+3,4 
+CAUSA(S) GENERADORA(S) 
+Causa N° 1 
+Subestimación del tiempo 
+Causa N° 2 
+Problemas técnicos 
+Causa N° 3 
+Cambios sin hacer ajustes de tiempos 
+4 
+ANÁLISIS CUALITATIVO DE RIESGOS 
+4,1 
+PROBABILIDAD DE OCURRENCIA 
+4,2 
+IMPACTO EN LA EJECUCIÓN DE LA OBRA 
+Muy baja 
+0,10 
+ 
+Muy bajo 
+0,05 
+ 
+Baja 
+0,30 
+ 
+Bajo 
+0,10 
+X 
+Moderada 
+0,50 
+X 
+Moderado 
+0,20 
+ 
+Alta 
+0,70 
+ 
+Alto 
+0,40 
+ 
+Muy alta 
+0,90 
+ 
+Muy alto 
+0,80 
+ 
+ 
+Moderada 
+0,500 
+ 
+Bajo 
+0,100 
+4,3 
+PRIORIZACIÓN DEL RIESGO 
+Puntuación del Riesgo =Probabilidad x 
+Impacto 
+0,050 
+Prioridad 
+del Riesgo 
+Baja Prioridad 
+ 
+5 
+RESPUESTA A LOS RIESGOS 
+5.1 ESTRATEGIA 
+Mitigar Riesgo 
+ 
+Evitar Riesgo 
+X 
+ 
+ 
+
+--- PAGE 57 ---
+57 
+Aceptar Riesgo 
+ 
+Transferir Riesgo 
+ 
+5.1 DISPARADOR DE 
+RIESGO 
+- Cuando del equipo de trabajo no tenga disponibilidad 
+- Cuando se observa que las actividades requieren más tiempo de lo estimado 
+5.3 ACCIONES PARA 
+DAR 
+RESPUESTA AL 
+RIESGO 
+- Realizar seguimientos semanales del cronograma 
+- Priorizar actividades importantes 
+- Ajustar tiempos cuando sea necesario 
+ 
+Anexo N° 04 
+Formato para identificar y analizar riesgos 
+1 
+NÚMERO Y FECHA DEL 
+DOCUMENTO 
+Número 
+4 
+Fecha 
+21/11/2025 
+2 
+DATOS GENERALES 
+DEL PROYECTO 
+Nombre del Proyecto 
+Tienda de ropa para varón 
+Ubicación Geográfica 
+Tacna, Tacna 
+3 
+IDENTIFICACIÓN DE RIESGOS 
+3,1 CÓDIGO DE RIESGO 
+R-004 
+3,2 DESCRIPCIÓN DEL RIESGO 
+Cuando lo requerimientos recopilados no reflejan las necesidades reales 
+del cliente/usuarios 
+3,3 CLASE DE RIESGO 
+Riesgo en los Requerimientos 
+3,4 
+CAUSA(S) GENERADORA(S) 
+Causa N° 1 
+Comunicación deficiente con el cliente/usuarios 
+Causa N° 2 Falta de revisión y aprobación de requerimientos 
+Causa N° 3 
+Mal entendimiento de necesidades 
+4 
+ANÁLISIS CUALITATIVO DE RIESGOS 
+4,1 
+PROBABILIDAD DE OCURRENCIA 
+4,2 
+IMPACTO EN LA EJECUCIÓN DE LA OBRA 
+Muy baja 
+0,10 
+ 
+Muy bajo 
+0,05 
+ 
+Baja 
+0,30 
+ 
+Bajo 
+0,10 
+ 
+Moderada 
+0,50 
+X 
+Moderado 
+0,20 
+ 
+Alta 
+0,70 
+ 
+Alto 
+0,40 
+ 
+Muy alta 
+0,90 
+ 
+Muy alto 
+0,80 
+X 
+ 
+Moderada 
+0,500 
+ 
+Muy alto 
+0,800 
+4,3 
+PRIORIZACIÓN DEL RIESGO 
+Puntuación del Riesgo =Probabilidad x 
+Impacto 
+0,400 
+Prioridad 
+del Riesgo 
+Alta Prioridad 
+ 
+5 
+RESPUESTA A LOS RIESGOS 
+ 
+ 
+
+--- PAGE 58 ---
+58 
+5.1 
+ESTRATEGIA 
+Mitigar Riesgo 
+X 
+Evitar Riesgo 
+ 
+Aceptar Riesgo 
+ 
+Transferir Riesgo  
+5.1 
+DISPARADOR DE 
+RIESGO 
+- Cuando de den cambios constantes en los requerimientos 
+- Falta de claridad durante las reuniones o entrevistar 
+5.3 
+ACCIONES PARA DAR 
+RESPUESTA AL 
+RIESGO 
+- Revisar y validar cada requerimiento con el cliente/usuarios 
+- Documentar claramente los requerimientos 
+- Establecer reuniones efectivas con el cliente/usuarios 
+ 
+Anexo N° 05 
+Formato para identificar y analizar riesgos 
+1 
+NÚMERO Y FECHA DEL 
+DOCUMENTO 
+Número 
+5 
+Fecha 
+21/11/2025 
+2 
+DATOS GENERALES 
+DEL PROYECTO 
+Nombre del Proyecto 
+Tienda de ropa para varón 
+Ubicación Geográfica 
+Tacna, Tacna 
+3 
+IDENTIFICACIÓN DE RIESGOS 
+3,1 CÓDIGO DE RIESGO 
+R-005 
+3,2 DESCRIPCIÓN DEL RIESGO 
+Que el equipo no cuente con recursos tecnológicos para llevar a cabo las 
+actividades, limitando la calidad del proyecto 
+3,3 CLASE DE RIESGO 
+Riesgos en la tecnologìa 
+3,4 
+CAUSA(S) GENERADORA(S) 
+Causa N° 1 
+Presupuesto mal elaborado 
+Causa N° 2 Falta de planificación en la asignación de recursos 
+Causa N° 3 
+Mal gestiòn del presupuesto 
+4 
+ANÁLISIS CUALITATIVO DE RIESGOS 
+4,1 
+PROBABILIDAD DE OCURRENCIA 
+4,2 
+IMPACTO EN LA EJECUCIÓN DE LA OBRA 
+Muy baja 
+0,10 
+X 
+Muy bajo 
+0,05 
+ 
+Baja 
+0,30 
+ 
+Bajo 
+0,10 
+ 
+Moderada 
+0,50 
+ 
+Moderado 
+0,20 
+ 
+Alta 
+0,70 
+ 
+Alto 
+0,40 
+X 
+Muy alta 
+0,90 
+ 
+Muy alto 
+0,80 
+ 
+ 
+Muy baja 
+0,100 
+ 
+Alto 
+0,400 
+4,3 
+PRIORIZACIÓN DEL RIESGO 
+Puntuación del Riesgo =Probabilidad x 
+Impacto 
+0,040 
+Prioridad 
+del Riesgo 
+Baja Prioridad 
+ 
+ 
+ 
+
+--- PAGE 59 ---
+59 
+5 
+RESPUESTA A LOS RIESGOS 
+5.1 
+ESTRATEGIA 
+Mitigar Riesgo 
+ 
+Evitar Riesgo 
+ 
+Aceptar Riesgo 
+X 
+Transferir Riesgo 
+ 
+5.1 
+DISPARADOR DE 
+RIESGO 
+- Cuando los software o herramientas no disponibles en el momento necesario 
+- Cuando los equipos empiezan a fallar 
+5.3 
+ACCIONES PARA 
+DAR 
+RESPUESTA AL 
+RIESGO 
+- Verificar con anticipación la disponibilidad de las herramientas y software 
+- Reprogramar actividades en caso de indisponibilidad de las herramientas o 
+software 
+ 
+Anexo N° 06 
+Formato para identificar y analizar riesgos 
+1 
+NÚMERO Y FECHA DEL 
+DOCUMENTO 
+Número 
+6 
+Fecha 
+21/11/2025 
+2 
+DATOS GENERALES 
+DEL PROYECTO 
+Nombre del Proyecto 
+Tienda de ropa para varón 
+Ubicación Geográfica 
+Tacna, Tacna 
+3 
+IDENTIFICACIÓN DE RIESGOS 
+3,1 CÓDIGO DE RIESGO 
+R-006 
+3,2 DESCRIPCIÓN DEL RIESGO 
+Riesgo de comunicación y organización entre los miembros del equipo, 
+que pueden provocar confusiones y errores en el desarrollo del proyecto 
+3,3 CLASE DE RIESGO 
+Riesgo Organizacional 
+3,4 
+CAUSA(S) GENERADORA(S) 
+Causa N° 1 
+Diferencia de estilos de trabajo 
+Causa N° 2 Diferencias de disponibilidad de cada integrante 
+Causa N° 3 
+Falta de liderazgo efectivo 
+4 
+ANÁLISIS CUALITATIVO DE RIESGOS 
+4,1 
+PROBABILIDAD DE OCURRENCIA 
+4,2 
+IMPACTO EN LA EJECUCIÓN DE LA OBRA 
+Muy baja 
+0,10 
+ 
+Muy bajo 
+0,05 
+ 
+Baja 
+0,30 
+X 
+Bajo 
+0,10 
+ 
+Moderada 
+0,50 
+ 
+Moderado 
+0,20 
+ 
+Alta 
+0,70 
+ 
+Alto 
+0,40 
+X 
+Muy alta 
+0,90 
+ 
+Muy alto 
+0,80 
+ 
+ 
+Baja 
+0,300 
+ 
+Alto 
+0,400 
+4,3 
+PRIORIZACIÓN DEL RIESGO 
+ 
+ 
+
+--- PAGE 60 ---
+60 
+Puntuación del Riesgo =Probabilidad x 
+Impacto 
+0,120 
+Prioridad 
+del Riesgo 
+Prioridad Moderada 
+ 
+5 
+RESPUESTA A LOS RIESGOS 
+5.1 
+ESTRATEGIA 
+Mitigar Riesgo 
+X 
+Evitar Riesgo 
+ 
+Aceptar Riesgo 
+ 
+Transferir Riesgo  
+5.1 
+DISPARADOR DE 
+RIESGO 
+- Confusión en la asignación de las actividades 
+- Ausencia de reuniones 
+- Cuando haya discrepancias en la información compartida entre los miembros 
+5.3 
+ACCIONES PARA 
+DAR 
+RESPUESTA AL 
+RIESGO 
+- Establecer reuniones semanales para coordinación 
+- Definir roles a los miembros 
+- Tener un canal oficial de comunicación 
+ 
+Anexo N° 07 
+Formato para identificar y analizar riesgos 
+1 
+NÚMERO Y FECHA DEL 
+DOCUMENTO 
+Número 
+7 
+Fecha 
+21/11/2025 
+2 
+DATOS GENERALES 
+DEL PROYECTO 
+Nombre del Proyecto 
+Tienda de ropa para varón 
+Ubicación Geográfica 
+Tacna, Tacna 
+3 
+IDENTIFICACIÓN DE RIESGOS 
+3,1 CÓDIGO DE RIESGO 
+R-007 
+3,2 DESCRIPCIÓN DEL RIESGO 
+Algunos integrantes del equipo no poseen experiencia para realizar 
+correctamente sus actividades asignadas 
+3,3 CLASE DE RIESGO 
+Riesgo Humano 
+3,4 
+CAUSA(S) GENERADORA(S) 
+Causa N° 1 
+Falta de capacitación 
+Causa N° 2 
+Nuevas tecnologías desconocidas 
+Causa N° 3 
+Rotación de actividades 
+4 
+ANÁLISIS CUALITATIVO DE RIESGOS 
+4,1 
+PROBABILIDAD DE OCURRENCIA 
+4,2 
+IMPACTO EN LA EJECUCIÓN DE LA OBRA 
+Muy baja 
+0,10 
+ 
+Muy bajo 
+0,05 
+ 
+Baja 
+0,30 
+ 
+Bajo 
+0,10 
+ 
+Moderada 
+0,50 
+X 
+Moderado 
+0,20 
+ 
+Alta 
+0,70 
+ 
+Alto 
+0,40 
+X 
+Muy alta 
+0,90 
+ 
+Muy alto 
+0,80 
+ 
+ 
+ 
+
+--- PAGE 61 ---
+61 
+ 
+Moderada 
+0,500 
+ 
+Alto 
+0,400 
+4,3 
+PRIORIZACIÓN DEL RIESGO 
+Puntuación del Riesgo =Probabilidad x 
+Impacto 
+0,200 
+Prioridad 
+del Riesgo 
+Alta Prioridad 
+ 
+5 
+RESPUESTA A LOS RIESGOS 
+5.1 
+ESTRATEGIA 
+Mitigar Riesgo 
+X 
+Evitar Riesgo 
+ 
+Aceptar Riesgo 
+ 
+Transferir Riesgo 
+ 
+5.1 
+DISPARADOR DE 
+RIESGO 
+- Miembros que solicitan ayuda sobre funciones básicas 
+- Cuando hayan errores frecuentes 
+- Falta de una correcta capacitación 
+5.3 
+ACCIONES PARA DAR 
+RESPUESTA AL RIESGO 
+- Proporcionar capacitaciones sobre herramientos importantes 
+- Repartir tareas según sus habilidades 
+ 
+Anexo N° 08 
+Formato para identificar y analizar riesgos 
+1 
+NÚMERO Y FECHA 
+DEL DOCUMENTO 
+Número 
+8 
+Fecha 
+21/11/2025 
+2 
+DATOS GENERALES 
+DEL PROYECTO 
+Nombre del Proyecto 
+Tienda de ropa para varón 
+Ubicación Geográfica 
+Tacna, Tacna 
+3 
+IDENTIFICACIÓN DE RIESGOS 
+3,1 CÓDIGO DE RIESGO 
+R-008 
+3,2 DESCRIPCIÓN DEL RIESGO 
+El proyecto se puede ver afectado por funcionalidades incorrectas e 
+incompletas por requerimientos ambiguos o mal definidos 
+3,3 CLASE DE RIESGO 
+Riesgo de los Requerimientos 
+3,4 
+CAUSA(S) GENERADORA(S) 
+Causa N° 1 
+Deficiencia en la comunicación efectiva con los 
+stakeholders 
+Causa N° 2 
+Ausencia del análisis de los requerimientos 
+Causa N° 3 
+Cambios no registrados o no actualizados en la 
+documentación 
+4 
+ANÁLISIS CUALITATIVO DE RIESGOS 
+4,1 
+PROBABILIDAD DE OCURRENCIA 
+4,2 
+IMPACTO EN LA EJECUCIÓN DE LA OBRA 
+Muy baja 
+0,10 
+ 
+Muy bajo 
+0,05 
+ 
+Baja 
+0,30 
+ 
+Bajo 
+0,10 
+ 
+Moderada 
+0,50 
+X 
+Moderado 
+0,20 
+ 
+Alta 
+0,70 
+ 
+Alto 
+0,40 
+X 
+ 
+ 
+
+--- PAGE 62 ---
+62 
+Muy alta 
+0,90 
+ 
+Muy alto 
+0,80 
+ 
+ 
+Moderada 
+0,500 
+ 
+Alto 
+0,400 
+4,3 
+PRIORIZACIÓN DEL RIESGO 
+Puntuación del Riesgo =Probabilidad x 
+Impacto 
+0,200 
+Prioridad 
+del Riesgo 
+Alta Prioridad 
+ 
+5 
+RESPUESTA A LOS RIESGOS 
+5,1 
+ESTRATEGIA 
+Mitigar Riesgo 
+X 
+Evitar Riesgo 
+ 
+Aceptar Riesgo 
+ 
+Transferir Riesgo 
+ 
+5,2 
+DISPARADOR DE 
+RIESGO 
+- Al inicio de la elicitación de requerimientos 
+- Al encontrar ambigüedad en los requerimientos 
+5,3 
+ACCIONES PARA DAR 
+RESPUESTA AL 
+RIESGO 
+- Priorizar la comunicación efectiva y directa con el usuario 
+- Redactar de manera adecuada y correcta los requerimientos 
+- Validar y revisar exhaustivamente los requerimientos. 
+ 
+Anexo N° 09 
+Formato para identificar y analizar riesgos 
+1 
+NÚMERO Y FECHA DEL 
+DOCUMENTO 
+Número 
+9 
+Fecha 
+21/11/2025 
+2 
+DATOS GENERALES 
+DEL PROYECTO 
+Nombre del Proyecto 
+Tienda de ropa para varón 
+Ubicación Geográfica 
+Tacna, Tacna 
+3 
+IDENTIFICACIÓN DE RIESGOS 
+3,1 CÓDIGO DE RIESGO 
+R-009 
+3,2 DESCRIPCIÓN DEL RIESGO 
+El sistema puede no cumplir con las expectativas de la tienda debido a la 
+baja intervención del usuario/cliente en el proyecto 
+3,3 CLASE DE RIESGO 
+Riesgos humanos 
+3,4 
+CAUSA(S) GENERADORA(S) 
+Causa N° 1 
+Poca disponibilidad del cliente para validar 
+avances y realizar entrevistas 
+Causa N° 2 Mala comunicación entre el equipo de desarrollo y 
+el cliente 
+Causa N° 3 Una falta de interés o desconocimiento del usuario 
+en el proceso de desarrollo 
+4 
+ANÁLISIS CUALITATIVO DE RIESGOS 
+4,1 
+PROBABILIDAD DE OCURRENCIA 
+4,2 
+IMPACTO EN LA EJECUCIÓN DE LA OBRA 
+Muy baja 
+0,10 
+ 
+Muy bajo 
+0,05 
+ 
+Baja 
+0,30 
+ 
+Bajo 
+0,10 
+ 
+Moderada 
+0,50 
+ 
+Moderado 
+0,20 
+ 
+ 
+ 
+
+--- PAGE 63 ---
+63 
+Alta 
+0,70 
+X 
+Alto 
+0,40 
+X 
+Muy alta 
+0,90 
+ 
+Muy alto 
+0,80 
+ 
+ 
+Alta 
+0,700 
+ 
+Alto 
+0,400 
+4,3 
+PRIORIZACIÓN DEL RIESGO 
+Puntuación del Riesgo =Probabilidad x 
+Impacto 
+0,280 
+Prioridad 
+del Riesgo 
+Alta Prioridad 
+ 
+5 
+RESPUESTA A LOS RIESGOS 
+5,1 
+ESTRATEGIA 
+Mitigar Riesgo 
+ 
+Evitar Riesgo 
+X 
+Aceptar Riesgo 
+ 
+Transferir Riesgo  
+5,2 
+DISPARADOR 
+DE RIESGO 
+- Al momento de realizar las entrevistas a los usuarios 
+- Encontrar deficiencia en la comunicación efectiva con los usuarios 
+5,3 
+ACCIONES 
+PARA DAR 
+RESPUESTA AL 
+RIESGO 
+- Revisar documentación anterior existente 
+- Realizar una observación directa para evaluar los procesos del usuario 
+- Realizar encuestas más claras y directas al usuario 
+- Mantenerse perseverante 
+ 
+Anexo N° 10 
+Formato para identificar y analizar riesgos 
+1 
+NÚMERO Y FECHA DEL 
+DOCUMENTO 
+Número 
+10 
+Fecha 
+21/11/2025 
+2 
+DATOS GENERALES 
+DEL PROYECTO 
+Nombre del Proyecto 
+Tienda de ropa para varón 
+Ubicación Geográfica 
+Tacna, Tacna 
+3 
+IDENTIFICACIÓN DE RIESGOS 
+3,1 CÓDIGO DE RIESGO 
+R-010 
+3,2 DESCRIPCIÓN DEL RIESGO 
+La evolución de las tecnologías pueden volver obsoletas partes del 
+software, lo que requiere ajustes no previstos 
+3,3 CLASE DE RIESGO 
+Riesgos en la tecnología 
+3,4 
+CAUSA(S) GENERADORA(S) 
+Causa N° 1 Dependencia en los frameworks y librerías que se 
+actualizan constantemente 
+Causa N° 2 
+Uso de herramientas con poca usabilidad y sin 
+soporte a largo plazo 
+Causa N° 3 
+Escasa capacitación del equipo para adaptarse a 
+nuevas versiones 
+4 
+ANÁLISIS CUALITATIVO DE RIESGOS 
+4,1 
+PROBABILIDAD DE OCURRENCIA 
+4,2 
+IMPACTO EN LA EJECUCIÓN DE LA OBRA 
+Muy baja 
+0,10 
+ 
+Muy bajo 
+0,05 
+ 
+Baja 
+0,30 
+X 
+Bajo 
+0,10 
+ 
+ 
+ 
+
+--- PAGE 64 ---
+64 
+Moderada 
+0,50 
+ 
+Moderado 
+0,20 
+ 
+Alta 
+0,70 
+ 
+Alto 
+0,40 
+X 
+Muy alta 
+0,90 
+ 
+Muy alto 
+0,80 
+ 
+ 
+Baja 
+0,300 
+ 
+Alto 
+0,400 
+4,3 
+PRIORIZACIÓN DEL RIESGO 
+Puntuación del Riesgo =Probabilidad x 
+Impacto 
+0,120 
+Prioridad 
+del Riesgo 
+Prioridad Moderada 
+ 
+5 
+RESPUESTA A LOS RIESGOS 
+5,1 
+ESTRATEGIA 
+Mitigar Riesgo 
+X 
+Evitar Riesgo 
+ 
+Aceptar Riesgo 
+ 
+Transferir Riesgo 
+ 
+5,2 
+DISPARADOR DE 
+RIESGO 
+- Al adquirir y decidir las herramientas de software a usar 
+- Al inicio de la planificación 
+5,3 
+ACCIONES PARA 
+DAR RESPUESTA 
+AL RIESGO 
+- Mitigar la dependencia de frameworks que se actualizan constantemente 
+- Mayor capacitación del equipo de trabajo y del soporte técnico 
+ 
+Anexo N° 11 
+Formato para identificar y analizar riesgos 
+1 
+NÚMERO Y FECHA DEL 
+DOCUMENTO 
+Número 
+11 
+Fecha 
+21/11/2025 
+2 
+DATOS GENERALES 
+DEL PROYECTO 
+Nombre del Proyecto 
+Tienda de ropa para varón 
+Ubicación Geográfica 
+Tacna, Tacna 
+3 
+IDENTIFICACIÓN DE RIESGOS 
+3,1 CÓDIGO DE RIESGO 
+R-011 
+3,2 DESCRIPCIÓN DEL RIESGO 
+La mala planificación implica generar retrasos, sobrecostos e 
+incumplimientos de objetivos 
+3,3 CLASE DE RIESGO 
+Riesgos organizacional 
+3,4 
+CAUSA(S) GENERADORA(S) 
+Causa N° 1 
+Estimación incorrecta del tiempo y recursos 
+necesarios para el proyecto 
+Causa N° 2 
+Falta de priorización de tareas clave 
+Causa N° 3 
+Una asignación deficiente de roles o 
+responsabilidades 
+4 
+ANÁLISIS CUALITATIVO DE RIESGOS 
+4,1 
+PROBABILIDAD DE OCURRENCIA 
+4,2 
+IMPACTO EN LA EJECUCIÓN DE LA OBRA 
+Muy baja 
+0,10 
+ 
+Muy bajo 
+0,05 
+ 
+ 
+ 
+
+--- PAGE 65 ---
+65 
+Baja 
+0,30 
+ 
+Bajo 
+0,10 
+ 
+Moderada 
+0,50 
+ 
+Moderado 
+0,20 
+ 
+Alta 
+0,70 
+X 
+Alto 
+0,40 
+ 
+Muy alta 
+0,90 
+ 
+Muy alto 
+0,80 
+X 
+ 
+Alta 
+0,700 
+ 
+Muy alto 
+0,800 
+4,3 
+PRIORIZACIÓN DEL RIESGO 
+Puntuación del Riesgo =Probabilidad x 
+Impacto 
+0,560 
+Prioridad 
+del Riesgo 
+Alta Prioridad 
+ 
+5 
+RESPUESTA A LOS RIESGOS 
+5,1 
+ESTRATEGIA 
+Mitigar Riesgo 
+ 
+Evitar Riesgo 
+X 
+Aceptar Riesgo 
+ 
+Transferir Riesgo 
+ 
+5,2 
+DISPARADOR DE 
+RIESGO 
+- Al incumplir los hitos clave indicados en el cronograma 
+- Conflictos en la comunicación del equipo y objetivos mal redactados 
+5,3 
+ACCIONES PARA 
+DAR RESPUESTA 
+AL RIESGO 
+- Definición e identificación de objetivos más claros 
+- Realización correcta de las EDT, cronograma e hitos 
+- Definir correctamente el alcance del proyecto 
+ 
+ 
+Anexo N° 12 
+Formato para identificar y analizar riesgos 
+1 
+NÚMERO Y FECHA DEL 
+DOCUMENTO 
+Número 
+12 
+Fecha 
+21/11/2025 
+2 
+DATOS GENERALES 
+DEL PROYECTO 
+Nombre del Proyecto 
+Tienda de ropa para varón 
+Ubicación Geográfica 
+Tacna, Tacna 
+3 
+IDENTIFICACIÓN DE RIESGOS 
+3,1 CÓDIGO DE RIESGO 
+R-012 
+3,2 DESCRIPCIÓN DEL RIESGO 
+El sistema podría exponer datos personales de los stakeholders, lo que 
+generaría problemas legales y de confianza 
+3,3 CLASE DE RIESGO 
+Riesgos en la tecnología 
+Riesgos políticos 
+3,4 
+CAUSA(S) GENERADORA(S) 
+Causa N° 1 
+Una débil implementación en medidas de 
+seguridad 
+Causa N° 2 
+Falta de pruebas de seguridad 
+Causa N° 3 
+Accesos sin control, almacenamiento incorrecto 
+respecto a la información sensible 
+4 
+ANÁLISIS CUALITATIVO DE RIESGOS 
+4,1 
+PROBABILIDAD DE OCURRENCIA 
+4,2 
+IMPACTO EN LA EJECUCIÓN DE LA OBRA 
+ 
+ 
+
+--- PAGE 66 ---
+66 
+Muy baja 
+0,10 
+ 
+Muy bajo 
+0,05 
+ 
+Baja 
+0,30 
+ 
+Bajo 
+0,10 
+ 
+Moderada 
+0,50 
+X 
+Moderado 
+0,20 
+ 
+Alta 
+0,70 
+ 
+Alto 
+0,40 
+ 
+Muy alta 
+0,90 
+ 
+Muy alto 
+0,80 
+X 
+ 
+Moderada 
+0,500 
+ 
+Muy alto 
+0,800 
+4,3 
+PRIORIZACIÓN DEL RIESGO 
+Puntuación del Riesgo =Probabilidad x 
+Impacto 
+0,400 
+Prioridad 
+del Riesgo 
+Alta Prioridad 
+ 
+5 
+RESPUESTA A LOS RIESGOS 
+5,1 
+ESTRATEGIA 
+Mitigar Riesgo 
+X 
+Evitar Riesgo 
+ 
+Aceptar Riesgo 
+ 
+Transferir Riesgo 
+ 
+5,2 
+DISPARADOR DE 
+RIESGO 
+- Al inicio del desarrollo del programa de software 
+- Cuando se realizan las pruebas de cada módulo del programa 
+5,3 
+ACCIONES PARA 
+DAR RESPUESTA 
+AL RIESGO 
+- Priorizar e identificar las deficiencias en la seguridad del programa 
+- Verificar el acceso no autorizado al sistema 
+- Simular ataques controlados al sistema 
+ 
+ 
+Anexo N° 13 
+Formato para identificar y analizar riesgos 
+1 
+NÚMERO Y FECHA DEL 
+DOCUMENTO 
+Número 
+13 
+Fecha 
+21/11/2025 
+2 
+DATOS GENERALES 
+DEL PROYECTO 
+Nombre del Proyecto 
+Tienda de ropa para varón 
+Ubicación Geográfica 
+Tacna, Tacna 
+3 
+IDENTIFICACIÓN DE RIESGOS 
+3,1 CÓDIGO DE RIESGO 
+R-013 
+3,2 DESCRIPCIÓN DEL RIESGO 
+El sistema tiene una interfaz mal diseñada o poco accesible, lo que 
+puede dificultar el uso del sistema y eficiencia operativa 
+3,3 CLASE DE RIESGO 
+Riesgo organizacional 
+3,4 
+CAUSA(S) GENERADORA(S) 
+Causa N° 1 Diseño sin considerar usabilidad o necesidades del 
+usuario correctamente 
+Causa N° 2 
+Estructura de interfaz recargada o poco intuitiva 
+Causa N° 3 Incompatibilidad con la pantalla de su dispositivo 
+o resoluciones 
+4 
+ANÁLISIS CUALITATIVO DE RIESGOS 
+ 
+ 
+
+--- PAGE 67 ---
+67 
+4,1 
+PROBABILIDAD DE OCURRENCIA 
+4,2 
+IMPACTO EN LA EJECUCIÓN DE LA OBRA 
+Muy baja 
+0,10 
+ 
+Muy bajo 
+0,05 
+ 
+Baja 
+0,30 
+ 
+Bajo 
+0,10 
+ 
+Moderada 
+0,50 
+X 
+Moderado 
+0,20 
+ 
+Alta 
+0,70 
+ 
+Alto 
+0,40 
+X 
+Muy alta 
+0,90 
+ 
+Muy alto 
+0,80 
+ 
+ 
+Moderada 
+0,500 
+ 
+Alto 
+0,400 
+4,3 
+PRIORIZACIÓN DEL RIESGO 
+Puntuación del Riesgo =Probabilidad x 
+Impacto 
+0,200 
+Prioridad 
+del Riesgo 
+Alta Prioridad 
+ 
+5 
+RESPUESTA A LOS RIESGOS 
+5,1 
+ESTRATEGIA 
+Mitigar Riesgo 
+ 
+Evitar Riesgo 
+X 
+Aceptar Riesgo 
+ 
+Transferir Riesgo 
+ 
+5,2 
+DISPARADOR DE 
+RIESGO 
+- Al empezar con la realización de los Mockups 
+- Cuando el usuario valida los Mockups de la interfaz 
+5,3 
+ACCIONES PARA 
+DAR RESPUESTA 
+AL RIESGO 
+- Priorizar y gestionar la interfaz en base a las necesidades del usuario 
+- Realizar una interfaz más intuitiva para el usuario y sencilla de usar 
+- Reforzar la experiencia en el uso de programas para apps móviles 
+ 
+Anexo N° 14 
+Formato para identificar y analizar riesgos 
+1 
+NÚMERO Y FECHA DEL 
+DOCUMENTO 
+Número 
+14 
+Fecha 
+21/11/2025 
+2 
+DATOS GENERALES 
+DEL PROYECTO 
+Nombre del Proyecto 
+Tienda de ropa para varón 
+Ubicación Geográfica 
+Tacna, Tacna 
+3 
+IDENTIFICACIÓN DE RIESGOS 
+3,1 CÓDIGO DE RIESGO 
+R-014 
+3,2 DESCRIPCIÓN DEL RIESGO 
+El sistema puede sufrir pérdida de datos o archivos, afectando la 
+continuidad del proyecto 
+3,3 CLASE DE RIESGO 
+Riesgo en la tecnología 
+3,4 
+CAUSA(S) GENERADORA(S) 
+Causa N° 1 
+Falta de copias de seguridad periódicas 
+Causa N° 2 
+Errores en el almacenamiento o fallas en el 
+hardware 
+ 
+ 
+
+--- PAGE 68 ---
+68 
+Causa N° 3 
+El manejo incorrecto de archivos por parte de 
+usuarios o procesos automáticos 
+4 
+ANÁLISIS CUALITATIVO DE RIESGOS 
+4,1 
+PROBABILIDAD DE OCURRENCIA 
+4,2 
+IMPACTO EN LA EJECUCIÓN DE LA OBRA 
+Muy baja 
+0,10 
+X 
+Muy bajo 
+0,05 
+ 
+Baja 
+0,30 
+ 
+Bajo 
+0,10 
+ 
+Moderada 
+0,50 
+ 
+Moderado 
+0,20 
+X 
+Alta 
+0,70 
+ 
+Alto 
+0,40 
+ 
+Muy alta 
+0,90 
+ 
+Muy alto 
+0,80 
+ 
+ 
+Muy baja 
+0,100 
+ 
+Moderado 
+0,200 
+4,3 
+PRIORIZACIÓN DEL RIESGO 
+Puntuación del Riesgo =Probabilidad x 
+Impacto 
+0,020 
+Prioridad 
+del Riesgo 
+Baja Prioridad 
+ 
+5 
+RESPUESTA A LOS RIESGOS 
+5,1 
+ESTRATEGIA 
+Mitigar Riesgo 
+ 
+Evitar Riesgo 
+ 
+Aceptar Riesgo 
+ 
+Transferir Riesgo 
+X 
+5,2 
+DISPARADOR DE 
+RIESGO 
+- Al realizar guardados de los archivos del sistema 
+- Al empezar con el desarrollo del programa de software 
+5,3 
+ACCIONES PARA DAR 
+RESPUESTA AL 
+RIESGO 
+- Realizar copias de seguridad con más frecuencia 
+- Priorizar el uso de plataformas de programación remota 
+- Utilizar un guardado del proyecto de forma local 
+ 
+Anexo N° 15 
+Formato para identificar y analizar riesgos 
+1 
+NÚMERO Y FECHA DEL 
+DOCUMENTO 
+Número 
+15 
+Fecha 
+21/11/2025 
+2 
+DATOS GENERALES 
+DEL PROYECTO 
+Nombre del Proyecto 
+Tienda de ropa para varón 
+Ubicación Geográfica 
+Tacna, Tacna 
+3 
+IDENTIFICACIÓN DE RIESGOS 
+3,1 CÓDIGO DE RIESGO 
+R-015 
+3,2 DESCRIPCIÓN DEL RIESGO 
+Alta competencia en el mercado afectando el posicionamiento del 
+software 
+3,3 CLASE DE RIESGO 
+Riesgo económico 
+3,4 
+CAUSA(S) GENERADORA(S) 
+Causa N° 1 
+Competidores con mejores precios 
+ 
+ 
+
+--- PAGE 69 ---
+69 
+Causa N° 2 
+Empresas con más marketing 
+Causa N° 3 
+Productos similares ya posicionados 
+4 
+ANÁLISIS CUALITATIVO DE RIESGOS 
+4,1 
+PROBABILIDAD DE OCURRENCIA 
+4,2 
+IMPACTO EN LA EJECUCIÓN DE LA OBRA 
+Muy baja 
+0,10 
+ 
+Muy bajo 
+0,05 
+ 
+Baja 
+0,30 
+ 
+Bajo 
+0,10 
+ 
+Moderada 
+0,50 
+ 
+Moderado 
+0,20 
+X 
+Alta 
+0,70 
+X 
+Alto 
+0,40 
+ 
+Muy alta 
+0,90 
+ 
+Muy alto 
+0,80 
+ 
+ 
+Alta 
+0,700 
+ 
+Moderado 
+0,200 
+4,3 
+PRIORIZACIÓN DEL RIESGO 
+Puntuación del Riesgo =Probabilidad x 
+Impacto 
+0,140 
+Prioridad 
+del Riesgo 
+Prioridad Moderada 
+ 
+5 
+RESPUESTA A LOS RIESGOS 
+5.1 ESTRATEGIA 
+Mitigar Riesgo 
+ 
+Evitar Riesgo 
+ 
+Aceptar Riesgo 
+X 
+Transferir Riesgo 
+ 
+5.2 DISPARADOR 
+DE RIESGO 
+Cuando el cliente o usuarios comparen el software con productos similares y 
+consideren alternativas competidoras, en la etapa de presentación 
+5.3 ACCIONES 
+PARA DAR 
+RESPUESTA AL 
+RIESGO 
+Resaltar las funcionalidades que no ofrece la competencia 
+Presentar demostraciones prácticas 
+Proveer soporte inicial gratuito 
+ 
+Anexo N° 16 
+Formato para identificar y analizar riesgos 
+1 
+NÚMERO Y FECHA DEL 
+DOCUMENTO 
+Número 
+16 
+Fecha 
+21/11/2025 
+2 
+DATOS GENERALES 
+DEL PROYECTO 
+Nombre del Proyecto 
+Tienda de ropa para varón 
+Ubicación Geográfica 
+Tacna, Tacna 
+3 
+IDENTIFICACIÓN DE RIESGOS 
+3,1 CÓDIGO DE RIESGO 
+R-016 
+3,2 DESCRIPCIÓN DEL RIESGO 
+Costos de mantenimiento por parte del usuario 
+3,3 CLASE DE RIESGO 
+Riesgo económico 
+ 
+ 
+
+--- PAGE 70 ---
+70 
+3,4 
+CAUSA(S) GENERADORA(S) 
+Causa N° 1 
+Actualizaciones frecuentes 
+Causa N° 2 
+Tecnologías de alto costo 
+Causa N° 3 
+Necesidad de soporte continuo 
+4 
+ANÁLISIS CUALITATIVO DE RIESGOS 
+4,1 
+PROBABILIDAD DE OCURRENCIA 
+4,2 
+IMPACTO EN LA EJECUCIÓN DE LA OBRA 
+Muy baja 
+0,10 
+ 
+Muy bajo 
+0,05 
+X 
+Baja 
+0,30 
+X 
+Bajo 
+0,10 
+ 
+Moderada 
+0,50 
+ 
+Moderado 
+0,20 
+ 
+Alta 
+0,70 
+ 
+Alto 
+0,40 
+ 
+Muy alta 
+0,90 
+ 
+Muy alto 
+0,80 
+ 
+ 
+Baja 
+0,300 
+ 
+Muy bajo 
+0,050 
+4,3 
+PRIORIZACIÓN DEL RIESGO 
+Puntuación del Riesgo =Probabilidad x 
+Impacto 
+0,015 
+Prioridad 
+del Riesgo 
+Baja Prioridad 
+ 
+5 
+RESPUESTA A LOS RIESGOS 
+5.1 
+ESTRATEGIA 
+Mitigar Riesgo 
+ 
+Evitar Riesgo 
+ 
+Aceptar Riesgo 
+X 
+Transferir Riesgo  
+5.2 
+DISPARADOR DE 
+RIESGO 
+Cuando el usuario empiece a utilizar el sistema y se requieran 
+actualizaciones, soporte técnico o ampliaciones de funcionalidades 
+5.3 
+ACCIONES PARA DAR 
+RESPUESTA AL 
+RIESGO 
+Brindar orientación al usuario/cliente sobre el mantenimiento básico 
+Documentar las funciones clave del sistema 
+Simplificar las actualizaciones del sistema 
+ 
+Anexo N° 17 
+Formato para identificar y analizar riesgos 
+1 
+NÚMERO Y FECHA DEL 
+DOCUMENTO 
+Número 
+17 
+Fecha 
+21/11/2025 
+2 
+DATOS GENERALES 
+DEL PROYECTO 
+Nombre del Proyecto 
+Tienda de ropa para varón 
+Ubicación Geográfica 
+Tacna, Tacna 
+3 
+IDENTIFICACIÓN DE RIESGOS 
+3,1 CÓDIGO DE RIESGO 
+R-017 
+ 
+ 
+
+--- PAGE 71 ---
+71 
+3,2 DESCRIPCIÓN DEL RIESGO 
+Una mala comunicación con el cliente puede generar 
+malentendidos, retrasos y errores en los entregables. 
+3,3 CLASE DE RIESGO 
+Riesgo económico 
+3,4 
+CAUSA(S) GENERADORA(S) 
+Causa N° 1 
+Falta de reuniones periódicas 
+Causa N° 2 
+Canales de comunicación inadecuados 
+Causa N° 3 
+Requerimientos no claros 
+4 
+ANÁLISIS CUALITATIVO DE RIESGOS 
+4,1 
+PROBABILIDAD DE OCURRENCIA 
+4,2 
+IMPACTO EN LA EJECUCIÓN DE LA OBRA 
+Muy baja 
+0,10 
+ 
+Muy bajo 
+0,05 
+ 
+Baja 
+0,30 
+ 
+Bajo 
+0,10 
+ 
+Moderada 
+0,50 
+ 
+Moderado 
+0,20 
+ 
+Alta 
+0,70 
+X 
+Alto 
+0,40 
+X 
+Muy alta 
+0,90 
+ 
+Muy alto 
+0,80 
+ 
+ 
+Alta 
+0,700 
+ 
+Alto 
+0,400 
+4,3 
+PRIORIZACIÓN DEL RIESGO 
+Puntuación del Riesgo =Probabilidad x 
+Impacto 
+0,280 
+Prioridad 
+del Riesgo 
+Alta Prioridad 
+ 
+5 
+RESPUESTA A LOS RIESGOS 
+5.1 
+ESTRATEGIA 
+Mitigar Riesgo 
+ 
+Evitar Riesgo 
+X 
+Aceptar Riesgo 
+ 
+Transferir Riesgo  
+5.2 
+DISPARADOR 
+DE RIESGO 
+Cuando se inicie la etapa de levantamiento y validación de requerimientos con el 
+cliente. 
+5.3 
+ACCIONES 
+PARA DAR 
+RESPUESTA 
+AL RIESGO 
+Programar reuniones periódicas con el cliente 
+Establecer y documentar claramente los canales oficiales de comunicación 
+Validar los requerimientos con el cliente 
+ 
+Anexo N° 18 
+Formato para identificar y analizar riesgos 
+1 
+NÚMERO Y FECHA DEL 
+DOCUMENTO 
+Número 
+18 
+Fecha 
+21/11/2025 
+2 
+DATOS GENERALES 
+DEL PROYECTO 
+Nombre del Proyecto 
+Tienda de ropa para varón 
+Ubicación Geográfica 
+Tacna, Tacna 
+ 
+ 
+
+--- PAGE 72 ---
+72 
+3 
+IDENTIFICACIÓN DE RIESGOS 
+3,1 CÓDIGO DE RIESGO 
+R-018 
+3,2 DESCRIPCIÓN DEL RIESGO 
+El software podría no ajustarse a las normas solicitadas por el 
+cliente, afectando la aceptación del producto. 
+3,3 CLASE DE RIESGO 
+Riesgo político 
+3,4 
+CAUSA(S) GENERADORA(S) 
+Causa N° 1 
+Normas mal interpretadas 
+Causa N° 2 
+Falta de revisiones 
+Causa N° 3 
+Cambios en las normas durante el proyecto 
+4 
+ANÁLISIS CUALITATIVO DE RIESGOS 
+4,1 
+PROBABILIDAD DE OCURRENCIA 
+4,2 
+IMPACTO EN LA EJECUCIÓN DE LA OBRA 
+Muy baja 
+0,10 
+ 
+Muy bajo 
+0,05 
+ 
+Baja 
+0,30 
+X 
+Bajo 
+0,10 
+ 
+Moderada 
+0,50 
+ 
+Moderado 
+0,20 
+ 
+Alta 
+0,70 
+ 
+Alto 
+0,40 
+ 
+Muy alta 
+0,90 
+ 
+Muy alto 
+0,80 
+X 
+ 
+Baja 
+0,300 
+ 
+Muy alto 
+0,800 
+4,3 
+PRIORIZACIÓN DEL RIESGO 
+Puntuación del Riesgo =Probabilidad x 
+Impacto 
+0,240 
+Prioridad 
+del Riesgo 
+Alta Prioridad 
+ 
+5 
+RESPUESTA A LOS RIESGOS 
+5.1 
+ESTRATEGIA 
+Mitigar Riesgo 
+ 
+Evitar Riesgo 
+X 
+Aceptar Riesgo 
+ 
+Transferir Riesgo  
+5.2 
+DISPARADOR 
+DE RIESGO 
+Cuando se inicie la revisión y análisis de las normas y requisitos formales que 
+deben cumplirse para desarrollar el software. 
+5.3 
+ACCIONES 
+PARA DAR 
+RESPUESTA 
+AL RIESGO 
+Revisar detalladamente todas las normas, estándares y lineamientos 
+proporcionados por el cliente 
+Realizar revisiones periódicas de cumplimiento normativo 
+Mantener una comunicación constante con el cliente para validar criterios legales 
+ 
+Anexo N° 19 
+Formato para identificar y analizar riesgos 
+1 
+NÚMERO Y FECHA DEL 
+DOCUMENTO 
+Número 
+19 
+Fecha 
+21/11/2025 
+ 
+ 
+
+--- PAGE 73 ---
+73 
+2 
+DATOS GENERALES 
+DEL PROYECTO 
+Nombre del Proyecto 
+Tienda de ropa para varón 
+Ubicación Geográfica 
+Tacna, Tacna 
+3 
+IDENTIFICACIÓN DE RIESGOS 
+3,1 CÓDIGO DE RIESGO 
+R-019 
+3,2 DESCRIPCIÓN DEL RIESGO 
+El sistema podría no permitir crecimiento, nuevas funciones o 
+expansión futura. 
+3,3 CLASE DE RIESGO 
+Riesgo de los requerimientos 
+3,4 
+CAUSA(S) GENERADORA(S) 
+Causa N° 1 
+Arquitectura poco flexible 
+Causa N° 2 
+Tecnología elegida con limitaciones 
+Causa N° 3 
+No considerar el crecimiento futuro 
+4 
+ANÁLISIS CUALITATIVO DE RIESGOS 
+4,1 
+PROBABILIDAD DE OCURRENCIA 
+4,2 
+IMPACTO EN LA EJECUCIÓN DE LA OBRA 
+Muy baja 
+0,10 
+ 
+Muy bajo 
+0,05 
+ 
+Baja 
+0,30 
+ 
+Bajo 
+0,10 
+ 
+Moderada 
+0,50 
+X 
+Moderado 
+0,20 
+ 
+Alta 
+0,70 
+ 
+Alto 
+0,40 
+X 
+Muy alta 
+0,90 
+ 
+Muy alto 
+0,80 
+ 
+ 
+Moderada 
+0,500 
+ 
+Alto 
+0,400 
+4,3 
+PRIORIZACIÓN DEL RIESGO 
+Puntuación del Riesgo =Probabilidad x 
+Impacto 
+0,200 
+Prioridad 
+del Riesgo 
+Alta Prioridad 
+ 
+5 
+RESPUESTA A LOS RIESGOS 
+5.1 
+ESTRATEGIA 
+Mitigar Riesgo 
+ 
+Evitar Riesgo 
+X 
+Aceptar Riesgo 
+ 
+Transferir Riesgo 
+ 
+5.2 
+DISPARADOR 
+DE RIESGO 
+Cuando se inicie la definición de la arquitectura del sistema y el levantamiento 
+detallado de los requerimientos funcionales y no funcionales. 
+5.3 
+ACCIONES 
+PARA DAR 
+RESPUESTA 
+AL RIESGO 
+Elicitar claramente los requerimientos de escalabilidad con el cliente 
+Diseñar una arquitectura modular y flexible 
+Validar con el cliente escenarios de futuro crecimiento 
+ 
+Anexo N° 20 
+Formato para identificar y analizar riesgos 
+ 
+ 
+
+--- PAGE 74 ---
+74 
+1 
+NÚMERO Y FECHA DEL 
+DOCUMENTO 
+Número 
+20 
+Fecha 
+21/11/2025 
+2 
+DATOS GENERALES 
+DEL PROYECTO 
+Nombre del Proyecto 
+Tienda de ropa para varón 
+Ubicación Geográfica 
+Tacna, Tacna 
+3 
+IDENTIFICACIÓN DE RIESGOS 
+3,1 CÓDIGO DE RIESGO 
+R-020 
+3,2 DESCRIPCIÓN DEL RIESGO 
+El cliente o los usuarios pueden negarse a usar el nuevo sistema. 
+3,3 CLASE DE RIESGO 
+Riesgo político 
+3,4 
+CAUSA(S) GENERADORA(S) 
+Causa N° 1 
+Resistencia al cambio 
+Causa N° 2 
+Capacitación insuficiente 
+Causa N° 3 
+Interfaz poco amigable 
+4 
+ANÁLISIS CUALITATIVO DE RIESGOS 
+4,1 
+PROBABILIDAD DE OCURRENCIA 
+4,2 
+IMPACTO EN LA EJECUCIÓN DE LA OBRA 
+Muy baja 
+0,10 
+ 
+Muy bajo 
+0,05 
+ 
+Baja 
+0,30 
+X 
+Bajo 
+0,10 
+ 
+Moderada 
+0,50 
+ 
+Moderado 
+0,20 
+ 
+Alta 
+0,70 
+ 
+Alto 
+0,40 
+ 
+Muy alta 
+0,90 
+ 
+Muy alto 
+0,80 
+X 
+ 
+Baja 
+0,300 
+ 
+Muy alto 
+0,800 
+4,3 
+PRIORIZACIÓN DEL RIESGO 
+Puntuación del Riesgo =Probabilidad x 
+Impacto 
+0,240 
+Prioridad 
+del Riesgo 
+Alta Prioridad 
+ 
+5 
+RESPUESTA A LOS RIESGOS 
+5.1 
+ESTRATEGIA 
+Mitigar Riesgo 
+ 
+ 
+X 
+Aceptar Riesgo 
+ 
+Transferir Riesgo  
+5.2 
+DISPARADOR DE 
+RIESGO 
+Cuando se inicien las pruebas preliminares y las primeras demostraciones 
+del sistema al cliente y/o usuarios. 
+5.3 
+ACCIONES PARA DAR 
+RESPUESTA AL 
+RIESGO 
+Realizar sesiones frecuentes de validación con el cliente 
+Brindar capacitaciones previas a los usuarios 
+Ajustar el diseño según la respuesta de los usuarios 
+ 
+ 
+ 
+
+--- PAGE 75 ---
+75 
+4.3.​
+Monitorización de riesgos 
+ID 
+Riesgo 
+Nombre del 
+Riesgo 
+Causa Principal 
+Respuesta Planeada 
+Responsable 
+Indicador Clave de 
+Rendimiento (KPI) 
+Impacto 
+Actual 
+(Residual) 
+Acciones de 
+Contingencia (si 
+aplica) 
+R-001 
+Retiro de integrante 
+del equipo de 
+trabajo 
+Por problemas 
+personales, enfermedad, 
+accidente o mejor oferta 
+de trabajo 
+Aceptar: Implementar un plan de 
+sustituciòn de integrantes y capacitaciòn a 
+los integrantes en tareas importantes para 
+que puedan reemplazar al integrante que 
+salìo 
+Luis Condori 
+Número de días en 
+reasignar el rol vacante 
+Muy Bajo 
+Contratar a un apoyo 
+externo 
+R-002 
+Incumplimiento de 
+los objetivos 
+Que los objetivos sean 
+ambiguos y mala 
+planificaciòn 
+Mitigar: Monitorear los avances del 
+proyecto y realizar ajustes al cronograma en 
+caso de cambios a fin de cumplir con los 
+objetivos 
+Luis Condori 
+% de avance semanal 
+sumpido según el 
+cronograma 
+Bajo 
+Hacer revisiones a los 
+objetivos con el equipo 
+para asegurar el 
+alineamiento, 
+R-003 
+Incumplimiento del 
+cronograma 
+Cambios sin ajustes en el 
+cronograma y 
+subestimaciòn de 
+tiempos 
+Evitar: Ajustar tiempos cuando sea 
+necesario y realizar seguimiento semanales 
+del cronograma 
+Luis Condori 
+Número de actividades 
+no cumplidas 
+Muy Bajo 
+Implementar un plan 
+de seguimiento al 
+cuplimiento semanal 
+del cronograma 
+R-004 
+Vàlidaciòn 
+incorrecta de los 
+requerimientos 
+Comunicaciòn deficiente 
+con el cliente/usuarios, 
+mal entendimiento en las 
+necesidades y 
+requerimientos sin 
+revisiòn ni aprobaciòn 
+Mitigar: Establecer reuniones efectivas con 
+el cliente/usuarios y documentar claramente 
+los requerimientos 
+Luis Condori 
+Número de 
+requerimientos que 
+requieren corrección 
+Bajo 
+Revisar y validar cada 
+requerimiento con el 
+cliente/usuarios 
+R-005 
+Insuficiencia de 
+recursos y 
+herramientas de 
+trabajo 
+Falta de planifiaciòn en 
+la asignaciòn de los 
+recursos y presupuesto 
+mal elaborado 
+Aceptar: Verificar con anticipación la 
+disponibilidad de las herramientas y 
+software 
+Luis Condori 
+% de disponibilidad de 
+herramientas o software 
+importantes 
+Bajo 
+Reprogramar 
+actividades en caso de 
+indisponibilidad de 
+herramientas o 
+software 
+ 
+ 
+
+--- PAGE 76 ---
+76 
+R-006 
+Falta de 
+coordinaciòn entre 
+los miembros del 
+equipo 
+Falta de liderazgo 
+efectivo, diferencias en 
+estilo de trabajo y 
+disponibilidad de cada 
+integrantes 
+Mitigar: Tener un canal de comunicaciòn 
+efectivo, establecer reuniones periódicas 
+para coordinar 
+Luis Condori 
+Número de retrasos 
+causados por falta de 
+comunicación 
+Bajo 
+Redefinir los roles en 
+el equipo 
+R-007 
+Falta de experiencia 
+o capacitaciòn 
+Falta de capacitaciòn y 
+rotaciòn de actividades 
+Mitigar: Ajustar los responsables de las 
+actividades segùn las habilidades de los 
+integrantes 
+Luis Condori 
+Número de actividades 
+reasignadas 
+ 
+Proporcionar 
+capacitaciones sobre 
+herramientos 
+importantes 
+R-008 
+Documentación 
+deficiente de 
+requerimientos 
+Deficiencia en la 
+comunicación efectiva y 
+ausencia de análisis en 
+requerimientos 
+Mitigar: Priorizar la comunicación efectiva 
+y directa con el usuario, validar y revisar 
+exhaustivamente los requerimientos 
+Alex Chata 
+% de requerimientos 
+aprobados y validados 
+por el usuario/cliente 
+Bajo 
+Realizar sesiones 
+posteriores para la 
+revisión y actualizar la 
+documentación 
+R-009 
+Poca participación 
+de cliente/usuarios 
+Poca disponibilidad del 
+usuario para validar 
+avances o realizar 
+entrevistas 
+Evitar: Revisar documentación anterior 
+existente (si aplica), realizar métodos de 
+elicitación, mantenerse perseverante 
+Alex Chata 
+Número de asistencias 
+del usuario a entrevistas 
+y validaciones clave 
+Bajo 
+Reagendar reuniones y 
+definir un 
+representante del 
+usuario obligatorio 
+R-010 
+Cambios rápidos en 
+la tecnología 
+utilizada 
+Dependencia de 
+frameworks y librerías 
+que se actualizan 
+constantemente 
+Mitigar: Mayor capacitación del equipo de 
+trabajo y soporte técnico 
+Alex Chata 
+% de frecuencia de 
+actualizaciones en 
+herramientas o 
+frameworks usados en el 
+proyecto 
+Bajo 
+Realizar migraciones 
+de datos controladas 
+sin afectar el 
+cronograma 
+R-011 
+Mala planificación 
+en el proyecto 
+Estimación incorrecta 
+del tiempo,alcance y 
+recursos necesarios para 
+el proyecto 
+Evitar: Redacción correcta de los EDT, 
+cronograma, actividades, objetivos y 
+alcance del proyecto 
+Alex Chata 
+Número de actividades 
+cumplidas según 
+cronograma 
+Bajo 
+Reestructurar las 
+actividades, asignar 
+recursos adicionales (si 
+aplica) y ajustar el plan 
+original 
+R-012 
+Vulnerabilidad en 
+privacidad 
+Implementación 
+deficiente en medidas de 
+seguridad 
+Mitigar: Verificar el acceso no autorizado, 
+realizar pruebas constantes en cada módulo 
+del programa y simular ataques controlados 
+Alex Chata 
+Número de accidentes o 
+alertas de seguridad 
+identificados 
+Medio 
+Implementar parches 
+de seguridad, reforzar 
+la autenticación. 
+ 
+ 
+
+--- PAGE 77 ---
+77 
+R-013 
+Mala disponibilidad 
+y programación del 
+interfaz 
+Diseño sin considerar 
+usabilidad o necesidades 
+del usuario de forma 
+adecuada 
+Evitar: Realizar una interfaz más intuitiva 
+para el usuario, mejorar su usabilidad y 
+capacitar al personal en uso de programas 
+orientados a apps móviles 
+Alex Chata 
+Tiempo de respuesta y 
+calificación del usuario 
+en su usabilidad 
+Bajo 
+Optimizar código y 
+usabilidad en base a las 
+necesidades del 
+usuario 
+R-014 
+Daño o corrupción 
+de los archivos 
+Falta de copias de 
+seguridad periódicas 
+Transferir: Priorizar el uso de plataformas 
+de programación remota, utilizar el 
+guardado de forma local 
+Alex Chata 
+Número de fallos, errores 
+en archivos o base de 
+datos 
+Muy bajo 
+Restaurar copias de 
+seguridad, habilitar 
+backups automáticos y 
+verificar la integridad 
+periódicamente 
+R-015 
+Alta competencia 
+en el mercado 
+Competidores con 
+mejores precios​
+​
+ 
+Aceptar: Resaltar las funcionalidades que 
+no ofrece la competencia 
+Johan Mamani 
+Número de funciones 
+diferenciadoras 
+documentadas 
+Muy bajo 
+Ajustar precios o crear 
+promociones 
+temporales 
+R-016 
+Costos de 
+mantenimiento por 
+parte del usuario 
+Actualizaciones 
+frecuentes 
+Aceptar: Brindar orientación al 
+usuario/cliente sobre el mantenimiento 
+básico 
+Johan Mamani 
+Número de 
+usuarios/clientes 
+capacitados 
+Muy bajo 
+Crear manual o video 
+de mantenimiento 
+básico 
+R-017 
+Problema de 
+comunicación entre 
+el equipo y el 
+cliente 
+Falta de reuniones 
+periódicas 
+Evitar: Programar reuniones periódicas con 
+el cliente 
+Johan Mamani Número de reuniones 
+realizadas por mes 
+Bajo 
+Crear un canal de 
+comunicación formal 
+R-018 
+Incumpliento de 
+normas indicadas 
+por el cliente 
+Normas mal 
+interpretadas 
+Evitar: Revisar detalladamente todas las 
+normas, estándares y lineamientos 
+proporcionados por el cliente 
+Johan Mamani 
+Número de normas 
+revisadas y aprobadas 
+por el equipo 
+Medio 
+Solicitar aclaraciones 
+al cliente 
+R-019 
+Escalabilidad 
+limitada para 
+futuras 
+actualizaciones del 
+software 
+Arquitectura poco 
+flexible 
+Evitar: Elicitar claramente los 
+requerimientos de escalabilidad con el 
+cliente 
+Johan Mamani 
+Número de 
+requerimientos de 
+escalabilidad validada 
+Bajo 
+Uso arquitectura en 
+capas 
+R-020 
+Rechazo del cliente 
+al nuevo sistema 
+Resistencia al cambio 
+Evitar: Realizar sesiones frecuentes de 
+validación con el cliente 
+Johan Mamani Número de validaciones 
+con el cliente 
+Medio 
+Capacitación 
+personalizada 
+ 
+ 
+ 
+
+--- PAGE 78 ---
+78 
+C.​ CONCLUSIONES  
+• Reflexión sobre el proyecto 
+Este proyecto nos permitió entender con mayor claridad los problemas reales que 
+enfrenta la tienda del cliente. Al analizar cómo se llevaba la gestión de inventario, ventas y 
+reportes de manera manual, quedó evidente que el negocio necesitaba modernizarse para 
+evitar errores y mejorar su eficiencia. 
+Todo el proceso, desde levantar requerimientos, diseñar casos de uso y mockups, 
+hasta elaborar la EDT, el cronograma, los diagramas de Gantt y Red, y analizar los riesgos, 
+nos ayudó a organizar de forma más profesional el desarrollo del sistema y a visualizar cómo 
+esta solución permitirá al negocio ser más competitivo y ordenado. 
+ 
+• Aprendizajes obtenidos 
+A lo largo del proyecto aprendimos a comunicarnos mejor con el cliente, a entender 
+sus necesidades reales y a traducirlas en un sistema bien planificado. Aprendimos también a 
+crear diagramas que nos permiten visualizar el funcionamiento del software antes de 
+construirlo y a organizar tareas y tiempos de forma más realista. 
+Además, el análisis de riesgos nos enseñó a anticiparnos a posibles problemas y a 
+pensar en soluciones antes de que ocurran. 
+En general, esta experiencia nos ayudó a trabajar de forma más profesional en el 
+desarrollo de un proyecto de software real. 
+​
+​
+ 
+​
+​
+ 
+ 
+ 
+ 
+
+--- PAGE 79 ---
+79 
+ANEXOS 
+EDT - Diccionarios 
+https://www.canva.com/design/DAG3Bq-3aKU/EPf-rmoS1MobNeqs-N0d6g/edit  
+ 
+Recursos, actividades, hitos y diagrama de Gantt 
+https://docs.google.com/spreadsheets/d/1FyikkAAsMrx8-4mM6gKF27GaVKR_LeGDsO7Mv
+F6McrE/edit?usp=sharing 
+ 
+Análisis y planificación de riesgos 
+https://docs.google.com/spreadsheets/d/17rdWDwjn6JLH0-KYaX8uz0ySWaZlmkiT/edit?usp
+=sharing&ouid=108978682847011770676&rtpof=true&sd=true 
+ 
+Monitorización de riesgos​
+https://docs.google.com/spreadsheets/d/1Gr59o17fCLvGlacvF3bjQ2anFcjfBCze/edit?usp=s
+haring&ouid=108978682847011770676&rtpof=true&sd=true 
+ 
+ 
+ 
+

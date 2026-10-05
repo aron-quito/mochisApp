@@ -1,0 +1,78 @@
+% ==============================================================================
+% SECCIÓN 3: REGLAS DE NEGOCIO DEL SISTEMA (RN-xx)
+% ==============================================================================
+
+\section{Reglas de Negocio del Sistema (RN)}
+
+Las Reglas de Negocio definen las restricciones operacionales, financieras, legales y de seguridad que rigen el comportamiento de la empresa Comercial Machi's y que deben ser implementadas y validadas por el sistema SYSELL tanto en el frontend como a nivel de dominio en el backend.
+
+\subsection{Especificación Formal de Reglas de Negocio}
+
+\begin{rnbox}{RN-01}{Moneda Nacional (PEN) y Régimen Tributario IGV (18\%)}
+\textbf{Descripción:} Toda transacción comercial, precio de venta al público, costo unitario, descuento, monto de apertura de caja y balance financiero debe ser registrado y procesado exclusivamente en \textbf{Soles Peruanos (PEN, \texttt{S/.})}.\\
+\textbf{Fórmula de Cálculo Tributario:}
+\begin{align}
+    \text{Base Imponible} &= \frac{\text{Precio Total}}{1 + 0.18} = \frac{\text{Precio Total}}{1.18} \\
+    \text{Monto IGV} &= \text{Precio Total} - \text{Base Imponible} = \text{Base Imponible} \times 0.18
+\end{align}
+\textbf{Restricción:} Los comprobantes de venta deben mostrar obligatoriamente el desglose de la Base Imponible, el IGV calculado (18\%) y el Importe Total con precisión de dos decimales (redondeo bancario al centésimo más cercano).
+\end{rnbox}
+
+\begin{rnbox}{RN-02}{Integridad de Stock, Transaccionalidad y Prohibición de Saldos Negativos}
+\textbf{Descripción:} El sistema no permitirá bajo ninguna circunstancia el registro de una venta, salida o transferencia si la cantidad solicitada supera el stock físico disponible en el local de origen.\\
+\textbf{Validación Concurrente:} Toda operación que afecte el inventario debe ejecutarse dentro de una transacción de base de datos (\texttt{DB::transaction}) con bloqueo pesimista a nivel de fila (\texttt{SELECT ... FOR UPDATE}), evitando condiciones de carrera (\textit{race conditions}) entre terminales concurrentes.
+\end{rnbox}
+
+\begin{rnbox}{RN-03}{Umbral de Stock Mínimo y Alertas Automáticas}
+\textbf{Descripción:} Cada variante de producto (por combinación de modelo, talla, color y local) posee un campo parametrizable denominado \texttt{stock\_minimo} (valor entero $\ge 1$, por defecto 3 unidades).\\
+\textbf{Disparador de Alerta:} Cuando el stock disponible en un local sea menor o igual al \texttt{stock\_minimo} ($\text{Stock} \le \text{Stock Mínimo}$), el sistema catalogará la variante en estado de \textbf{Alerta Amarilla / Roja} y generará una notificación visual inmediata en el panel del Administrador para ordenar la reposición.
+\end{rnbox}
+
+\begin{rnbox}{RN-04}{Inmutabilidad Transaccional y Borrado Lógico (Soft Delete)}
+\textbf{Descripción:} Para preservar la trazabilidad fiscal, contable y operativa, queda estrictamente prohibida la eliminación física (\texttt{DELETE}) de registros en las tablas de: Usuarios, Productos, Variantes, Locales, Ventas, Detalles de Venta, Devoluciones y Cierres de Caja.\\
+\textbf{Mecanismo:} Las bajas se implementarán mediante la columna \texttt{deleted\_at} (tipo \texttt{TIMESTAMP NULL}). Una entidad dada de baja se excluirá de las consultas de catálogo activo (\textit{scope query}), pero conservará todas sus relaciones históricas en reportes pasados.
+\end{rnbox}
+
+\begin{rnbox}{RN-05}{Restricción de Métodos de Pago Operativos}
+\textbf{Descripción:} Las ventas únicamente pueden cancelarse mediante los tres métodos de pago autorizados en mostrador:
+\begin{enumerate}[leftmargin=*,noitemsep]
+    \item \textbf{Efectivo:} Requiere ingresar el \texttt{monto\_recibido} ($\ge \text{Total Venta}$). El sistema calcula automáticamente el vuelto: $\text{Vuelto} = \text{Monto Recibido} - \text{Total Venta}$.
+    \item \textbf{Billetera Digital (Yape / Plin):} Requiere ingresar obligatoriamente el \texttt{codigo\_operacion} (de 6 a 8 dígitos numéricos) verificado en la pantalla del cliente.
+    \item \textbf{Transferencia Interbancaria:} Requiere ingresar el \texttt{numero\_operacion} bancario y la entidad bancaria emisora.
+\end{enumerate}
+\end{rnbox}
+
+\begin{rnbox}{RN-06}{Políticas de Devolución, Cambio de Prenda y Garantía}
+\textbf{Descripción:} Un cliente puede solicitar cambio de talla/color o devolución de prenda bajo las siguientes condiciones:
+\begin{enumerate}[leftmargin=*,noitemsep]
+    \item Plazo máximo de 7 días calendario posteriores a la fecha de compra original.
+    \item Presentación obligatoria del número de comprobante/nota de venta original.
+    \item La prenda debe reintegrarse en estado apto al stock del local donde se realiza el cambio.
+    \item Si el cambio es por un producto de mayor valor, el cliente abona la diferencia; si es de menor valor, se emite una \textbf{Nota de Crédito Interna} (no se efectúa devolución de efectivo en mostrador sin autorización explícita del Administrador).
+\end{enumerate}
+\end{rnbox}
+
+\begin{rnbox}{RN-07}{Apertura, Arqueo Ciego y Cierre de Caja Diario por Local}
+\textbf{Descripción:} 
+\begin{enumerate}[leftmargin=*,noitemsep]
+    \item Antes de registrar la primera venta del día, el cajero debe realizar la \textbf{Apertura de Caja} ingresando el \texttt{monto\_inicial} (fondo para vuelto).
+    \item Al finalizar la jornada o turno, el cajero debe realizar el \textbf{Cierre de Caja} ingresando el arqueo físico de efectivo y el consolidado de comprobantes digitales (arqueo a ciegas).
+    \item El sistema contrastará el conteo físico contra el cálculo del sistema ($\text{Esperado} = \text{Monto Inicial} + \sum \text{Ventas Efectivo} - \sum \text{Gastos Menores}$), calculando la diferencia (Sobrante, Faltante o Conforme) y bloqueando nuevas ventas en esa sesión de caja.
+\end{enumerate}
+\end{rnbox}
+
+\begin{rnbox}{RN-08}{Seguridad de Acceso: Bloqueo por Intentos Fallidos y Caducidad de Sesión}
+\textbf{Descripción:} 
+\begin{enumerate}[leftmargin=*,noitemsep]
+    \item Si un usuario introduce una contraseña incorrecta en 5 intentos consecutivos, su cuenta quedará bloqueada por un período de \textbf{15 minutos} para mitigar ataques de fuerza bruta.
+    \item Si una sesión autenticada permanece inactiva por más de \textbf{15 minutos} (sin interacción en el navegador), el token JWT/Sanctum caduca automáticamente, redirigiendo al usuario al formulario de inicio de sesión.
+\end{enumerate}
+\end{rnbox}
+
+\begin{rnbox}{RN-09}{Trazabilidad Universal y Registro Inmutable de Auditoría (Audit Logs)}
+\textbf{Descripción:} Todo evento crítico del sistema (inicio de sesión, cambio de contraseña, creación de producto, modificación de precio, anulación de venta, baja lógica de usuario y cierre de caja) debe generar un registro automático e inmutable en la tabla \texttt{audit\_logs}, capturando: \texttt{user\_id}, \texttt{action}, \texttt{entity\_type}, \texttt{entity\_id}, \texttt{old\_values}, \texttt{new\_values}, \texttt{ip\_address} y \texttt{timestamp}.
+\end{rnbox}
+
+\begin{rnbox}{RN-10}{Variantes de Producto y Unicidad de Código SKU}
+\textbf{Descripción:} Cada producto padre pertenece a una categoría y posee una marca y temporada. Cada combinación específica de (Producto, Talla, Color) genera una variante única con su propio código \textbf{SKU} (\textit{Stock Keeping Unit}) o código de barras irrepetible en todo el sistema.
+\end{rnbox}

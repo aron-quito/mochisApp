@@ -1,0 +1,85 @@
+% ==============================================================================
+% PORTADA INSTITUCIONAL - UNIVERSIDAD NACIONAL JORGE BASADRE GROHMANN
+% ==============================================================================
+
+\begin{titlepage}
+    \begin{tikzpicture}[remember picture, overlay]
+        % Franja lateral decorativa
+        \fill[color=PrimaryBlue] (current page.north west) rectangle ([xshift=1.2cm]current page.south west);
+        \fill[color=AccentTeal] ([xshift=1.2cm]current page.north west) rectangle ([xshift=1.45cm]current page.south west);
+        % Detalles geométricos sutiles en la esquina superior derecha
+        \fill[color=LightSlate] ([xshift=-4cm]current page.north east) -- (current page.north east) -- ([yshift=-4cm]current page.north east) -- cycle;
+    \end{tikzpicture}
+
+    \vspace{-1.5cm}
+    \begin{center}
+        % Logos institucionales
+        \begin{minipage}{0.2\textwidth}
+            \centering
+            \includegraphics[height=2.3cm]{figures/logo_unjbg.png}
+        \end{minipage}
+        \hfill
+        \begin{minipage}{0.55\textwidth}
+            \centering
+            {\scshape\bfseries\fontsize{13}{16}\selectfont UNIVERSIDAD NACIONAL\\ JORGE BASADRE GROHMANN}\\[0.2cm]
+            {\scshape\fontsize{10}{13}\selectfont FACULTAD DE INGENIERÍA}\\[0.1cm]
+            {\scshape\fontsize{9.5}{12}\selectfont ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS}
+        \end{minipage}
+        \hfill
+        \begin{minipage}{0.2\textwidth}
+            \centering
+            \includegraphics[height=2.3cm]{figures/logo_esis.png}
+        \end{minipage}
+
+        \vspace{0.8cm}
+        \rule{\linewidth}{1.5pt}\\[0.35cm]
+        {\large\bfseries\color{PrimaryBlue} CURSO: INGENIERÍA DE SOFTWARE I}\\[0.2cm]
+        {\small\bfseries\color{DarkSlate} CÓDIGO DEL DOCUMENTO: \texttt{ERS-SYSELL-WEB-2026-v2.0}}\\[0.25cm]
+        \rule{\linewidth}{1.5pt}
+
+        \vspace{1.0cm}
+        {\fontsize{18}{24}\selectfont\bfseries\color{PrimaryBlue} ESPECIFICACIÓN DE REQUISITOS DE SOFTWARE\\ Y ARQUITECTURA WEB\par}
+        
+        \vspace{0.5cm}
+        {\Large\bfseries\color{SecondaryBlue} Sistema Web Integral de Gestión de Inventario, Ventas y Cajas\par}
+        
+        \vspace{0.4cm}
+        {\huge\textbf{\color{PrimaryBlue}``SYSELL''}\par}
+        
+        \vspace{0.3cm}
+        {\large\itshape Comercial Machi's --- Tienda de Ropa\par}
+        
+        \vspace{0.6cm}
+        \begin{tcolorbox}[colback=LightSlate,colframe=BorderGray,width=0.88\linewidth,arc=3pt,boxrule=0.8pt]
+            \centering\small
+            \textbf{Estándar de Ingeniería:} IEEE Std 830 / ISO/IEC/IEEE 29148:2018\\[0.1cm]
+            \textbf{Arquitectura y Calidad:} Clean Architecture + CQRS / ISO/IEC 25010 / OWASP Top 10
+        \end{tcolorbox}
+
+        \vspace{1.2cm}
+        \begin{minipage}[t]{0.52\textwidth}
+            {\large\bfseries\color{PrimaryBlue} Integrantes (Equipo Pollitos):}\\[0.25cm]
+            \small
+            \begin{itemize}[leftmargin=*,itemsep=3pt]
+                \item \textbf{Mamani Catacora, Johan Anibal} \textit{(Líder de Proyecto)}
+                \item \textbf{Condori Caljaro, Luis Fernando} \textit{(Ing. Backend \& BD)}
+                \item \textbf{Cachicatari Quito, Aron Rene} \textit{(Ing. Arquitectura \& QA)}
+                \item \textbf{Pacci Pérez, Giorgini Disalvatore} \textit{(Ing. Frontend \& UI)}
+            \end{itemize}
+        \end{minipage}
+        \hfill
+        \begin{minipage}[t]{0.42\textwidth}
+            {\large\bfseries\color{PrimaryBlue} Docente Asesor:}\\[0.25cm]
+            \small
+            \textbf{MSc. Nelson Abrahan Pablo Mollo Condori}\\[0.4cm]
+            {\large\bfseries\color{PrimaryBlue} Semestre Académico:}\\[0.15cm]
+            \small 2026-II\\[0.3cm]
+            {\large\bfseries\color{PrimaryBlue} Entidad Beneficiaria:}\\[0.15cm]
+            \small Comercial Machi's (Tacna, Perú)
+        \end{minipage}
+
+        \vfill
+        {\bfseries\color{DarkSlate} Tacna, Perú}\\[0.1cm]
+        {\bfseries\color{SecondaryBlue} Octubre de 2026}
+    \end{center}
+\end{titlepage}

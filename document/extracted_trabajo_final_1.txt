@@ -1,0 +1,1655 @@
+--- PAGE 1 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+TRABAJO FINAL DE UNIDAD I 
+ 
+Datos del Curso 
+Docente 
+Msc. Milagros Gleny Cohaila 
+Gonzales 
+Nombre del Curso 
+Escuela 
+Sección 
+Fecha 
+de 
+evaluación 
+23/05/2026 
+Diseño de Sistemas 
+ESIS 
+A 
+Hora 
+de 
+presentación 
+11:00 
+Integrantes: 
+1)​ Johan Anibal Mamani Catacora ​​
+​
+Código: 2024-119021 
+2)​ Luis Fernando Condori Caljaro​ ​
+​
+Código: 2024-119031 
+3)​ Aron Rene Cachicatari Quito ​
+​
+​
+Código: 2024-119011 
+4)​ Alex Jeanpier Chata Chino​
+​
+​
+Código: 2024-119012 
+5)​ Giorgini Disalvatore Pacci Pérez ​
+​
+Código: 2024-119035 
+ 
+Actividad Grupal: Describir el análisis de su sistema 
+<<<<Sistema de ventas de ropa>>> 
+1.​ Aspecto Organizacional 
+1.1.​ Datos de la Empresa 
+La empresa analizada corresponde a una tienda de ropa 
+formal para varón, la cual cuenta con dos locales 
+físicos. Actualmente presenta problemas en la gestión de 
+registros manuales en papel, lo que genera errores en el 
+control de inventario y ventas. 
+El negocio no cuenta con presencia digital ni integración 
+●​ Misión 
+Brindar prendas de vestir formales para varón con 
+calidad y buena atención, ofreciendo un servicio 
+eficiente que satisfaga las necesidades de los 
+clientes. 
+●​ Visión 
+Ser una tienda reconocida a nivel local por su 
+organización, 
+calidad 
+de 
+atención 
+y 
+uso 
+de 
+tecnología para optimizar sus procesos de ventas e 
+inventario. 
+ 
+●​ Objetivos 
+ 
+
+--- PAGE 2 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+-​
+Mejorar el control de inventario y ventas 
+mediante un sistema automatizado. 
+-​
+Reducir 
+errores 
+ocasionados 
+por 
+registros 
+manuales. 
+-​
+Facilitar la consulta de stock y productos en 
+tiempo real. 
+-​
+Optimizar la atención al cliente y la gestión 
+administrativa. 
+ 
+●​ Organigrama 
+ 
+ 
+ 
+ 
+1.2.​ Aspectos de Sistemas de Información 
+●​
+Revisión de la Documentación concerniente al Sistema por 
+Desarrollar: 
+ 
+Para el presente análisis del sistema de ventas de ropa, 
+se tomó en cuenta la información y procesos actuales 
+relacionados con el control de inventario, registro de 
+ventas y administración de productos en los dos locales 
+comerciales. 
+1.3.​ Metodología Scrum: 
+1.3.1.​Task Board 
+ 
+
+--- PAGE 3 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+ 
+2.​ Análisis Preliminar 
+2.1.​ Objetivos: 
+-​ Diseñar un sistema que automatice los procesos de 
+inventario y ventas.  
+-​ Desarrollar una solución confiable, segura y 
+escalable.  
+-​ Implementar funcionalidades como control de stock, 
+registro de ventas y reportes.  
+-​ Entregar un sistema funcional que satisfaga las 
+necesidades del cliente. 
+2.2.​ Situación Actual: 
+2.2.1.​
+Descripción Genérica del Proceso. 
+Actualmente, los procesos de gestión dentro de la 
+tienda de ropa para varón se realizan de manera 
+manual, utilizando registros en papel para el control 
+de inventario y ventas. Las actividades principales, 
+como el registro de productos, control de stock, 
+ventas y generación de reportes, no cuentan con un 
+ 
+
+--- PAGE 4 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+sistema automatizado, lo que genera dependencia del 
+trabajo manual por parte de los empleados. Esto 
+ocasiona que los procesos sean lentos, poco eficientes 
+y 
+propensos 
+a 
+errores, 
+afectando 
+tanto 
+a 
+los 
+trabajadores como a los clientes, especialmente en la 
+disponibilidad de productos y tiempos de atención. 
+2.2.2.​
+Descripción de la Problemática. 
+La principal problemática identificada es la falta de un 
+sistema de información automatizado, lo cual genera 
+múltiples deficiencias operativas, entre ellas: 
+●​ Errores en el control de inventario, debido a 
+registros manuales inexactos. 
+●​ Descoordinación entre los dos locales, ya que no 
+existe integración de la información en tiempo real. 
+●​ Demora en el registro de ventas, afectando la 
+atención al cliente. 
+●​ Dificultad para generar reportes, lo que limita la 
+toma de decisiones. 
+●​ Falta de visibilidad del stock disponible, provocando 
+pérdidas de ventas o exceso de inventario. 
+●​ Ausencia de presencia digital, reduciendo el alcance 
+del negocio. 
+En conjunto, estos problemas impactan negativamente en la 
+eficiencia operativa, la experiencia del cliente y el 
+crecimiento del negocio, justificando la necesidad de 
+implementar un sistema automatizado que optimice los 
+procesos. 
+ 
+●​ Detalle del Problema por requerimiento. 
+ 
+
+--- PAGE 5 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+​
+​
+​
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 6 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+ 
+MODULO DE USUARIO 
+a)​ACCEDER AL SISTEMA (LOGIN) 
+Requerimiento 
+Funcional: 
+El sistema debe gestionar el acceso 
+de vendedores y administradores 
+mediante un proceso de login. 
+Diseño del 
+Problema: 
+ 
+●​ Falta de autenticación e 
+identidad del usuario 
+●​ Deficiencia en la seguridad del 
+sistema 
+●​ Existe la posibilidad de un 
+acceso no concedido por 
+terceros 
+ 
+​
+​
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 7 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+ 
+b)​REGISTRAR USUARIO (Nombre, teléfono, DNI, 
+dirección) 
+Requerimiento 
+Funcional: 
+El sistema debe permitir al 
+administrador registrar empleados 
+capturando su Nombre, Teléfono, DNI 
+y Dirección. 
+Diseño del 
+Problema: 
+ 
+●​ Falta de una asignación de 
+roles o perfiles a los usuarios 
+●​ Deficiencia en la comunicación 
+entre los dos locales 
+●​ Falta de límites en las 
+funcionalidades del sistema 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 8 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+ 
+c)​VER PERFIL DE USUARIO 
+Requerimiento 
+Funcional: 
+El sistema debe mostrar el perfil 
+individual de cada empleado 
+registrado. 
+Diseño del 
+Problema: 
+ 
+●​ Acceso a información incorrecta 
+o desactualizada  
+●​ Falta de información completa 
+del perfil 
+●​ Riesgos de seguridad al mostrar 
+datos sin validación 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 9 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+ 
+ 
+ 
+d)​EDITAR PERFIL 
+Requerimiento 
+Funcional: 
+El sistema debe permitir al 
+administrador modificar la 
+información personal de los 
+trabajadores. 
+Diseño del 
+Problema: 
+ 
+●​ Ingreso de datos incorrectos 
+por falta de validación 
+●​ Errores en formatos de datos 
+●​ Riesgos de seguridad al 
+modificar datos sensibles 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 10 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+ 
+ 
+ 
+e)​ELIMINAR PERFIL 
+Requerimiento 
+Funcional: 
+El sistema debe permitir al 
+administrador eliminar los 
+perfiles de los trabajadores. 
+Diseño del 
+Problema: 
+ 
+●​ Eliminación accidental por 
+falta de confirmación 
+●​ Pérdida permanente de datos 
+sin opción de recuperación 
+●​ Problemas al eliminar 
+usuarios con datos 
+relacionados (ventas, 
+registros) 
+ 
+​
+​
+ 
+ 
+ 
+ 
+
+--- PAGE 11 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+MÓDULO DE INVENTARIO 
+​
+ 
+a)​ REGISTRAR PRODUCTOS 
+Requerimiento 
+Funcional: 
+El sistema debe permitir 
+exclusivamente al administrador 
+agregar stock o productos nuevos 
+al inventario. 
+Diseño del 
+Problema: 
+ 
+●​ Inconsistencia en los datos 
+por el ingreso manual de 
+nombres y categorías sin un 
+formato estándar. 
+●​ Falta de actualización 
+inmediata del stock global 
+al momento de recibir nueva 
+mercadería de proveedores. 
+●​ Deficiencia en la 
+clasificación por tallas y 
+colores, generando errores 
+en el inventario final. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 12 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+ 
+b)​Visualizar descripción de producto 
+Requerimiento 
+Funcional: 
+El sistema debe permitir visualizar la 
+descripción detallada de la prenda (tipo, 
+talla, etc.) para informar al cliente. 
+Diseño del 
+Problema: 
+ 
+●​ Confusión de artículos con nombres 
+similares pero de diferentes marcas 
+o materiales. 
+●​ Inexistencia de detalles técnicos 
+necesarios para el cliente. 
+●​ Dificultad en la categorización, lo 
+que impide filtrar productos por 
+temporada. 
+●​ Lentitud en el proceso de venta al 
+tener que consultar etiquetas 
+físicas para conocer el precio o 
+código. 
+ 
+c)​Modificar descripción de producto 
+Requerimiento 
+Funcional: 
+El sistema debe permitir exclusivamente 
+al administrador modificar la información 
+técnica o comercial de los productos. 
+Diseño del 
+Problema: 
+ 
+●​ Falta de control y seguridad, ya que 
+cualquier persona podía alterar las 
+anotaciones en el cuaderno sin 
+autorización. 
+●​ Registros tachados o ilegibles, 
+debido a que los cambios en 
+descripciones o precios se hacían a 
+mano sobre el papel. 
+ 
+d)​Eliminar producto 
+Requerimiento 
+Funcional: 
+El sistema debe permitir al administrador 
+dar de baja productos del catálogo. 
+Diseño del 
+Problema: 
+ 
+●​ Confusión en el inventario, 
+provocada por seguir visualizando 
+productos que ya no se venden o 
+están descontinuados en los 
+registros físicos. 
+●​ Persistencia de datos, resulta 
+difícil borrar los productos de 
+todas las listas manuales. 
+ 
+ 
+ 
+
+--- PAGE 13 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 14 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+MÓDULO DE REPORTE DE VENTA 
+a)​Mostrar tablas 
+Requerimiento 
+Funcional: 
+El sistema debe generar tablas y gráficos 
+estadísticos sobre las salidas de productos 
+para el análisis del administrador. 
+Diseño del 
+Problema: 
+ 
+●​ Dificultad para identificar tendencias 
+de ventas, lo que impide tomar 
+decisiones estratégicas sobre el stock. 
+●​ Procesamiento manual de datos de salida, 
+lo que genera una alta probabilidad de 
+errores humanos en los reportes. 
+●​ Ausencia de herramientas visuales 
+comparativas, dificultando la detección 
+rápida de los productos con baja 
+rotación. 
+●​ Demora excesiva en la consolidación de 
+información, retrasando la entrega de 
+informes mensuales al administrador. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 15 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+b)​FILTRAR REPORTE DE SALIDA DE PRODUCTOS 
+Requerimiento 
+Funcional: 
+El sistema debe permitir filtrar los 
+reportes de movimientos de mercancía 
+por criterios específicos. 
+Diseño del 
+Problema: 
+ 
+●​ Pérdida de tiempo operativa al 
+tener que transcribir o 
+subrayar manualmente sólo los 
+datos de interés (como fechas o 
+tipos de producto) para 
+presentarlos en una reunión. 
+●​ Saturación de información 
+visual, debido a que los 
+registros manuales mezclan 
+todos los datos de ventas, 
+entradas y salidas en una sola 
+lista desordenada. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 16 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+ 
+c)​EXPORTAR REPORTE DE SALIDA DE PRODUCTOS 
+Requerimiento 
+Funcional: 
+El sistema debe permitir la exportación de los 
+reportes de salida de productos a formatos 
+externos. 
+Diseño del 
+Problema: 
+ 
+●​ Ausencia de documentos formales de 
+gestión, lo que impide presentar 
+resultados de ventas o inventario de 
+manera profesional ante terceros o 
+socios. 
+●​ Necesidad de transcripción manual 
+repetitiva, ya que al no existir un 
+reporte exportable, cualquier dato que se 
+necesite compartir debe ser copiado a 
+mano una y otra vez. 
+●​ Inexistencia de un respaldo digital 
+portátil, lo que limita la consulta de la 
+información únicamente a los libros 
+físicos del establecimiento. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 17 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+ 
+ 
+d)​Mostrar total de ventas de los dos locales 
+Requerimiento 
+Funcional: 
+El sistema debe consolidar y 
+mostrar el total de salidas de 
+productos de los dos locales 
+comerciales. 
+Diseño del 
+Problema: 
+ 
+●​ Cálculo manual lento y 
+propenso a errores al 
+intentar sumar las ventas de 
+ambas sucursales. 
+●​ Falta de visibilidad global, 
+impidiendo que el 
+administrador conozca el 
+estado real del negocio sin 
+revisar ambos sitios 
+físicamente. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 18 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+ 
+ 
+MÓDULO DE SALIDA DE PRODUCTO 
+ 
+a)​REDUCIR EL STOCK EN FUNCIÓN A LA SALIDA DE 
+PRODUCTO 
+Requerimient
+o Funcional: 
+El sistema debe registrar la salida 
+de productos y reducir 
+automáticamente el stock cuando el 
+vendedor confirme una compra.  
+Diseño del 
+Problema: 
+ 
+●​ Desfase de inventario, ya que 
+al ser manual, el vendedor 
+suele olvidar anotar la salida 
+en el cuaderno inmediatamente. 
+●​ Falta de actualización en 
+tiempo real, lo que provoca 
+vender productos que 
+físicamente ya no están en 
+estantería. 
+ 
+ 
+b)​AUMENTAR LAS GANANCIAS EN FUNCIÓN A LA SALIDA 
+DE PRODUCTO 
+Requerimiento 
+Funcional: 
+El sistema debe actualizar el 
+registro de ganancias en función de 
+cada salida de producto realizada. 
+Diseño del 
+Problema: 
+ 
+●​ Cálculo de ingresos impreciso, 
+debido a errores matemáticos al 
+sumar manualmente los montos al 
+final del día. 
+●​ Dificultad para conocer la 
+utilidad diaria, al no existir 
+un proceso que vincule 
+automáticamente el precio de 
+venta con el reporte de 
+ganancias. 
+ 
+
+--- PAGE 19 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+ 
+ 
+
+--- PAGE 20 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+ 
+c)​ SELECCIONAR EL MÉTODO DE PAGO (BILLETERA 
+VIRTUAL, EFECTIVO, TRANSACCIÓN INTERBANCARIA) 
+Requerimiento 
+Funcional: 
+El sistema debe permitir al vendedor 
+registrar el método de pago (Billetera 
+virtual, efectivo o transacción) al momento 
+de la salida del producto. 
+Diseño del 
+Problema: 
+ 
+●​ Dificultad para cuadrar caja, al no 
+tener un registro claro de qué dinero 
+entró físicamente y qué entró por 
+medios digitales. 
+●​ Confusión en el origen de los fondos, 
+ya que en el cuaderno manual se suelen 
+mezclar los pagos sin especificar la 
+plataforma de pago. 
+●​ Falta de control sobre transferencias, 
+obligando al administrador a revisar 
+manualmente el banco para confirmar si 
+un pago fue registrado correctamente. 
+ 
+ 
+ 
+ 
+
+--- PAGE 21 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+d)​ MOSTRAR DESCRIPCIÓN DE PRODUCTO  
+Requerimiento 
+Funcional: 
+El sistema debe permitir al vendedor 
+buscar productos y verificar la 
+disponibilidad de stock en tiempo 
+real ante la consulta de un cliente. 
+Diseño del 
+Problema: 
+ 
+●​ Pérdida de ventas potenciales, 
+al no poder dar una respuesta 
+rápida y precisa sobre la 
+disponibilidad de tallas, 
+colores o modelos específicos. 
+●​ Demora en la atención al 
+cliente, ya que el vendedor 
+debe buscar físicamente el 
+producto en almacén o revisar 
+hojas sueltas para confirmar si 
+hay stock. 
+ 
+ 
+ 
+ 
+
+--- PAGE 22 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+2.2.3.​Responsabilidades y Límites 
+●​ Responsabilidades. 
+ 
+Requerimientos Funcionales: 
+R-01 El sistema debe permitir al administrador 
+registrar empleados capturando su Nombre, 
+Teléfono, DNI y Dirección. 
+R-02 El sistema debe gestionar el acceso de 
+vendedores y administradores mediante un 
+proceso de login. 
+R-03 El sistema debe mostrar el perfil individual de 
+cada empleado registrado. 
+R-04 El sistema debe permitir al administrador 
+eliminar los perfiles de los trabajadores. 
+R-05 El sistema debe permitir al administrador 
+modificar la información personal de los 
+trabajadores. 
+R-06 El sistema debe registrar la salida de 
+productos y reducir automáticamente el stock 
+cuando el vendedor confirme una compra. 
+R-07 El sistema debe actualizar el registro de 
+ganancias en función de cada salida de producto 
+realizada. 
+R-08 El sistema debe permitir al vendedor registrar 
+el método de pago (Billetera virtual, efectivo 
+o transacción) al momento de la salida del 
+producto. 
+R-09 El sistema debe permitir al vendedor buscar 
+productos y verificar la disponibilidad de 
+stock en tiempo real ante la consulta de un 
+cliente. 
+R-10 El sistema debe permitir exclusivamente al 
+administrador agregar stock o productos nuevos 
+al inventario. 
+R-11 El sistema debe mostrar la cantidad de unidades 
+disponibles de cada prenda. 
+R-12 El sistema debe permitir visualizar la 
+descripción detallada de la prenda (tipo, 
+talla, etc.) para informar al cliente. 
+ 
+
+--- PAGE 23 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+R-13 El sistema debe permitir exclusivamente al 
+administrador modificar la información técnica 
+o comercial de los productos. 
+R-14 El sistema debe permitir al administrador dar 
+de baja productos del catálogo. 
+R-15 El sistema debe consolidar y mostrar el total 
+de salidas de productos de los dos locales 
+comerciales. 
+R-16 El sistema debe generar tablas y gráficos 
+estadísticos sobre las salidas de productos 
+para el análisis del administrador. 
+R-17 El sistema debe permitir filtrar los reportes 
+de movimientos de mercancía por criterios 
+específicos. 
+R-18 El sistema debe permitir la exportación de los 
+reportes de salida de productos a formatos 
+externos. 
+ 
+ 
+Requerimiento no funcionales: 
+●​
+Plataforma  
+●​
+Sistema operativo Android 10 o 
+superior. 
+●​
+Desarrollo en Android Studio. 
+●​
+Lenguaje Kotlin o Java. 
+●​
+Gestor de base de datos MySQL o 
+Firebase. 
+●​
+Necesidad 
+de recursos  
+●​
+Smartphone con mínimo 4 GB de 
+RAM. 
+●​
+Memoria disponible mínima de 2 
+GB. 
+●​
+Conexión a internet o red local. 
+●​
+Seguridad  
+●​
+Restricción de permisos según rol 
+(Administrador/Vendedor). 
+●​
+Respaldo en la nube.  
+●​ Escalabilidad  
+El sistema debe permitir agregar 
+nuevas funcionalidades y soportar 
+ 
+
+--- PAGE 24 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+el aumento de usuarios, productos 
+y locales comerciales sin afectar 
+el rendimiento del sistema.  
+ 
+●​ Limites. 
+1.​ En esta primera versión, el sistema funcionará 
+únicamente para los dos locales de la tienda. 
+2.​ El sistema estará orientado exclusivamente a la 
+gestión de ventas e inventario de ropa para 
+varón. 
+3.​ No se incluirá pasarela de pago en línea dentro 
+de la aplicación móvil. 
+4.​ El 
+sistema 
+no 
+contará 
+con 
+integración 
+automática con SUNAT ni emisión de comprobantes 
+electrónicos. 
+5.​ La aplicación requerirá conexión a internet 
+para sincronizar información entre locales. 
+6.​ No 
+se 
+implementará 
+módulo 
+de 
+compras 
+a 
+proveedores en esta versión. 
+7.​ El sistema no incluirá tienda virtual para 
+clientes externos. 
+ 
+2.2.4.​
+Diagrama de Paquetes 
+ 
+ 
+ 
+
+--- PAGE 25 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+Figura 01. Diagrama de paquetes. 
+ 
+ 
+2.2.5.​
+Especificaciones Funcionales. 
+ 
+Origen 
+ID 
+Id Req. 
+Descripción de Requerimiento 
+Prioridad 
+Responsable 
+Id CU 
+1 
+R-01,R-02,R-
+03,R-04,​
+R-05 
+Gestión de usuario 
+Alta 
+Administrador 
+CU.1 
+2 
+R-06,R-07,​
+R-08,R-09 
+Salida de producto 
+Alta 
+Administrador 
+CU.2 
+3 
+R-10,R-11,R-
+12,R-13,​
+R-14 
+Gestión de inventario 
+Alta 
+Administrador 
+CU.3 
+4 
+R-15,R-16,​
+R-17,R-18 
+Reporte de salida de producto 
+Alta 
+Administrador 
+CU.4 
+ 
+ 
+ 
+
+--- PAGE 26 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+ 
+2.2.6.​
+Paquete: Usuario 
+o​ Diagrama de casos de uso 
+ 
+ 
+ 
+2.2.6.1.​Escenario 1: Acceder al sistema CU.1 
+Id Casos de 
+Uso 
+CU.1 
+Título 
+Validar Usuario 
+Título 
+Abreviado 
+VAUS 
+Id 
+Requerimiento 
+R-02 
+Propósito 
+Narrativa del 
+Escenario 
+El Registrador debe ingresar sus datos para poder hacer uso del Sistema 
+SYSELL. 
+ 
+
+--- PAGE 27 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+Precondicione
+s 
+1.​ El Administrador tenga instalado el sistema de SYSELL en su 
+dispositivo móvil. 
+2.​ El Administrador Abra el Sistema SYSELL. 
+Actores 
+Administrador y usuario 
+Cursos Básicos 
+1.​ La pantalla muestra los campos: 
+a.​ login. 
+b.​ Password. 
+2.​ Muestra las opciones: 
+a.​ Aceptar. 
+b.​ Cancelar. 
+3.​ El Usuario ingresa su Nombre de Usuario y contraseña respectivo. 
+4.​ Si el usuario elige aceptar: 
+a.​ El sistema busca los datos ingresados en la BD. 
+i.​ Si existen los datos en la BD. 
+1.​ V: Ingresa al formulario Principal (Caso de 
+Uso Seleccionar proceso). 
+2.​ F: El sistema envía un mensaje 
+informando “Usuario no encontrado”. 
+Regresa al paso 3. 
+5.​ Si el usuario elige “Cancelar”: 
+a.​ El sistema se cierra. 
+Uses/Extend 
+Ninguna 
+Autoridad 
+Administrador  
+ 
+
+--- PAGE 28 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+Interfaz 
+Gráfica 
+Vista Escritorio 
+ 
+Interfaz 
+Gráfica 
+Vista Móvil 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 29 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+2.2.6.2.​Escenario 2: Registrar Usuario CU.1 
+ 
+Id Casos de Uso 
+CU. 1 
+Título 
+Registrar usuario 
+Título Abreviado 
+REUS 
+Id Requerimiento 
+R-01 
+Propósito 
+Narrativa del Escenario 
+El administrador deberá registrar a los usuarios en el sistema, 
+para que tengan un perfil propio. 
+Precondiciones 
+1.​ EL administrador debe tener SYSELL en su dispositivo 
+móvil. 
+2.​ El administrador debe estar capacitado para registrar 
+a los usuarios del sistema. 
+Actores 
+Administrador 
+Cursos Básicos 
+1.​ La pantalla muestra los campos 
+a.​ Nombres 
+b.​ Apellidos 
+c.​ DNI 
+d.​ Correo electrónico 
+e.​ Teléfono 
+f.​
+Dirección 
+g.​ Contraseña 
+2.​ Muestra las opciones 
+a.​ Cancelar registro 
+b.​ Confirmar registro 
+3.​ Si el administrador decide cancelar registro: 
+a.​ Vuelve a la pantalla principal 
+4.​ Si el administrador decide confirmar registro: 
+a.​ El sistemas busca en la BD 
+i.​
+Si existen los datos en la BD 
+1.​ V: El sistema envía un 
+mensaje: “El empleado ya 
+está registrado” 
+2.​ F: El sistema registra al 
+usuario y almacena los datos 
+en la BD 
+Uses/Extend 
+Ninguna 
+ 
+
+--- PAGE 30 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+Autoridad 
+Administrador 
+Interfaz Gráfica 
+Vista Escritorio 
+ 
+Interfaz Gráfica 
+Vista Movil 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 31 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+ 
+2.2.7.​
+Paquete: Salida de producto 
+o​ Diagrama de casos de uso 
+ 
+ 
+ 
+2.2.7.1.​Escenario 1:  Salida de producto 
+Id Casos de 
+Uso 
+CU.2 
+Título 
+Salida de producto 
+Título 
+Abreviado 
+SPRO 
+Id 
+Requerimiento 
+R-06 
+Propósito 
+Narrativa del 
+Escenario 
+El usuario debe recibir un producto y buscar el producto 
+Precondiciones 
+1.​ El usuario tenga instalado el sistema de SYSELL en su 
+dispositivo móvil. 
+2.​ El usuario Abra el Sistema SYSELL. 
+3.​ El tenga productos registrados en el sistema SYSELL 
+ 
+
+--- PAGE 32 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+Actores 
+Empleado, Administrador 
+Cursos Básicos 
+1)​ La pantalla muestra la pestaña de ventas 
+2)​ La pantalla muestra los campos: 
+A.​ Buscar producto 
+B.​ Recientes 
+3)​ El usuario busca busca el producto en la base de datos 
+A.​ Si existe el producto 
+I.​
+V: Si existe stock del producto 
+1.​
+V: El sistema muestra stock y precio 
+de producto 
+2.​
+F: Mostrar desabastecimiento 
+II.​
+F: Mostrar mensaje que no existe el producto 
+4)​ El usuario selecciona producto 
+5)​ La pantalla muestra: 
+A.​ Imagen del producto 
+B.​ Descripción del producto 
+C.​ Cantidad de producto 
+D.​ Precio 
+6)​ El usuario ingresa la cantidad de producto 
+7)​ Si el usuario confirma la venta de producto 
+A.​ La pantalla muestra: 
+I.​
+Pago en efectivo 
+II.​
+Pago en yape 
+B.​ El usuario selecciona método de pago 
+C.​ El sistema registra venta de producto 
+8)​ El usuario elige cancelar 
+A.​ El sistema se cierra 
+ 
+ 
+ 
+Uses/Extend 
+<include> seleccionar producto 
+<include> seleccionar método de pago 
+Autoridad 
+Administrador 
+ 
+
+--- PAGE 33 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+Interfaz Gráfica 
+Vista Escritorio 
+ 
+Interfaz Gráfica 
+Vista Móvil 
+ 
+ 
+ 
+
+--- PAGE 34 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+ 
+2.2.8.​
+Paquete: Inventario 
+o​ Diagrama de casos de uso 
+ 
+ 
+ 
+2.2.8.1.​Escenario 1:  Registro de producto 
+Id Casos de 
+Uso 
+CU.3 
+Título 
+Registro de productos en el inventario 
+Título 
+Abreviado 
+RPRO 
+Id 
+Requerimiento 
+R-10 
+Propósito 
+Narrativa del 
+Escenario 
+El administrador podrá agregar stock o productos nuevos al inventario 
+Precondiciones 
+1.​ EL administrador deberá estar capacitado para el registro de 
+productos 
+ 
+
+--- PAGE 35 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+Actores 
+Administrador 
+Cursos Básicos 
+1.​ El administrador selecciona la opción “Registro de Producto” 
+en el menú principal. 
+2.​ La pantalla muestra los campos de entrada de datos. 
+a.​ Modelo y foto referencial. 
+b.​ Stock inicial. 
+c.​ Color 
+d.​ Talla 
+e.​ Marca 
+f.​
+Material 
+3.​ El administrador ingresa la información técnica del producto. 
+4.​ El sistema valida si los atributos del producto ya existen en la 
+BD. 
+a.​ El sistemas busca en la BD 
+i.​
+Si existen los datos en la BD 
+1.​ V: El sistema suma la cantidad 
+ingresada al stock actual del producto 
+existente.  
+2.​ F: El sistema crea un nuevo registro 
+de producto con el stock inicial 
+proporcionado.  
+5.​ El sistema confirma que el registro fue exitoso.  
+6.​ El administrador elige finalizar el proceso:  
+a.​ El sistema cierra el formulario y actualiza la vista del 
+inventario.  
+ 
+Uses/Extend 
+Ninguna 
+Autoridad 
+Administrador 
+Interfaz Gráfica 
+Vista Escritorio 
+ 
+ 
+
+--- PAGE 36 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+Interfaz Gráfica 
+Vista Móvil 
+ 
+ 
+ 
+ 
+
+--- PAGE 37 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+ 
+2.2.9.​
+Paquete: Reporte de salida de producto 
+o​ Diagrama de casos de uso 
+ 
+ 
+2.2.9.1.​Escenario 1:  Mostrar total de ventas 
+Id Casos de 
+Uso 
+CU.4 
+Título 
+Mostrar total de salida de productos 
+Título 
+Abreviado 
+MPROC 
+Id 
+Requerimiento 
+R-15 
+Propósito 
+Narrativa del 
+Escenario 
+El administrador podrá ver reportes de la salida de los productos de 
+los dos locales. 
+Precondiciones 
+1.​ Los datos de ambos locales deben de estar sincronizados. 
+Actores 
+Administrador 
+ 
+
+--- PAGE 38 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+Cursos Básicos 
+1.​ El administrador selecciona la pestaña de "Reportes".  
+2.​ El sistema muestra la opción de "Consolidar Locales".  
+3.​ El usuario solicita visualizar el total de ventas globales.  
+4.​ El sistema consulta las bases de datos de ambos locales 
+comerciales.  
+5.​ El sistema valida: ¿Existen registros de salida en ambos 
+locales?  
+a.​ V: El sistema suma los totales y genera una vista 
+unificada.  
+b.​ F: El sistema muestra solo los datos del local con 
+registros y notifica la ausencia del otro.  
+6.​ La pantalla muestra:  
+a.​ Total de salidas Local 1.  
+b.​ Total de salidas Local 2.  
+c.​ Sumatoria global de ingresos.  
+7.​ El usuario decide exportar el reporte consolidado:  
+a.​ V: El sistema genera el archivo (PDF/Excel) y finaliza.  
+b.​ F: El sistema se mantiene en la vista actual. 
+ 
+Uses/Extend 
+Ninguna 
+Autoridad 
+Administrador 
+Interfaz Gráfica 
+Vista Escritorio 
+ 
+ 
+
+--- PAGE 39 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+Interfaz Gráfica 
+Vista Móvil 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 40 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+ 
+ 
+ 
+DIAGRAMA DE SECUENCIA 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 41 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 42 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+DIAGRAMA DE COMPONENTES 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 43 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+DIAGRAMA DE CLASES 
+ 
+ 
+ 
+
+--- PAGE 44 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+ 
+ 
+ 
+3.​ Principio relacionado: 
+El desarrollo del sistema de ventas móvil se relaciona con principios fundamentales de la 
+Ingeniería de Sistemas y del desarrollo de software, especialmente con la automatización de 
+procesos, integración de información y optimización de recursos. Asimismo, se aplican 
+principios de seguridad, usabilidad y control de información para garantizar una gestión 
+eficiente del inventario y ventas entre los dos locales comerciales. 
+Además, el proyecto se basa en el principio de centralización de datos, permitiendo el acceso a 
+información actualizada en tiempo real, mejorando la toma de decisiones y reduciendo errores 
+ocasionados por procesos manuales. 
+ 
+4.​ Conclusiones  
+●​
+El análisis realizado permitió identificar las principales deficiencias en el control manual 
+de inventario y ventas dentro de la tienda de ropa para varón. 
+●​
+La implementación de un sistema móvil automatizado permitirá mejorar la eficiencia 
+operativa, reduciendo errores en el registro de productos, stock y ventas. 
+●​
+La integración de información entre los dos locales facilitará el acceso a datos en 
+tiempo real, optimizando el control administrativo y la toma de decisiones. 
+●​
+Los módulos planteados permitirán una mejor organización de usuarios, inventario, 
+reportes y procesos de venta. 
+●​
+El sistema propuesto contribuirá a mejorar la atención al cliente mediante consultas 
+rápidas de stock, descripción de productos y métodos de pago. 
+ 
+5.​ Sugerencias 
+●​
+Incorporar una tienda virtual para ampliar el alcance comercial del negocio. 
+●​
+Capacitar a los trabajadores en el uso correcto del sistema móvil antes de su 
+implementación. 
+●​
+Mantener actualizado el sistema para mejorar la seguridad y el rendimiento de la 
+aplicación. 
+ 
+6.​ Bibliografía Consultada 
+Pressman, R. S. (2010). Ingeniería del software: un enfoque práctico (7.ª ed.). McGraw-Hill. 
+ 
+ 
+
+--- PAGE 45 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+ 
+7.​ Anexos. Evidencias de visita a la entidad, de presentaciones de exposiciones en 
+clases, capturas de mapas grupales, fotos de exposición, capturas de diseños entre 
+otros. 
+ 
+ 
+
+--- PAGE 46 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 47 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 48 ---
+UNIVERSIDAD NACIONAL “JORGE BASADRE GROHMANN”  
+FACULTAD DE INGENIERÍA 
+ESCUELA PROFESIONAL DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+

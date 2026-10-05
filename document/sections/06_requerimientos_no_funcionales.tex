@@ -1,0 +1,71 @@
+% ==============================================================================
+% SECCIÓN 6: REQUISITOS NO FUNCIONALES (ISO/IEC 25010 Y OWASP TOP 10)
+% ==============================================================================
+
+\section{Requisitos No Funcionales (RNF)}
+
+Los Requisitos No Funcionales definen los atributos de calidad, rendimiento, seguridad, confiabilidad y arquitectura que el sistema SYSELL debe satisfacer de manera rigurosa, estructurados bajo el estándar internacional \textbf{ISO/IEC 25010:2011} y los lineamientos de seguridad de \textbf{OWASP Top 10:2021}.
+
+\subsection{Matriz de Requisitos No Funcionales (ISO/IEC 25010)}
+
+A continuación se presentan los requisitos no funcionales agrupados en dos dimensiones operativas fundamentales:
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\linewidth}{l>{\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{2.8cm}}
+\toprule
+\rowcolor{LightSlate}
+\textbf{Código} & \textbf{Categoría ISO 25010} & \textbf{Especificación Técnica y Mecanismo} & \textbf{Métrica / Criterio} \\
+\midrule
+\textbf{RNF-01} & Eficiencia de Desempeño (Tiempo de Respuesta) & Los endpoints de la API REST deben responder en un tiempo medio $<200$ ms bajo carga normal y $<500$ ms en el percentil 95 ($P_{95}$). & Latencia $< 200$ ms ($P_{95} < 500$ ms). \\
+\midrule
+\textbf{RNF-02} & Eficiencia de Desempeño (Carga Frontend) & El empaquetado inicial de la SPA con Vite debe tener un \textit{First Contentful Paint} (FCP) $<1.5$ s y un \textit{Time to Interactive} (TTI) $<2.5$ s en conexiones 4G estándar. & FCP $< 1.5$ s / Bundle $< 500$ KB gzip. \\
+\midrule
+\textbf{RNF-03} & Seguridad: Autenticación y Autorización & Autenticación basada en Bearer Tokens emitidos por Laravel Sanctum con expiración automática, control de permisos RBAC y protección CSRF/CORS estricta. & OWASP A01:2021 (Broken Access Control). \\
+\midrule
+\textbf{RNF-04} & Seguridad: Criptografía y Almacenamiento & Todas las contraseñas deben ser hasheadas con algoritmo \texttt{Bcrypt} (factor de costo 12) o \texttt{Argon2id}. Comunicaciones cifradas bajo HTTPS/TLS 1.3. & OWASP A02:2021 (Cryptographic Failures). \\
+\midrule
+\textbf{RNF-05} & Seguridad: Prevención de Inyección SQL y XSS & Uso estricto de consultas parametrizadas vía Eloquent ORM / PDO prepared statements y sanitización automática de entradas en React (DOMPurify). & OWASP A03:2021 (Injection). \\
+\midrule
+\textbf{RNF-06} & Seguridad: Tasa Límite (Rate Limiting) & Limitación de tasa en endpoints críticos de autenticación a un máximo de 5 intentos por minuto por dirección IP mediante middleware de Laravel. & OWASP A07:2021 (Identification Failures). \\
+\bottomrule
+\end{tabularx}
+\caption{Requisitos No Funcionales de Rendimiento y Seguridad (ISO/IEC 25010 y OWASP).}
+\label{tab:rnf_parte1}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\linewidth}{l>{\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{2.8cm}}
+\toprule
+\rowcolor{LightSlate}
+\textbf{Código} & \textbf{Categoría ISO 25010} & \textbf{Especificación Técnica y Mecanismo} & \textbf{Métrica / Criterio} \\
+\midrule
+\textbf{RNF-07} & Fiabilidad y Transaccionalidad & Garantía de propiedades ACID en todas las mutaciones de inventario y ventas en MySQL 8 mediante \texttt{DB::transaction} y bloqueos pesimistas. & Cero inconsistencias de stock ($0.00\%$). \\
+\midrule
+\textbf{RNF-08} & Disponibilidad y Respaldo & Nivel de servicio (\textit{SLA}) del 99.9\% durante horas comerciales (08:00 a 22:00 horas), con copias de seguridad diarias automatizadas (\texttt{mysqldump}). & SLA $\ge 99.9\%$ / RPO $< 24$ h / RTO $< 2$ h. \\
+\midrule
+\textbf{RNF-09} & Mantenibilidad y Modularidad & Separación estricta en 4 capas de Clean Architecture y segregación CQRS, respetando estándares PSR-12 en PHP y ESLint/TypeScript estricto en React. & Cobertura de tests unitarios $\ge 80\%$. \\
+\midrule
+\textbf{RNF-10} & Usabilidad y Diseño Responsive & Interfaz gráfica intuitiva con soporte multiplataforma adaptativo desde pantallas móviles de 360px hasta monitores de escritorio 1080p. & Cumplimiento WCAG 2.1 nivel AA. \\
+\midrule
+\textbf{RNF-11} & Portabilidad y DevOps & Despliegue estandarizado en contenedores Docker mediante \texttt{docker-compose} (Nginx, PHP-FPM, MySQL) y tuberías de Integración Continua (CI). & Tiempo de despliegue automatizado $< 5$ min. \\
+\midrule
+\textbf{RNF-12} & Trazabilidad y Auditoría & Registro inmutable de logs en base de datos de cada mutación de datos con captura de usuario, acción, IP y valores anteriores/nuevos. & Retención mínima de auditoría de 3 años. \\
+\bottomrule
+\end{tabularx}
+\caption{Requisitos No Funcionales de Fiabilidad, Mantenibilidad y Portabilidad.}
+\label{tab:rnf_parte2}
+\end{table}
+
+\subsection{Estrategia de Mitigación de Vulnerabilidades OWASP Top 10}
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{A01:2021 --- Control de Acceso Roto (\textit{Broken Access Control}):} Se implementan \textit{Gates} y \textit{Policies} de Laravel a nivel de controlador y casos de uso. Cada endpoint valida rigurosamente el rol del usuario (\texttt{Admin} vs. \texttt{Vendedor}) antes de resolver la petición.
+    \item \textbf{A02:2021 --- Fallas Criptográficas (\textit{Cryptographic Failures}):} Todo el tráfico viaja forzosamente a través de HTTPS con certificados TLS 1.3. La base de datos almacena tokens de API en formato hash SHA-256 (\texttt{personal\_access\_tokens}).
+    \item \textbf{A03:2021 --- Inyección (\textit{Injection}):} Queda prohibido el uso de concatenación directa de cadenas en sentencias SQL. Se utiliza exclusivamente el Query Builder y ORM Eloquent con \textit{Prepared Statements}.
+    \item \textbf{A05:2021 --- Configuración Incorrecta de Seguridad (\textit{Security Misconfiguration}):} Desactivación obligatoria del modo de depuración (\texttt{APP\_DEBUG=false}) en entornos de producción, cabeceras HTTP de seguridad configuradas en Nginx (\texttt{X-Frame-Options: SAMEORIGIN}, \texttt{X-Content-Type-Options: nosniff}, \texttt{Content-Security-Policy}).
+    \item \textbf{A07:2021 --- Fallas de Identificación y Autenticación:} Expiración automática de tokens, bloqueo por 5 intentos fallidos y almacenamiento seguro de credenciales en memoria en la SPA (no en \texttt{localStorage} desprotegido).
+\end{enumerate}

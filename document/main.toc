@@ -1,0 +1,48 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{Cuadro de Revisiones y Control de Versiones}{\es@scroman {ii}}{Doc-Start}%
+\contentsline {section}{\numberline {1}Introducción}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Propósito del Documento}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Ámbito del Sistema (Alcance)}{1}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Definiciones, Acrónimos y Abreviaturas}{2}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Referencias Normativas y Bibliográficas}{2}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Visión General del Documento}{3}{subsection.1.5}%
+\contentsline {section}{\numberline {2}Descripción General del Producto}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Perspectiva del Producto}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Clasificación y Características de los Usuarios (Actores del Sistema)}{4}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Entorno Operativo del Sistema}{5}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Restricciones de Diseño e Implementación}{5}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Suposiciones y Dependencias}{6}{subsection.2.5}%
+\contentsline {section}{\numberline {3}Reglas de Negocio del Sistema (RN)}{7}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Especificación Formal de Reglas de Negocio}{7}{subsection.3.1}%
+\contentsline {section}{\numberline {4}Requerimientos Funcionales (RF)}{10}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Requerimientos Funcionales Base Consolidados (R-01 a R-18)}{10}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Nuevos Requerimientos Funcionales y Módulos de Ampliación (R-19 a R-30)}{13}{subsection.4.2}%
+\contentsline {section}{\numberline {5}Historias de Usuario (HU) y Criterios de Aceptación}{17}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Historias de Usuario del Módulo de Autenticación y Seguridad}{17}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Historias de Usuario del Módulo de Punto de Venta (POS) y Ventas}{18}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Historias de Usuario de Inventario, Devoluciones y Cajas}{19}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Requisitos No Funcionales (RNF)}{20}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Matriz de Requisitos No Funcionales (ISO/IEC 25010)}{20}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Estrategia de Mitigación de Vulnerabilidades OWASP Top 10}{21}{subsection.6.2}%
+\contentsline {section}{\numberline {7}Arquitectura de Software y Diseño del Sistema}{22}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Arquitectura General del Sistema (Modelo C4 --- Contenedores)}{22}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Estructura de Capas en Clean Architecture}{22}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Implementación del Patrón CQRS (Command Query Responsibility Segregation)}{23}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Modelo de Datos Relacional y Esquema de Base de Datos}{23}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Diagrama de Clases del Dominio}{26}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.6}Entorno de Contenerización y DevOps (Docker \& CI/CD)}{26}{subsection.7.6}%
+\contentsline {section}{\numberline {8}Diseño de Interfaces de Usuario (UI/UX)}{28}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Módulo de Autenticación e Inicio de Sesión}{28}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Módulo de Gestión y Registro de Usuarios}{29}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Módulo de Punto de Venta (POS) y Registro de Ventas}{29}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}Módulo de Inventario, Catálogo y Control de Stock}{30}{subsection.8.4}%
+\contentsline {subsection}{\numberline {8.5}Módulo de Reportes, Analítica y Balances Financieros}{31}{subsection.8.5}%
+\contentsline {subsection}{\numberline {8.6}Diagrama de Navegabilidad y Flujo de Pantallas}{31}{subsection.8.6}%
+\contentsline {section}{\numberline {9}Alcance Futuro y Roadmap de Evolución Tecnológica}{32}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Fase 2: Gestión de Cadena de Suministro y Facturación Electrónica SUNAT}{32}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Fase 3: Expansión Omnicanal y E-commerce B2C}{32}{subsection.9.2}%
+\contentsline {section}{\numberline {10}Anexos y Evidencias Académicas}{34}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Anexo A: Gestión de Proyecto, EDT y Tableros Ágiles en Miro}{34}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Anexo B: Informes de Auditoría de Calidad (Interna y Externa)}{35}{subsection.10.2}%
+\contentsline {subsection}{\numberline {10.3}Anexo C: Evidencias de Trabajo de Campo y Equipo}{37}{subsection.10.3}%
+\contentsline {subsection}{\numberline {10.4}Anexo D: Matriz de Trazabilidad de Requisitos (RTM)}{37}{subsection.10.4}%

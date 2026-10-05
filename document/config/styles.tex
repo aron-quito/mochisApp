@@ -1,0 +1,126 @@
+% ==============================================================================
+% ESTILOS, COLORES Y AMBIENTES PERSONALIZADOS PARA SYSELL
+% ==============================================================================
+
+% Paleta de colores institucionales y de ingeniería
+\definecolor{PrimaryBlue}{RGB}{14, 43, 92}      % Azul institucional profundo
+\definecolor{SecondaryBlue}{RGB}{30, 90, 160}   % Azul secundario
+\definecolor{AccentTeal}{RGB}{0, 150, 136}      % Teal / Verde azulado
+\definecolor{DarkSlate}{RGB}{44, 62, 80}        % Gris pizarra oscuro
+\definecolor{LightSlate}{RGB}{244, 247, 250}    % Fondo claro para tablas
+\definecolor{AlertRed}{RGB}{185, 28, 28}        % Rojo para advertencias / reglas
+\definecolor{SuccessGreen}{RGB}{22, 101, 52}    % Verde éxito
+\definecolor{BorderGray}{RGB}{203, 213, 225}    % Gris para bordes suaves
+\definecolor{CodeBg}{RGB}{248, 250, 252}        % Fondo para código
+
+% Configuración de Hyperref
+\hypersetup{
+    colorlinks=true,
+    linkcolor=SecondaryBlue,
+    citecolor=AccentTeal,
+    urlcolor=SecondaryBlue,
+    filecolor=DarkSlate,
+    pdfauthor={Johan Mamani, Luis Condori, Aron Cachicatari, Giorgini Pacci},
+    pdftitle={Especificación de Requisitos de Software y Arquitectura Web - SYSELL},
+    pdfsubject={Ingeniería de Software I - UNJBG},
+    pdfkeywords={ERS, IEEE 830, ISO 29148, ISO 25010, Clean Architecture, CQRS, React, Laravel, MySQL}
+}
+
+% Estilo de Encabezados y Pies de Página
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\scshape\color{DarkSlate} SYSELL --- Sistema Web de Gestión de Inventario y Ventas}
+\fancyhead[R]{\small\color{SecondaryBlue}\textbf{IEEE 830 / ISO 29148}}
+\fancyfoot[L]{\small\color{gray} UNJBG --- ESIS --- Ingeniería de Software I}
+\fancyfoot[R]{\small\color{DarkSlate}\textbf{Página \thepage}}
+\renewcommand{\headrulewidth}{0.8pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Configuración de títulos de secciones
+\titleformat{\section}
+  {\Large\bfseries\color{PrimaryBlue}}
+  {\thesection}
+  {1em}
+  {}
+  [{\color{BorderGray}\titlerule[0.8pt]}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{SecondaryBlue}}
+  {\thesubsection}
+  {0.8em}
+  {}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{DarkSlate}}
+  {\thesubsubsection}
+  {0.6em}
+  {}
+
+% Ambientes tcolorbox estándar y compatibles
+\newtcolorbox{reqbox}[3][]{
+    colback=white,
+    colframe=SecondaryBlue,
+    coltitle=white,
+    fonttitle=\bfseries\small,
+    title={\textbf{#2:} #3},
+    arc=3pt,
+    boxrule=1pt,
+    left=8pt, right=8pt, top=8pt, bottom=8pt,
+    #1
+}
+
+\newtcolorbox{rnbox}[3][]{
+    colback=white,
+    colframe=AccentTeal,
+    coltitle=white,
+    fonttitle=\bfseries\small,
+    title={\textbf{#2:} #3},
+    arc=3pt,
+    boxrule=1pt,
+    left=8pt, right=8pt, top=8pt, bottom=8pt,
+    #1
+}
+
+\newtcolorbox{hubox}[3][]{
+    colback=LightSlate,
+    colframe=DarkSlate,
+    coltitle=white,
+    fonttitle=\bfseries\small,
+    title={\textbf{#2:} #3},
+    arc=3pt,
+    boxrule=1pt,
+    left=8pt, right=8pt, top=8pt, bottom=8pt,
+    #1
+}
+
+\newtcolorbox{infobox}[2][]{
+    colback=LightSlate,
+    colframe=SecondaryBlue,
+    coltitle=PrimaryBlue,
+    fonttitle=\bfseries,
+    title={#2},
+    arc=3pt,
+    boxrule=1pt,
+    left=8pt, right=8pt, top=8pt, bottom=8pt,
+    #1
+}
+
+% Configuración de listings para código JSON, SQL, PHP, TypeScript
+\lstset{
+    backgroundcolor=\color{CodeBg},
+    basicstyle=\ttfamily\footnotesize\color{DarkSlate},
+    keywordstyle=\bfseries\color{SecondaryBlue},
+    stringstyle=\color{AccentTeal},
+    commentstyle=\itshape\color{gray},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=8pt,
+    frame=single,
+    rulecolor=\color{BorderGray},
+    breaklines=true,
+    breakatwhitespace=true,
+    showstringspaces=false,
+    tabsize=2,
+    captionpos=b
+}

@@ -1,0 +1,226 @@
+% ==============================================================================
+% SECCIÓN 4: REQUERIMIENTOS FUNCIONALES (R-01 A R-30)
+% ==============================================================================
+
+\section{Requerimientos Funcionales (RF)}
+
+Los requerimientos funcionales especifican de manera precisa las acciones, procesos, transformaciones de datos y respuestas que el sistema web SYSELL debe ejecutar para satisfacer las necesidades operacionales de Comercial Machi's.
+
+\subsection{Requerimientos Funcionales Base Consolidados (R-01 a R-18)}
+
+\begin{reqbox}{R-01}{Registro de Empleados y Cuentas de Usuario}
+\textbf{Descripción:} El sistema debe permitir al Administrador registrar nuevos trabajadores en la plataforma, capturando: Nombres, Apellidos, Teléfono móvil, Documento Nacional de Identidad (DNI de 8 dígitos numéricos), Dirección domiciliaria, Correo electrónico institucional y Rol asignado (\texttt{Administrador} o \texttt{Vendedor}).\\
+\textbf{Entradas:} Formulario web con validación en tiempo real (formato DNI, correo único, contraseña segura con hashing).\\
+\textbf{Salidas:} Registro creado en BD, generación de credenciales y mensaje de confirmación.\\
+\textbf{Prioridad:} Alta | \textbf{Regla de Negocio:} RN-08, RN-09.
+\end{reqbox}
+
+\begin{reqbox}{R-02}{Gestión de Acceso y Autenticación Segura (Login)}
+\textbf{Descripción:} El sistema debe gestionar el acceso seguro de vendedores y administradores mediante un proceso de autenticación por correo y contraseña, emitiendo un Bearer Token de Laravel Sanctum para el consumo seguro de la API REST.\\
+\textbf{Entradas:} Correo electrónico y contraseña cifrada.\\
+\textbf{Salidas:} Token de sesión emitido, redirección al dashboard correspondiente según rol (RBAC) o mensaje de error en caso de credenciales inválidas.\\
+\textbf{Prioridad:} Crítica | \textbf{Regla de Negocio:} RN-08.
+\end{reqbox}
+
+\begin{reqbox}{R-03}{Visualización del Perfil Individual del Empleado}
+\textbf{Descripción:} El sistema debe permitir a cada empleado consultar y visualizar su perfil individual, mostrando sus datos personales, sucursal asignada, rol y su historial de ventas registradas en la jornada actual.\\
+\textbf{Entradas:} Petición autenticada desde el cliente web.\\
+\textbf{Salidas:} Vista de perfil de usuario con estadísticas de desempeño personal.\\
+\textbf{Prioridad:} Media | \textbf{Regla de Negocio:} RN-09.
+\end{reqbox}
+
+\begin{reqbox}{R-04}{Dar de Baja Perfiles de Trabajadores (Borrado Lógico)}
+\textbf{Descripción:} El sistema debe permitir al Administrador dar de baja a un trabajador mediante \textbf{borrado lógico} (\texttt{deleted\_at}), revocando de manera inmediata todos sus tokens de acceso activos, inhabilitando su inicio de sesión pero preservando intacto todo su historial de ventas pasadas para trazabilidad y auditoría.\\
+\textbf{Entradas:} Confirmación del Administrador en el panel de usuarios.\\
+\textbf{Salidas:} Estado del usuario marcado como inactivo / dado de baja y registro en auditoría.\\
+\textbf{Prioridad:} Alta | \textbf{Regla de Negocio:} RN-04, RN-09.
+\end{reqbox}
+
+\begin{reqbox}{R-05}{Modificación de Información Personal de Trabajadores}
+\textbf{Descripción:} El sistema debe permitir al Administrador modificar los datos de contacto, dirección, local asignado o rol de cualquier empleado registrado.\\
+\textbf{Entradas:} Formulario con campos actualizados.\\
+\textbf{Salidas:} Registro actualizado en base de datos y log de auditoría con valores antiguos y nuevos.\\
+\textbf{Prioridad:} Media | \textbf{Regla de Negocio:} RN-09.
+\end{reqbox}
+
+\begin{reqbox}{R-06}{Registro de Salida de Productos y Reducción Automática de Stock}
+\textbf{Descripción:} El sistema debe registrar la salida de productos y descontar automáticamente del inventario las unidades vendidas en el local correspondiente de manera atómica.\\
+\textbf{Entradas:} Lista de items vendidos (ID variante, cantidad, precio unitario).\\
+\textbf{Salidas:} Stock actualizado en BD, registro de detalle de salida e integridad transaccional.\\
+\textbf{Prioridad:} Crítica | \textbf{Regla de Negocio:} RN-02.
+\end{reqbox}
+
+\begin{reqbox}{R-07}{Actualización del Registro de Ganancias y Margen Bruto}
+\textbf{Descripción:} El sistema debe calcular y actualizar automáticamente el registro de ganancias brutas en función de cada venta, contrastando el precio de venta final contra el costo unitario de adquisición de la prenda.\\
+\textbf{Entradas:} Transacción de venta confirmada.\\
+\textbf{Salidas:} Métricas financieras actualizadas en el modelo de lectura (CQRS).\\
+\textbf{Prioridad:} Alta | \textbf{Regla de Negocio:} RN-01.
+\end{reqbox}
+
+\begin{reqbox}{R-08}{Registro de Ventas en Punto de Venta (POS Mostrador)}
+\textbf{Descripción:} El sistema debe permitir al Vendedor registrar ventas en mostrador, agregando productos al carrito, seleccionando el método de pago operativo (Efectivo, Yape/Plin o Transferencia) y confirmando la transacción.\\
+\textbf{Entradas:} Items seleccionados, método de pago, monto recibido o código de operación.\\
+\textbf{Salidas:} Comprobante de venta generado, actualización de stock y mensaje de confirmación.\\
+\textbf{Prioridad:} Crítica | \textbf{Regla de Negocio:} RN-01, RN-02, RN-05.
+\end{reqbox}
+
+\begin{reqbox}{R-09}{Búsqueda Rápida de Productos en Catálogo}
+\textbf{Descripción:} El sistema debe permitir al vendedor y administrador realizar búsquedas predictivas en tiempo real por nombre de producto, SKU, código de barras, categoría, talla o color con latencia inferior a 200 ms.\\
+\textbf{Entradas:} Cadena de texto en el buscador interactivo.\\
+\textbf{Salidas:} Lista filtrada de productos con precio y stock disponible en la sucursal actual.\\
+\textbf{Prioridad:} Alta | \textbf{Regla de Negocio:} RN-10.
+\end{reqbox}
+
+\begin{reqbox}{R-10}{Visualización Exclusiva de Ingresos y Márgenes Financieros}
+\textbf{Descripción:} El sistema debe restringir estrictamente la visualización de los montos totales de recaudación, márgenes de ganancia y costos de compra únicamente a usuarios con rol de \texttt{Administrador}.\\
+\textbf{Entradas:} Petición autenticada con verificación de políticas en Laravel (\texttt{Policy/Gate}).\\
+\textbf{Salidas:} Panel financiero visible solo para administradores; error 403 Forbidden para vendedores.\\
+\textbf{Prioridad:} Alta | \textbf{Regla de Negocio:} RN-09, RN-10.
+\end{reqbox}
+
+\begin{reqbox}{R-11}{Control y Visualización de Unidades en Stock}
+\textbf{Descripción:} El sistema debe mostrar en tiempo real la cantidad exacta de unidades disponibles de cada producto y variante desglosada por sucursal.\\
+\textbf{Entradas:} Consulta a la vista de inventario.\\
+\textbf{Salidas:} Tabla interactiva con stock físico actual, stock comprometido y stock por local.\\
+\textbf{Prioridad:} Alta | \textbf{Regla de Negocio:} RN-02, RN-03.
+\end{reqbox}
+
+\begin{reqbox}{R-12}{Alerta Visual de Agotamiento de Producto}
+\textbf{Descripción:} El sistema debe mostrar indicadores visuales destacados (insignias rojas/amarillas e íconos de advertencia) cuando el stock de una prenda sea menor o igual al umbral mínimo configurado.\\
+\textbf{Entradas:} Evento de actualización de stock o carga de panel.\\
+\textbf{Salidas:} Alerta visual emergente y reporte de productos críticos para reposición.\\
+\textbf{Prioridad:} Alta | \textbf{Regla de Negocio:} RN-03.
+\end{reqbox}
+
+\begin{reqbox}{R-13}{Modificación de Datos de Productos por el Administrador}
+\textbf{Descripción:} El sistema debe permitir exclusivamente al Administrador actualizar nombres, descripciones, precios de venta, costos base, categorías y fotografías de los productos.\\
+\textbf{Entradas:} Formulario de edición con validación de datos.\\
+\textbf{Salidas:} Producto modificado en BD y registro de auditoría.\\
+\textbf{Prioridad:} Media | \textbf{Regla de Negocio:} RN-09.
+\end{reqbox}
+
+\begin{reqbox}{R-14}{Dar de Baja Productos del Catálogo (Borrado Lógico)}
+\textbf{Descripción:} El sistema debe permitir al Administrador dar de baja productos o variantes del catálogo comercial mediante \textbf{borrado lógico} (\texttt{deleted\_at}), impidiendo que se sigan vendiendo pero preservando la integridad de las ventas históricas donde figuren.\\
+\textbf{Entradas:} Acción de desactivación / baja en panel de inventario.\\
+\textbf{Salidas:} Producto marcado como dado de baja (\texttt{is\_active = false} y \texttt{deleted\_at != null}).\\
+\textbf{Prioridad:} Alta | \textbf{Regla de Negocio:} RN-04.
+\end{reqbox}
+
+\begin{reqbox}{R-15}{Consolidación y Resumen General de Ventas}
+\textbf{Descripción:} El sistema debe consolidar las ventas del día, semana, mes o rango personalizado, calculando el total recaudado, número de transacciones y ticket promedio.\\
+\textbf{Entradas:} Parámetros de rango de fecha y local.\\
+\textbf{Salidas:} Resumen consolidado con gráficos y desglose por método de pago.\\
+\textbf{Prioridad:} Alta | \textbf{Regla de Negocio:} RN-01, RN-05.
+\end{reqbox}
+
+\begin{reqbox}{R-16}{Generación de Tablas y Gráficos Estadísticos de Ventas}
+\textbf{Descripción:} El sistema debe generar gráficos de barras, líneas y sectores circulares que representen la evolución de ventas en el tiempo, productos más vendidos (\textit{Top 10}) y distribución por método de pago.\\
+\textbf{Entradas:} Consulta analítica al Query Model (CQRS).\\
+\textbf{Salidas:} Gráficos interactivos en React con capacidad de zoom y detalle.\\
+\textbf{Prioridad:} Media | \textbf{Regla de Negocio:} RN-01.
+\end{reqbox}
+
+\begin{reqbox}{R-17}{Filtrado Avanzado de Reportes por Fecha, Local y Vendedor}
+\textbf{Descripción:} El sistema debe permitir filtrar todos los informes de ventas por rango de fechas (desde/hasta), sucursal específica, vendedor responsable y método de pago.\\
+\textbf{Entradas:} Filtros seleccionados en la interfaz de reportes.\\
+\textbf{Salidas:} Dataset filtrado y recalculado al instante.\\
+\textbf{Prioridad:} Alta | \textbf{Regla de Negocio:} RN-01, RN-05.
+\end{reqbox}
+
+\begin{reqbox}{R-18}{Exportación de Reportes en Formatos PDF y Excel (CSV/XLSX)}
+\textbf{Descripción:} El sistema debe permitir la exportación formal de los reportes generados a documentos PDF con formato corporativo y a hojas de cálculo Excel para conciliación contable.\\
+\textbf{Entradas:} Petición de exportación desde la vista de reportes.\\
+\textbf{Salidas:} Archivo descargable generado por el backend (\texttt{DomPDF} / \texttt{Laravel-Excel}).\\
+\textbf{Prioridad:} Alta | \textbf{Regla de Negocio:} RN-01.
+\end{reqbox}
+
+\subsection{Nuevos Requerimientos Funcionales y Módulos de Ampliación (R-19 a R-30)}
+
+\begin{reqbox}{R-19}{Módulo de Devoluciones y Cambios de Mercadería}
+\textbf{Descripción:} El sistema debe permitir registrar la devolución o cambio de una prenda adquirida dentro del plazo legal de 7 días, solicitando el número de venta original, motivo del cambio, estado físico de la prenda e ingresándola de retorno al inventario del local con emisión de comprobante de cambio.\\
+\textbf{Entradas:} ID Venta, ID Variante a retornar, ID Variante nueva (si aplica), motivo.\\
+\textbf{Salidas:} Stock ajustado automáticamente, nota de cambio generada y registro en auditoría.\\
+\textbf{Prioridad:} Alta | \textbf{Regla de Negocio:} RN-02, RN-06.
+\end{reqbox}
+
+\begin{reqbox}{R-20}{Gestión de Múltiples Locales, Sucursales y Stocks Diferenciados}
+\textbf{Descripción:} El sistema debe permitir al Administrador registrar múltiples locales comerciales y almacenes de Comercial Machi's, asignando empleados y manteniendo saldos de inventario independientes por cada sucursal.\\
+\textbf{Entradas:} Nombre del local, dirección, teléfono, responsable y configuración de caja.\\
+\textbf{Salidas:} Sucursal creada y catálogo vinculado con stock segmentado.\\
+\textbf{Prioridad:} Alta | \textbf{Regla de Negocio:} RN-02, RN-07.
+\end{reqbox}
+
+\begin{reqbox}{R-21}{Gestión de Categorías y Atributos Dinámicos (Talla, Color, Marca, Temporada)}
+\textbf{Descripción:} El sistema debe proveer una interfaz para crear y clasificar categorías jerárquicas (p. ej., Ropa de Varón $\rightarrow$ Polos $\rightarrow$ Manga Corta) y administrar atributos estandarizados de tallas (S, M, L, XL, 30, 32, etc.), colores, marcas comerciales y temporadas (Verano, Invierno, etc.).\\
+\textbf{Entradas:} Nombre del atributo, código y categoría padre.\\
+\textbf{Salidas:} Catálogo de atributos disponible para generación de variantes SKU.\\
+\textbf{Prioridad:} Alta | \textbf{Regla de Negocio:} RN-10.
+\end{reqbox}
+
+\begin{reqbox}{R-22}{Parametrización y Monitor de Alertas de Stock Mínimo}
+\textbf{Descripción:} El sistema debe permitir configurar umbrales de stock mínimo globales y por variante específica, desplegando un monitor centralizado de reabastecimiento para el Administrador.\\
+\textbf{Entradas:} Valor de stock mínimo en la ficha de producto.\\
+\textbf{Salidas:} Notificaciones push/web y lista priorizada de compras urgentes.\\
+\textbf{Prioridad:} Alta | \textbf{Regla de Negocio:} RN-03.
+\end{reqbox}
+
+\begin{reqbox}{R-23}{Módulo de Apertura, Arqueo y Cierre Diario de Caja}
+\textbf{Descripción:} El sistema debe gestionar el ciclo diario de caja por local y por cajero:
+\begin{enumerate}[noitemsep]
+    \item \textbf{Apertura:} Registro de monto inicial en efectivo.
+    \item \textbf{Movimientos:} Registro de ingresos y egresos menores justificados.
+    \item \textbf{Cierre:} Arqueo ciego con desglose por Efectivo, Yape/Plin y Transferencia, cálculo de diferencias y generación de reporte de cierre de caja en PDF.
+\end{enumerate}
+\textbf{Entradas:} Montos declarados en el arqueo físico.\\
+\textbf{Salidas:} Acta de cierre de caja firmada digitalmente y sesión cerrada.\\
+\textbf{Prioridad:} Crítica | \textbf{Regla de Negocio:} RN-05, RN-07.
+\end{reqbox}
+
+\begin{reqbox}{R-24}{Recuperación y Cambio de Contraseña vía Correo Electrónico}
+\textbf{Descripción:} El sistema debe permitir al usuario restablecer su contraseña olvidada ingresando su correo electrónico registrado, el cual recibirá un enlace con token criptográfico temporal y firmado (expiración de 15 minutos).\\
+\textbf{Entradas:} Correo del usuario y nueva contraseña confirmada.\\
+\textbf{Salidas:} Contraseña actualizada en BD con algoritmo Bcrypt/Argon2id y revocación de sesiones previas.\\
+\textbf{Prioridad:} Alta | \textbf{Regla de Negocio:} RN-08.
+\end{reqbox}
+
+\begin{reqbox}{R-25}{Seguridad: Bloqueo por Intentos Fallidos y Cierre por Inactividad}
+\textbf{Descripción:} El backend debe bloquear temporalmente las solicitudes de autenticación tras 5 intentos fallidos desde una misma IP o cuenta por 15 minutos (\textit{Rate Limiting}). Asimismo, el frontend React detectará inactividad de usuario ($>15$ min) cerrando la sesión de manera proactiva.\\
+\textbf{Entradas:} Intentos de login y eventos de interacción del mouse/teclado.\\
+\textbf{Salidas:} Bloqueo HTTP 429 Too Many Requests y redirección a login por timeout.\\
+\textbf{Prioridad:} Crítica | \textbf{Regla de Negocio:} RN-08.
+\end{reqbox}
+
+\begin{reqbox}{R-26}{Registro y Visualización de Logs de Auditoría del Sistema}
+\textbf{Descripción:} El sistema debe disponer de un módulo accesible únicamente para el Administrador donde se pueda auditar cualquier alta, baja lógica o modificación realizada en el sistema, con filtros por fecha, usuario, módulo e IP.\\
+\textbf{Entradas:} Parámetros de búsqueda en la bitácora de auditoría.\\
+\textbf{Salidas:} Tabla detallada de eventos con vista comparativa de cambios (\textit{diff JSON}).\\
+\textbf{Prioridad:} Alta | \textbf{Regla de Negocio:} RN-04, RN-09.
+\end{reqbox}
+
+\begin{reqbox}{R-27}{Filtros Multicriterio de Productos (Talla, Color, Marca, Temporada)}
+\textbf{Descripción:} El catálogo de productos debe ofrecer navegación con filtros combinables y acumulativos por categoría, rango de precios, marca, color, talla y temporada.\\
+\textbf{Entradas:} Opciones de filtro seleccionadas en la interfaz.\\
+\textbf{Salidas:} Grilla de productos actualizada dinámicamente mediante peticiones optimizadas.\\
+\textbf{Prioridad:} Alta | \textbf{Regla de Negocio:} RN-10.
+\end{reqbox}
+
+\begin{reqbox}{R-28}{Dashboard Ejecutivo de Métricas Operativas en Tiempo Real}
+\textbf{Descripción:} Al iniciar sesión, el Administrador debe visualizar un panel interactivo con KPIs clave: Total recaudado en el día (PEN), Ventas por local, Alertas de stock crítico, Métodos de pago más utilizados y Gráfico de tendencia horaria de afluencia.\\
+\textbf{Entradas:} Carga inicial de la aplicación autenticada.\\
+\textbf{Salidas:} Dashboard interactivo con componentes visuales de alto impacto.\\
+\textbf{Prioridad:} Alta | \textbf{Regla de Negocio:} RN-01, RN-07.
+\end{reqbox}
+
+\begin{reqbox}{R-29}{Gestión de Traspasos de Inventario entre Sucursales}
+\textbf{Descripción:} El sistema debe permitir registrar traslados de mercadería desde un local de origen hacia un local de destino, con estados de: \textit{Pendiente de Envío}, \textit{En Tránsito} y \textit{Recibido y Confirmado en Destino}.\\
+\textbf{Entradas:} Local origen, local destino, variantes y cantidades a transferir.\\
+\textbf{Salidas:} Descuento en origen, incremento en destino y guía de remisión interna.\\
+\textbf{Prioridad:} Media | \textbf{Regla de Negocio:} RN-02.
+\end{reqbox}
+
+\begin{reqbox}{R-30}{Emisión e Impresión de Ticket Térmico de Venta (80mm / 58mm)}
+\textbf{Descripción:} Al confirmar una venta o devolución, el sistema debe generar una vista de impresión optimizada para impresoras térmicas de tickets estándar (formato 80mm o 58mm) con el detalle fiscal, datos de Comercial Machi's, fecha, hora, método de pago y código de operación.\\
+\textbf{Entradas:} Petición de impresión tras venta exitosa.\\
+\textbf{Salidas:} Ventana de impresión con formato CSS térmico limpio.\\
+\textbf{Prioridad:} Alta | \textbf{Regla de Negocio:} RN-01, RN-05.
+\end{reqbox}

@@ -1,0 +1,99 @@
+\documentclass[11pt,a4paper]{article}
+
+% Inclusión de paquetes y configuración general
+\input{config/packages.tex}
+
+% Inclusión de estilos corporativos y definiciones
+\input{config/styles.tex}
+
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% PORTADA INSTITUCIONAL
+% ------------------------------------------------------------------------------
+\input{config/cover.tex}
+
+% ------------------------------------------------------------------------------
+% PÁGINAS PRELIMINARES: CONTROL DE CAMBIOS, ÍNDICES
+% ------------------------------------------------------------------------------
+\pagenumbering{roman}
+\setcounter{page}{2}
+
+\section*{Cuadro de Revisiones y Control de Versiones}
+\addcontentsline{toc}{section}{Cuadro de Revisiones y Control de Versiones}
+
+El presente documento constituye la especificación técnica formal y estándar de arquitectura del sistema web \textbf{SYSELL}, elaborado para la empresa \textbf{Comercial Machi's} en la ciudad de Tacna, bajo la supervisión de la Escuela Profesional de Ingeniería en Informática y Sistemas (ESIS) de la Universidad Nacional Jorge Basadre Grohmann.
+
+\vspace{0.3cm}
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\linewidth}{cll>{\raggedright\arraybackslash}Xll}
+\toprule
+\rowcolor{LightSlate}
+\textbf{Rev.} & \textbf{Fecha} & \textbf{Estándar} & \textbf{Motivo del Cambio / Descripción} & \textbf{Elaborado por} & \textbf{Estado} \\
+\midrule
+1.0 & 22/09/2026 & ERS Base & Versión inicial con levantamiento de requisitos. & Equipo Pollitos & Aprobado \\
+2.0 & 28/09/2026 & STD-ARQ & Definición de Clean Architecture + CQRS. & Equipo Pollitos & Aprobado \\
+3.0 & 05/10/2026 & IEEE 830 & Reestructuración integral a estándar web (React + Laravel), inclusión de 9 nuevos módulos, soft deletes, matriz de trazabilidad y anexos probatorios. & Equipo Pollitos & \textbf{Vigente} \\
+\bottomrule
+\end{tabularx}
+\caption{Historial de Revisiones del Documento.}
+\label{tab:revisiones}
+\end{table}
+
+\vspace{0.6cm}
+\tableofcontents
+\newpage
+
+\listoffigures
+\vspace{0.8cm}
+\listoftables
+\newpage
+
+% ------------------------------------------------------------------------------
+% CUERPO PRINCIPAL DEL DOCUMENTO (NUMERACIÓN ARÁBIGA)
+% ------------------------------------------------------------------------------
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% Sección 1: Introducción (IEEE 830 Sec 1)
+\input{sections/01_introduccion.tex}
+\newpage
+
+% Sección 2: Descripción General del Producto (IEEE 830 Sec 2)
+\input{sections/02_descripcion_general.tex}
+\newpage
+
+% Sección 3: Reglas de Negocio del Sistema
+\input{sections/03_reglas_negocio.tex}
+\newpage
+
+% Sección 4: Requerimientos Funcionales (R-01 a R-30)
+\input{sections/04_requerimientos_funcionales.tex}
+\newpage
+
+% Sección 5: Historias de Usuario y Criterios Gherkin
+\input{sections/05_historias_usuario.tex}
+\newpage
+
+% Sección 6: Requisitos No Funcionales (ISO 25010 y OWASP)
+\input{sections/06_requerimientos_no_funcionales.tex}
+\newpage
+
+% Sección 7: Arquitectura de Software, Clean Architecture y CQRS
+\input{sections/07_arquitectura_software.tex}
+\newpage
+
+% Sección 8: Diseño de Interfaces de Usuario (UI/UX)
+\input{sections/08_diseno_interfaces.tex}
+\newpage
+
+% Sección 9: Alcance Futuro y Roadmap
+\input{sections/09_alcance_futuro_roadmap.tex}
+\newpage
+
+% Sección 10: Anexos y Evidencias Académicas
+\input{sections/10_anexos_evidencias.tex}
+
+\end{document}

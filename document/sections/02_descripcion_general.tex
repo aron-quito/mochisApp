@@ -1,0 +1,87 @@
+% ==============================================================================
+% SECCIÓN 2: DESCRIPCIÓN GENERAL DEL PRODUCTO (IEEE 830 SEC 2)
+% ==============================================================================
+
+\section{Descripción General del Producto}
+
+\subsection{Perspectiva del Producto}
+\textbf{SYSELL} es un sistema informático independiente (\textit{standalone system}) concebido como una solución web cliente-servidor distribuida. Reemplaza los procesos manuales en libretas de papel, hojas de cálculo aisladas y prototipos preliminares no escalables por una infraestructura centralizada y segura.
+
+El sistema se compone de dos subsistemas principales interconectados mediante protocolos seguros sobre HTTPS/JSON:
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Frontend Web (SPA):} Interfaz rica para el usuario construida con \textbf{React 18 + TypeScript + Vite}, diseñada bajo enfoque \textit{Mobile-First} y \textit{Responsive Design}, garantizando accesibilidad óptima desde monitores de escritorio (1920$\times$1080px) hasta dispositivos táctiles y teléfonos inteligentes (ancho mínimo de 360px).
+    \item \textbf{Backend Web (API RESTful):} Núcleo transaccional de alto rendimiento implementado en \textbf{PHP 8.2 con Laravel 11}, estructurado estrictamente bajo \textbf{Clean Architecture} y el patrón \textbf{CQRS}. Provee endpoints desacoplados, autenticación mediante tokens de portador (\textit{Bearer Tokens}) gestionados por \textbf{Laravel Sanctum}, y persistencia en una base de datos relacional \textbf{MySQL 8.0}.
+\end{enumerate}
+
+\subsection{Clasificación y Características de los Usuarios (Actores del Sistema)}
+El sistema implementa un modelo de control de acceso basado en roles (\textbf{RBAC}). Se identifican dos roles principales de usuario, además del sistema autónomo:
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\linewidth}{l>{\raggedright\arraybackslash}p{3.5cm}>{\raggedright\arraybackslash}X}
+\toprule
+\rowcolor{LightSlate}
+\textbf{Actor / Rol} & \textbf{Perfil del Usuario} & \textbf{Responsabilidades y Privilegios en el Sistema} \\
+\midrule
+\textbf{Administrador} & Propietario o Gerente de Operaciones de Comercial Machi's. Posee conocimientos intermedios en computación. & 
+\begin{itemize}[leftmargin=*,noitemsep,topsep=0pt]
+    \item Registro, modificación y baja lógica de trabajadores y cuentas.
+    \item Gestión integral de productos, variantes, precios y stock mínimo.
+    \item Gestión de locales, sucursales y traspasos de inventario.
+    \item Visualización de balances financieros, márgenes y cierres de caja.
+    \item Consulta de auditoría (\textit{audit logs}) y reportes consolidados.
+\end{itemize} \\
+\midrule
+\textbf{Vendedor (Cajero)} & Personal de atención en mostrador y ventas. Habilidades digitales básicas. & 
+\begin{itemize}[leftmargin=*,noitemsep,topsep=0pt]
+    \item Inicio y cierre de turno con declaración de saldo inicial.
+    \item Búsqueda rápida de prendas por nombre, código, talla o color.
+    \item Registro de ventas en mostrador mediante métodos de pago admitidos.
+    \item Registro de devoluciones y cambios según políticas comerciales.
+    \item Consulta de stock disponible en tiempo real en su local y otros.
+\end{itemize} \\
+\midrule
+\textbf{Sistema (Cron/Workers)} & Procesos en segundo plano del servidor backend. & 
+\begin{itemize}[leftmargin=*,noitemsep,topsep=0pt]
+    \item Monitoreo automatizado de stock mínimo y generación de alertas.
+    \item Caducidad automática de tokens por inactividad ($>15$ min).
+    \item Depuración periódica de logs antiguos y copias de seguridad.
+\end{itemize} \\
+\bottomrule
+\end{tabularx}
+\caption{Matriz de Actores y Roles del Sistema SYSELL.}
+\label{tab:actores_sistema}
+\end{table}
+
+\subsection{Entorno Operativo del Sistema}
+El sistema opera en una arquitectura web multiplataforma:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Clientes (Navegadores Soportados):} Google Chrome v110+, Mozilla Firefox v115+, Microsoft Edge v110+, Apple Safari v16+ (tanto en escritorio como en iOS y Android).
+    \item \textbf{Servidor de Aplicación (Backend):} Contenedor Docker basado en Linux Alpine / Debian con PHP 8.2-FPM y servidor web Nginx 1.24+ como proxy inverso.
+    \item \textbf{Servidor de Base de Datos:} Servidor relacional MySQL 8.0.35+ con motor transaccional InnoDB, juego de caracteres \texttt{utf8mb4} y cotejamiento \texttt{utf8mb4\_unicode\_ci}.
+    \item \textbf{Entorno de Ejecución Frontend:} Node.js 20 LTS (en fase de compilación y empaquetado Vite).
+\end{itemize}
+
+\subsection{Restricciones de Diseño e Implementación}
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Restricción Tecnológica Web Obligatoria:} Queda totalmente excluida la dependencia de SDKs móviles nativos (Android/Kotlin/Java) y servicios propietarios de BaaS (Firebase). Toda la lógica de persistencia y autenticación reside en el servidor Laravel propio y la base de datos MySQL 8.
+    \item \textbf{Moneda y Régimen Fiscal Peruano:} Todas las operaciones de venta, precios de catálogo, descuentos y arqueos de caja deben registrarse en \textbf{Soles Peruanos (PEN, \texttt{S/.})}. El cálculo del Impuesto General a las Ventas (IGV) se fija en la tasa oficial del \textbf{18\%}, aplicando la fórmula:
+    \begin{equation}
+        \text{Total} = \text{Base Imponible} \times (1 + \text{Tasa IGV}) = \text{Base Imponible} \times 1.18
+    \end{equation}
+    \item \textbf{Integridad Histórica (Borrado Lógico):} Ningún registro transaccional ni entidad con historial de ventas (productos, categorías, usuarios) puede ser eliminado físicamente mediante \texttt{DELETE FROM}. Se debe utilizar la marca de tiempo \texttt{deleted\_at} (\textit{Soft Deletes}).
+    \item \textbf{Métodos de Pago Estrictamente Operativos:} El sistema soporta únicamente tres métodos de pago en su fase actual:
+    \begin{itemize}
+        \item \textbf{Efectivo} (con registro de importe entregado y cálculo de vuelto).
+        \item \textbf{Billetera Digital} (Yape / Plin, con registro de código de operación de 6 a 8 dígitos).
+        \item \textbf{Transferencia Interbancaria} (con registro del número de operación bancaria).
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Suposiciones y Dependencias}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Conectividad de Red:} Los locales comerciales disponen de una conexión a Internet de banda ancha estable (al menos 10 Mbps de bajada / 2 Mbps de subida) o red de área local (LAN) conectada al servidor.
+    \item \textbf{Hardware de Punto de Venta:} Los terminales de venta cuentan con un navegador web moderno y, opcionalmente, lector de código de barras USB/Bluetooth que opera en modo emulación de teclado (\textit{HID Keyboard}).
+    \item \textbf{Capacitación Básica del Personal:} El personal de ventas ha recibido inducción básica en el uso de navegadores web y en la lectura de códigos de operación de billeteras digitales.
+\end{itemize}
